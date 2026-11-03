@@ -1,0 +1,29 @@
+name: Deploy ke VPS SumoPod
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pasang kunci SSH
+        env:
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$VPS_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H 43.173.42.51 >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Update website di VPS
+        run: |
+          ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes ubuntu@43.173.42.51 '
+            set -e
+            cd /home/ubuntu/website-porto
+            git pull --ff-only
+            rsync -a --delete --exclude ".git" /home/ubuntu/website-porto/ /var/www/gatraglobal.id/
+            sudo -n systemctl reload nginx
+            echo "DEPLOY-ACTIONS-OK"
+          '
