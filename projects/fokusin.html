@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Fokusin — Demo Aplikasi Mobile by mood</title>
+<meta name="description" content="Demo aplikasi mobile Fokusin: timer pomodoro yang beneran jalan (mulai, jeda, reset, preset durasi) plus daftar tugas sesi. Dibuat oleh studio IT mood.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"></noscript>
+<style>
+:root{--brand:#E8590C;--brand-soft:#FFEDD5;--ink:#241A12;--bg:#FBF5EF;--card:#fff;--line:#F2E3D5;--mut:#8A7A6C}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:34px 14px;color:var(--ink);background:var(--bg);background-image:radial-gradient(rgba(36,26,18,.06) 1.1px,transparent 1.2px);background-size:22px 22px}
+.phone{width:min(392px,100%);background:var(--ink);border-radius:46px;padding:11px;box-shadow:10px 12px 0 rgba(36,26,18,.16)}
+.screen{position:relative;background:var(--bg);border-radius:36px;height:min(742px,82vh);display:flex;flex-direction:column;overflow:hidden}
+.punch{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:88px;height:24px;background:var(--ink);border-radius:999px;z-index:9}
+.statusbar{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:14px 22px 4px;font-size:.78rem;font-weight:700}
+.app-body{flex:1;overflow-y:auto;padding:12px 18px 18px;display:flex;flex-direction:column;gap:16px;scrollbar-width:none}
+.app-body::-webkit-scrollbar{display:none}
+.app-head{display:flex;align-items:center;gap:12px}
+.avatar{width:44px;height:44px;border-radius:14px;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:800;font-size:1.05rem;flex-shrink:0}
+.hello{display:flex;flex-direction:column;min-width:0}
+.hello b{font-size:1.02rem}
+.hello small{color:var(--mut);font-size:.74rem;font-weight:600}
+.lbl{font-size:.95rem;font-weight:800;display:flex;align-items:baseline;gap:6px}
+.lbl small{color:var(--mut);font-size:.72rem;font-weight:600}
+.tabbar{flex-shrink:0;display:flex;background:var(--card);border-top:1px solid var(--line);padding:10px 8px calc(12px + env(safe-area-inset-bottom))}
+.tabbar .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.64rem;font-weight:700;color:var(--mut);font-family:inherit;background:none;border:0;cursor:pointer;padding:0}
+.tabbar .tab i{font-style:normal;font-size:1.12rem}
+.tabbar .tab.on{color:var(--brand)}
+.view{display:flex;flex-direction:column;gap:16px}
+.view[hidden]{display:none}
+.set{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:6px 14px;display:flex;flex-direction:column}
+.set-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;font-size:.84rem;font-weight:600;border-bottom:1px solid var(--line)}
+.set-row:last-child{border-bottom:0}
+.sw{width:44px;height:26px;border-radius:99px;background:var(--line);position:relative;cursor:pointer;border:0;padding:0;transition:background .2s;flex-shrink:0}
+.sw::after{content:"";position:absolute;width:20px;height:20px;border-radius:50%;background:#fff;top:3px;left:3px;transition:left .2s}
+.sw.on{background:var(--brand)}
+.sw.on::after{left:21px}
+.resetbtn{width:100%;padding:13px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-family:inherit;font-weight:700;font-size:.84rem;cursor:pointer;color:var(--ink)}
+.stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stats3>div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center}
+.stats3 b{display:block;font-size:1.3rem;color:var(--brand)}
+.stats3 small{color:var(--mut);font-size:.66rem;font-weight:700;text-transform:uppercase}
+.bars{display:flex;align-items:flex-end;gap:9px;height:104px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px}
+.bars i{flex:1;display:block;background:var(--brand-soft);border-radius:7px 7px 3px 3px}
+.bars i.hot{background:var(--brand)}
+.insight{background:var(--brand-soft);border-radius:16px;padding:14px;font-size:.8rem;font-weight:600;line-height:1.55}
+.dots{margin-left:auto;display:flex;gap:6px;flex-shrink:0}
+.dots i{width:10px;height:10px;border-radius:50%;background:var(--brand-soft)}
+.dots i.fill{background:var(--brand)}
+.backpill{position:fixed;left:16px;bottom:16px;z-index:50;background:var(--ink);color:#fff;text-decoration:none;font-size:.76rem;font-weight:700;padding:10px 16px;border-radius:999px;box-shadow:0 8px 20px rgba(0,0,0,.28)}
+.credit{font-size:.78rem;color:var(--mut);text-align:center;max-width:430px}
+.credit b{color:var(--ink)}
+@media(max-width:480px){body{padding:0;gap:0}.phone{width:100%;border-radius:0;padding:0;box-shadow:none}.screen{border-radius:0;height:100dvh}.credit,.backpill{display:none}}
+.timer-card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:20px 16px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.timer-wrap{position:relative;width:196px;height:196px}
+.timer{width:196px;height:196px;transform:rotate(-90deg)}
+.timer-bg{fill:none;stroke:var(--brand-soft);stroke-width:13}
+.timer-val{fill:none;stroke:var(--brand);stroke-width:13;stroke-linecap:round;stroke-dasharray:540.4;stroke-dashoffset:0;transition:stroke-dashoffset .5s linear}
+.timer-mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.timer-mid b{font-size:2.5rem;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.timer-mid small{font-size:.66rem;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+.presets{display:flex;gap:8px}
+.preset{font-family:inherit;border:1px solid var(--line);background:#fff;border-radius:99px;padding:7px 14px;font-size:.74rem;font-weight:800;cursor:pointer;color:var(--mut)}
+.preset.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.ctrls{display:flex;gap:10px;width:100%}
+.ctrl{flex:1;font-family:inherit;border-radius:14px;padding:13px;font-size:.85rem;font-weight:800;cursor:pointer;border:1px solid var(--line);background:#fff;transition:transform .12s;color:var(--ink)}
+.ctrl:active{transform:scale(.96)}
+.ctrl.main{background:var(--brand);border-color:var(--brand);color:#fff}
+.add{display:flex;gap:8px}
+.add input{flex:1;font-family:inherit;font-size:.85rem;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:#fff;color:var(--ink)}
+.add input:focus{outline:2px solid var(--brand)}
+.add button{font-family:inherit;width:46px;border-radius:14px;border:1px solid var(--brand);background:var(--brand);color:#fff;font-size:1.15rem;font-weight:800;cursor:pointer}
+.tasks{list-style:none;display:flex;flex-direction:column;gap:9px}
+.task{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:15px;padding:12px 14px}
+.task b{font-size:.85rem;font-weight:600;min-width:0}
+.task.done b{text-decoration:line-through;opacity:.5}
+.task .chk{width:24px;height:24px;border-radius:8px;border:2px solid var(--brand);background:#fff;cursor:pointer;color:transparent;font-size:.75rem;font-weight:800;flex-shrink:0;padding:0;display:grid;place-items:center}
+.task.done .chk{background:var(--brand);color:#fff}
+.task .del{margin-left:auto;border:0;background:none;cursor:pointer;font-size:.9rem;opacity:.45;padding:4px}
+.task .del:hover{opacity:1}
+.quote{background:var(--brand-soft);border-radius:16px;padding:14px 16px;font-size:.8rem;font-weight:600;color:#8A4B12;line-height:1.55;text-align:center}
+
+</style>
+</head>
+<body>
+<div class="phone"><div class="screen">
+<span class="punch" aria-hidden="true"></span>
+<div class="statusbar" aria-hidden="true"><span>12.45</span><span>📶 5G 🔋</span></div>
+<div class="app-body">
+  <div class="view on" id="v-fokus">
+  <div class="app-head">
+    <span class="avatar" aria-hidden="true">🍅</span>
+    <div class="hello"><b>Sesi Fokus</b><small>2 sesi lagi, beres semua ✨</small></div>
+    <span class="dots" id="dots" aria-label="2 dari 4 sesi selesai"><i class="fill"></i><i class="fill"></i><i></i><i></i></span>
+  </div>
+  <div class="timer-card">
+    <div class="timer-wrap">
+      <svg class="timer" viewBox="0 0 196 196" aria-hidden="true"><circle class="timer-bg" cx="98" cy="98" r="86"/><circle class="timer-val" id="ring" cx="98" cy="98" r="86"/></svg>
+      <div class="timer-mid"><b id="tmr">25.00</b><small id="phase">siap fokus?</small></div>
+    </div>
+    <div class="presets" role="group" aria-label="Durasi sesi">
+      <button class="preset on" type="button" data-mnt="25">25 mnt</button>
+      <button class="preset" type="button" data-mnt="50">50 mnt</button>
+      <button class="preset" type="button" data-mnt="15">15 mnt</button>
+    </div>
+    <div class="ctrls">
+      <button class="ctrl main" id="btn-go" type="button">▶ Mulai</button>
+      <button class="ctrl" id="btn-reset" type="button">↺ Reset</button>
+    </div>
+  </div>
+  <p class="quote">“Scroll abis fokus, bukan pas fokus.” — mood, mungkin 🍵</p>
+  </div>
+
+  <div class="view" id="v-tugas" hidden>
+    <div class="app-head">
+      <span class="avatar" aria-hidden="true">✅</span>
+      <div class="hello"><b>Tugas</b><small>fokus biar tugasnya beres</small></div>
+      <span class="dots" aria-hidden="true"><i class="fill"></i><i class="fill"></i><i></i><i></i></span>
+    </div>
+    <form class="add" id="f-add"><input id="in-task" type="text" placeholder="mau fokus ngapain?" maxlength="60" aria-label="Tugas baru"><button type="submit" aria-label="Tambah tugas">＋</button></form>
+    <ul class="tasks" id="tasks">
+      <li class="task"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai selesai">✓</button><b>Rangkum modul 3</b><button class="del" type="button" aria-label="Hapus tugas">🗑</button></li>
+      <li class="task"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai selesai">✓</button><b>Bikin outline presentasi</b><button class="del" type="button" aria-label="Hapus tugas">🗑</button></li>
+    </ul>
+    <div class="insight">✅ Tugas yang selesai dicoret — biar progresnya kebayang saat timer jalan.</div>
+  </div>
+
+  <div class="view" id="v-stat" hidden>
+    <div class="app-head">
+      <span class="avatar" aria-hidden="true">📊</span>
+      <div class="hello"><b>Statistik</b><small>seberapa fokus kamu pekan ini</small></div>
+    </div>
+    <div class="stats3">
+      <div><b>2</b><small>sesi hari ini</small></div>
+      <div><b>50</b><small>menit fokus</small></div>
+      <div><b>9</b><small>sesi pekan ini</small></div>
+    </div>
+    <h2 class="lbl">Menit fokus per hari</h2>
+    <div class="bars" aria-hidden="true">
+      <i style="height:30px"></i><i style="height:52px"></i><i class="hot" style="height:76px"></i><i style="height:44px"></i><i style="height:26px"></i><i style="height:60px"></i><i style="height:18px"></i>
+    </div>
+    <div class="insight">🔥 Rekor terbaikmu: 4 sesi dalam sehari — pekan lalu, hari Rabu.</div>
+  </div>
+
+  <div class="view" id="v-setelan" hidden>
+    <div class="app-head">
+      <span class="avatar" aria-hidden="true">⚙️</span>
+      <div class="hello"><b>Setelan</b><small>suka-suka kamu, atur aja</small></div>
+    </div>
+    <div class="set">
+      <div class="set-row"><span>🔔 Suara sesi selesai</span><button class="sw on" type="button" aria-pressed="true" aria-label="Suara sesi selesai"></button></div>
+      <div class="set-row"><span>⚡ Mulai otomatis sesi berikutnya</span><button class="sw" type="button" aria-pressed="false" aria-label="Mulai otomatis"></button></div>
+      <div class="set-row"><span>📳 Getar saat 5 menit terakhir</span><button class="sw on" type="button" aria-pressed="true" aria-label="Getar"></button></div>
+    </div>
+    <button class="resetbtn" type="button" id="reset-demo">↺ Reset demo</button>
+  </div>
+</div>
+<nav class="tabbar" aria-label="Menu demo">
+  <button class="tab on" type="button" data-v="fokus"><i>⏱</i>Fokus</button><button class="tab" type="button" data-v="tugas"><i>✅</i>Tugas</button><button class="tab" type="button" data-v="stat"><i>📊</i>Statistik</button><button class="tab" type="button" data-v="setelan"><i>⚙️</i>Setelan</button>
+</nav>
+</div></div>
+<a class="backpill" href="../karya.html#aplikasi-mobile">◀ mood / karya</a>
+<p class="credit">Demo aplikasi mobile <b>Fokusin</b> — dibuat oleh <b>mood</b> ✦ timernya beneran jalan, coba aja.</p>
+<script>
+(function(){
+"use strict";
+var d=document,C=540.4;
+var elT=d.getElementById("tmr"),elP=d.getElementById("phase"),elR=d.getElementById("ring"),
+    btnGo=d.getElementById("btn-go"),btnReset=d.getElementById("btn-reset"),
+    dots=d.getElementById("dots").children,presets=d.querySelectorAll(".preset"),
+    form=d.getElementById("f-add"),input=d.getElementById("in-task"),tasks=d.getElementById("tasks");
+var total=25*60,left=total,iv=null,sesi=2;
+function fmt(s){var m=Math.floor(s/60);return m+"."+String(s%60).padStart(2,"0");}
+function paint(){elT.textContent=fmt(left);elR.style.strokeDashoffset=C*(1-left/total);}
+function stop(){clearInterval(iv);iv=null;btnGo.textContent="▶ Mulai";}
+function finish(){
+  stop();left=total;paint();
+  sesi=Math.min(sesi+1,4);
+  for(var i=0;i<4;i++){dots[i].classList.toggle("fill",sesi>i);}
+  elP.textContent="sesi ke-"+sesi+" beres! 🎉";
+}
+/* tab */
+var tabs=d.querySelectorAll(".tabbar .tab"),views=d.querySelectorAll(".app-body .view");
+tabs.forEach(function(t){
+  t.addEventListener("click",function(){
+    tabs.forEach(function(x){x.classList.remove("on");});
+    t.classList.add("on");
+    views.forEach(function(v){v.hidden=(v.id!=="v-"+t.dataset.v);});
+    d.querySelector(".app-body").scrollTop=0;
+  });
+});
+/* timer */
+btnGo.addEventListener("click",function(){
+  if(iv){stop();elP.textContent="dijeda dulu ☕";return;}
+  iv=setInterval(function(){
+    left--;
+    if(left<=0){finish();return;}
+    paint();
+    if(left===300){elP.textContent="5 menit lagi! 🔥";}
+  },1000);
+  btnGo.textContent="⏸ Jeda";
+  elP.textContent="fokus… jangan buka ig dulu 🙏";
+});
+btnReset.addEventListener("click",function(){
+  stop();left=total;paint();elP.textContent="siap fokus?";
+});
+presets.forEach(function(p){
+  p.addEventListener("click",function(){
+    presets.forEach(function(x){x.classList.remove("on");});
+    p.classList.add("on");
+    stop();
+    total=parseInt(p.dataset.mnt,10)*60;left=total;paint();
+    elP.textContent="durasi "+p.dataset.mnt+" menit";
+  });
+});
+/* tugas */
+function wire(li){
+  li.querySelector(".chk").addEventListener("click",function(){
+    var on=!li.classList.contains("done");
+    li.classList.toggle("done",on);
+    li.querySelector(".chk").setAttribute("aria-pressed",on?"true":"false");
+  });
+  li.querySelector(".del").addEventListener("click",function(){li.remove();});
+}
+form.addEventListener("submit",function(e){
+  e.preventDefault();
+  var v=input.value.trim();
+  if(!v)return;
+  var li=d.createElement("li");
+  li.className="task";
+  li.innerHTML='<button class="chk" type="button" aria-pressed="false" aria-label="Tandai selesai">✓</button><b></b><button class="del" type="button" aria-label="Hapus tugas">🗑</button>';
+  li.querySelector("b").textContent=v;
+  tasks.prepend(li);wire(li);input.value="";
+});
+d.querySelectorAll("#tasks .task").forEach(wire);
+/* setelan */
+d.querySelectorAll(".sw").forEach(function(sw){
+  sw.addEventListener("click",function(){
+    var on=sw.classList.toggle("on");
+    sw.setAttribute("aria-pressed",on?"true":"false");
+  });
+});
+d.getElementById("reset-demo").addEventListener("click",function(){
+  stop();left=total;paint();elP.textContent="di-reset — siap fokus lagi ↺";
+});
+paint();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Jajan.in — Demo Aplikasi Mobile by mood</title>
+<meta name="description" content="Demo aplikasi mobile Jajan.in: tracker jajan harian dengan saldo live, tombol jajan cepat & grafik 7 hari. Dibuat oleh studio IT mood.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"></noscript>
+<style>
+:root{--brand:#6D28D9;--brand-soft:#EDE9FE;--ink:#17131F;--bg:#F5F3FA;--card:#fff;--line:#E6E1F0;--mut:#7A7490}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:34px 14px;color:var(--ink);background:var(--bg);background-image:radial-gradient(rgba(23,19,31,.06) 1.1px,transparent 1.2px);background-size:22px 22px}
+.phone{width:min(392px,100%);background:var(--ink);border-radius:46px;padding:11px;box-shadow:10px 12px 0 rgba(23,19,31,.16)}
+.screen{position:relative;background:var(--bg);border-radius:36px;height:min(742px,82vh);display:flex;flex-direction:column;overflow:hidden}
+.punch{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:88px;height:24px;background:var(--ink);border-radius:999px;z-index:9}
+.statusbar{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:14px 22px 4px;font-size:.78rem;font-weight:700}
+.app-body{flex:1;overflow-y:auto;padding:12px 18px 18px;display:flex;flex-direction:column;gap:16px;scrollbar-width:none}
+.app-body::-webkit-scrollbar{display:none}
+.app-head{display:flex;align-items:center;gap:12px}
+.avatar{width:44px;height:44px;border-radius:14px;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:800;font-size:1.05rem;flex-shrink:0}
+.hello{display:flex;flex-direction:column;min-width:0}
+.hello b{font-size:1.02rem}
+.hello small{color:var(--mut);font-size:.74rem;font-weight:600}
+.lbl{font-size:.95rem;font-weight:800;display:flex;align-items:baseline;gap:6px}
+.lbl small{color:var(--mut);font-size:.72rem;font-weight:600}
+.tabbar{flex-shrink:0;display:flex;background:var(--card);border-top:1px solid var(--line);padding:10px 8px calc(12px + env(safe-area-inset-bottom))}
+.tabbar .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.64rem;font-weight:700;color:var(--mut);font-family:inherit;background:none;border:0;cursor:pointer;padding:0}
+.tabbar .tab i{font-style:normal;font-size:1.12rem}
+.tabbar .tab.on{color:var(--brand)}
+.view{display:flex;flex-direction:column;gap:16px}
+.view[hidden]{display:none}
+.kat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.kat-row{display:flex;align-items:center;gap:10px;font-size:.8rem;font-weight:700}
+.kat-row>span{width:86px;flex-shrink:0}
+.kbar{flex:1;height:10px;background:var(--brand-soft);border-radius:99px;overflow:hidden}
+.kbar i{display:block;height:100%;background:var(--brand);border-radius:99px}
+.kat-row b{font-size:.72rem;color:var(--mut);width:66px;text-align:right;flex-shrink:0}
+.ringkas{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ringkas>div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;text-align:center}
+.ringkas b{display:block;font-size:.95rem}
+.ringkas small{color:var(--mut);font-size:.66rem;font-weight:600}
+.insight{background:var(--brand-soft);border-radius:16px;padding:14px;font-size:.8rem;font-weight:600;line-height:1.55}
+.set{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:6px 14px;display:flex;flex-direction:column}
+.set-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;font-size:.84rem;font-weight:600;border-bottom:1px solid var(--line)}
+.set-row:last-child{border-bottom:0}
+.sw{width:44px;height:26px;border-radius:99px;background:var(--line);position:relative;cursor:pointer;border:0;padding:0;transition:background .2s;flex-shrink:0}
+.sw::after{content:"";position:absolute;width:20px;height:20px;border-radius:50%;background:#fff;top:3px;left:3px;transition:left .2s}
+.sw.on{background:var(--brand)}
+.sw.on::after{left:21px}
+.kartu-profil{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}
+.resetbtn{width:100%;padding:13px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-family:inherit;font-weight:700;font-size:.84rem;cursor:pointer;color:var(--ink)}
+.qbtn.on{border-color:var(--brand)}
+.toast{position:absolute;left:50%;bottom:74px;transform:translate(-50%,12px);background:var(--ink);color:#fff;font-size:.76rem;font-weight:600;padding:9px 16px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:20;max-width:85%;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.backpill{position:fixed;left:16px;bottom:16px;z-index:50;background:var(--ink);color:#fff;text-decoration:none;font-size:.76rem;font-weight:700;padding:10px 16px;border-radius:999px;box-shadow:0 8px 20px rgba(0,0,0,.28)}
+.credit{font-size:.78rem;color:var(--mut);text-align:center;max-width:430px}
+.credit b{color:var(--ink)}
+@media(max-width:480px){body{padding:0;gap:0}.phone{width:100%;border-radius:0;padding:0;box-shadow:none}.screen{border-radius:0;height:100dvh}.credit,.backpill{display:none}}
+.saldo{background:linear-gradient(135deg,var(--brand),#9F67FF);color:#fff;border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:10px;box-shadow:0 12px 26px rgba(109,40,217,.28)}
+.saldo small{font-size:.7rem;font-weight:700;opacity:.85;text-transform:uppercase;letter-spacing:.08em}
+.saldo b{font-size:2rem;letter-spacing:-.02em}
+.bar{height:10px;background:rgba(255,255,255,.28);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:#fff;border-radius:99px;transition:width .4s}
+.saldo-foot{display:flex;justify-content:space-between;align-items:center;font-size:.74rem;font-weight:600;opacity:.95}
+.saldo-foot .pill{background:rgba(255,255,255,.22);padding:4px 10px;border-radius:99px}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.qbtn{font-family:inherit;border:1px solid var(--line);background:var(--card);border-radius:16px;padding:12px 6px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;transition:transform .12s;color:var(--ink)}
+.qbtn:active{transform:scale(.94)}
+.qbtn i{font-style:normal;font-size:1.3rem}
+.qbtn b{font-size:.72rem}
+.qbtn span{font-size:.66rem;font-weight:700;color:var(--brand);background:var(--brand-soft);padding:2px 8px;border-radius:99px}
+.bars{display:flex;align-items:flex-end;gap:9px;height:104px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px}
+.bars i{flex:1;display:block;background:#DDD3F5;border-radius:7px 7px 3px 3px}
+.bars i.hot{background:var(--brand)}
+.riwayat{list-style:none;display:flex;flex-direction:column;gap:9px}
+.riwayat li{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+.riwayat li>i{font-style:normal;width:40px;height:40px;border-radius:12px;background:var(--brand-soft);display:grid;place-items:center;font-size:1.1rem;flex-shrink:0}
+.riwayat li div{display:flex;flex-direction:column;min-width:0}
+.riwayat li b{font-size:.84rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.riwayat li small{color:var(--mut);font-size:.68rem;font-weight:600}
+.riwayat li em{margin-left:auto;font-style:normal;font-weight:800;font-size:.84rem;color:var(--brand);flex-shrink:0}
+
+</style>
+</head>
+<body>
+<div class="phone"><div class="screen">
+<span class="punch" aria-hidden="true"></span>
+<div class="statusbar" aria-hidden="true"><span>12.45</span><span>📶 5G 🔋</span></div>
+<div class="app-body">
+  <div class="view on" id="v-beranda">
+  <div class="app-head">
+    <span class="avatar" aria-hidden="true">R</span>
+    <div class="hello"><b>Halo, Raka 👋</b><small>Kamis, 14 Agu · jajan aman hari ini</small></div>
+    <span class="bell" style="margin-left:auto;width:40px;height:40px;border-radius:13px;background:var(--card);border:1px solid var(--line);display:grid;place-items:center;font-size:1.05rem;flex-shrink:0" aria-hidden="true">🔔</span>
+  </div>
+  <div class="saldo">
+    <small>Sisa jajan bulan ini</small>
+    <b id="saldo">Rp 842.000</b>
+    <div class="bar"><i id="bar" style="width:58%"></i></div>
+    <div class="saldo-foot"><span id="terpakai">terpakai Rp 1.158.000</span><span class="pill">hemat 🔥</span></div>
+  </div>
+  <h2 class="lbl">Jajan cepat <small>— tap buat catat</small></h2>
+  <div class="quick">
+    <button class="qbtn" type="button" data-nama="Kopi Susu" data-jml="18000"><i aria-hidden="true">☕</i><b>Kopi</b><span>18rb</span></button>
+    <button class="qbtn" type="button" data-nama="Ayam Geprek" data-jml="25000"><i aria-hidden="true">🍗</i><b>Makan</b><span>25rb</span></button>
+    <button class="qbtn" type="button" data-nama="Ojol" data-jml="22000"><i aria-hidden="true">🛵</i><b>Ojol</b><span>22rb</span></button>
+    <button class="qbtn" type="button" data-nama="Cilok" data-jml="10000"><i aria-hidden="true">🍡</i><b>Snack</b><span>10rb</span></button>
+  </div>
+  <h2 class="lbl">Grafik 7 hari</h2>
+  <div class="bars" aria-hidden="true">
+    <i style="height:32px"></i><i style="height:44px"></i><i style="height:30px"></i><i style="height:62px"></i><i style="height:44px"></i><i style="height:72px"></i><i class="hot" style="height:76px"></i>
+  </div>
+  <h2 class="lbl">Hari ini <small id="total-hari">— Rp 73.000</small></h2>
+  <ul class="riwayat" id="riwayat">
+    <li><i>☕</i><div><b>Kopi Susu</b><small>13.42</small></div><em>-Rp18.000</em></li>
+    <li><i>🍗</i><div><b>Ayam Geprek</b><small>12.10</small></div><em>-Rp25.000</em></li>
+    <li><i>🍡</i><div><b>Cilok Bumbu Kacang</b><small>10.05</small></div><em>-Rp10.000</em></li>
+    <li><i>🛵</i><div><b>Ojol ke kampus</b><small>07.31</small></div><em>-Rp20.000</em></li>
+  </ul>
+  </div>
+
+  <div class="view" id="v-stat" hidden>
+    <div class="app-head">
+      <span class="avatar" aria-hidden="true">📊</span>
+      <div class="hello"><b>Statistik</b><small>rekap jajan kamu bulan ini</small></div>
+    </div>
+    <h2 class="lbl">Pengeluaran per kategori</h2>
+    <div class="kat">
+      <div class="kat-row"><span>☕ Kopi</span><div class="kbar"><i style="width:64%"></i></div><b>Rp 418rb</b></div>
+      <div class="kat-row"><span>🍗 Makan</span><div class="kbar"><i style="width:58%"></i></div><b>Rp 394rb</b></div>
+      <div class="kat-row"><span>🛵 Ojol</span><div class="kbar"><i style="width:30%"></i></div><b>Rp 205rb</b></div>
+      <div class="kat-row"><span>🍡 Snack</span><div class="kbar"><i style="width:24%"></i></div><b>Rp 141rb</b></div>
+    </div>
+    <h2 class="lbl">Ringkasan bulan ini</h2>
+    <div class="ringkas">
+      <div><b>Rp 1.158.000</b><small>total terpakai</small></div>
+      <div><b>Rp 38.600</b><small>rata-rata / hari</small></div>
+      <div><b>4 hari</b><small>tanpa jajan 🎉</small></div>
+    </div>
+    <div class="insight">💡 <b>Insight:</b> Kopi jadi jajan favoritmu bulan ini — coba ganti 2 hari seminggu sama teh, dompetmu ngucapkan terima kasih.</div>
+  </div>
+
+  <div class="view" id="v-target" hidden>
+    <div class="app-head">
+      <span class="avatar" aria-hidden="true">🎯</span>
+      <div class="hello"><b>Target</b><small>pantau biar dompet aman</small></div>
+    </div>
+    <div class="saldo">
+      <small>Target jajan bulan ini</small>
+      <b id="target-nominal">Rp 2.000.000</b>
+      <div class="bar"><i id="target-bar" style="width:58%"></i></div>
+      <div class="saldo-foot"><span id="target-sisa">sisa Rp 842.000</span><span class="pill" id="target-persen">58% terpakai</span></div>
+    </div>
+    <h2 class="lbl">Ubah target <small>— pilih salah satu</small></h2>
+    <div class="quick">
+      <button class="qbtn tgt on" type="button" data-t="2000000"><b>2 jt</b></button>
+      <button class="qbtn tgt" type="button" data-t="2500000"><b>2,5 jt</b></button>
+      <button class="qbtn tgt" type="button" data-t="3000000"><b>3 jt</b></button>
+    </div>
+    <div class="insight">🎯 <b>Cara pakai:</b> pilih target — bar di Beranda dan di sini otomatis menyesuaikan. Quick-add di Beranda tetap jalan kayak biasa.</div>
+  </div>
+
+  <div class="view" id="v-profil" hidden>
+    <div class="app-head">
+      <span class="avatar" aria-hidden="true">👤</span>
+      <div class="hello"><b>Profil</b><small>akun demo — nggak nyambung ke mana-mana</small></div>
+    </div>
+    <div class="kartu-profil">
+      <span class="avatar" style="width:56px;height:56px;font-size:1.3rem" aria-hidden="true">R</span>
+      <div class="hello"><b>Raka Pratama</b><small>raka@demo.id · member sejak 2026</small></div>
+    </div>
+    <h2 class="lbl">Pengaturan</h2>
+    <div class="set">
+      <div class="set-row"><span>🔔 Notifikasi harian</span><button class="sw on" type="button" aria-pressed="true" aria-label="Notifikasi harian"></button></div>
+      <div class="set-row"><span>📧 Laporan mingguan</span><button class="sw" type="button" aria-pressed="false" aria-label="Laporan mingguan"></button></div>
+      <div class="set-row"><span>🌙 Mode hemat malam</span><button class="sw" type="button" aria-pressed="false" aria-label="Mode hemat malam"></button></div>
+    </div>
+    <button class="resetbtn" type="button" id="reset-demo">↺ Reset demo</button>
+    <p class="insight">Data demo nggak disimpan ke mana pun — segar lagi tiap kali halaman dibuka.</p>
+  </div>
+</div>
+<nav class="tabbar" aria-label="Menu demo">
+  <button class="tab on" type="button" data-v="beranda"><i>🏠</i>Beranda</button><button class="tab" type="button" data-v="stat"><i>📊</i>Statistik</button><button class="tab" type="button" data-v="target"><i>🎯</i>Target</button><button class="tab" type="button" data-v="profil"><i>👤</i>Profil</button>
+</nav>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div></div>
+<a class="backpill" href="../karya.html#aplikasi-mobile">◀ mood / karya</a>
+<p class="credit">Demo aplikasi mobile <b>Jajan.in</b> — dibuat oleh <b>mood</b> ✦ semua angka di atas cuma contoh.</p>
+<script>
+(function(){
+"use strict";
+var d=document;
+var saldo=842000,terpakai=1158000,totalHari=73000,target=2000000,toastT;
+var elSaldo=d.getElementById("saldo"),elBar=d.getElementById("bar"),
+    elTotal=d.getElementById("total-hari"),elTerpakai=d.getElementById("terpakai"),
+    elTn=d.getElementById("target-nominal"),elTb=d.getElementById("target-bar"),
+    elTs=d.getElementById("target-sisa"),elTp=d.getElementById("target-persen"),
+    list=d.getElementById("riwayat"),toast=d.getElementById("toast");
+function rp(n){return "Rp "+n.toLocaleString("id-ID");}
+function toastMsg(m){
+  toast.textContent=m;toast.classList.add("show");
+  clearTimeout(toastT);
+  toastT=setTimeout(function(){toast.classList.remove("show");},1800);
+}
+function paintTarget(){
+  elTn.textContent=rp(target);
+  var pct=Math.min(100,Math.round(terpakai/target*100));
+  elTb.style.width=Math.max(4,pct)+"%";
+  elBar.style.width=Math.max(4,pct)+"%";
+  elTs.textContent="sisa "+rp(Math.max(0,target-terpakai));
+  elTp.textContent=pct+"% terpakai";
+}
+function upd(){
+  elSaldo.textContent=rp(saldo);
+  elTerpakai.textContent="terpakai "+rp(terpakai);
+  elTotal.textContent="— "+rp(totalHari);
+  paintTarget();
+}
+/* tab */
+var tabs=d.querySelectorAll(".tabbar .tab"),views=d.querySelectorAll(".app-body .view");
+tabs.forEach(function(t){
+  t.addEventListener("click",function(){
+    tabs.forEach(function(x){x.classList.remove("on");});
+    t.classList.add("on");
+    views.forEach(function(v){v.hidden=(v.id!=="v-"+t.dataset.v);});
+    d.querySelector(".app-body").scrollTop=0;
+  });
+});
+/* quick add (bukan chip target) */
+d.querySelectorAll(".qbtn:not(.tgt)").forEach(function(b){
+  b.addEventListener("click",function(){
+    var jml=parseInt(b.dataset.jml,10)||0,nama=b.dataset.nama;
+    saldo-=jml;terpakai+=jml;totalHari+=jml;
+    var t=new Date(),jam=t.getHours()+"."+String(t.getMinutes()).padStart(2,"0");
+    var li=d.createElement("li");
+    li.innerHTML='<i>'+b.querySelector("i").textContent+'</i><div><b>'+nama+'</b><small>baru saja · '+jam+'</small></div><em>-'+rp(jml)+'</em>';
+    list.prepend(li);
+    if(li.animate){li.animate([{transform:"translateY(-10px)",opacity:0},{transform:"translateY(0)",opacity:1}],{duration:260,easing:"ease-out"});}
+    upd();
+    toastMsg("Tercatat: "+nama+" −"+rp(jml)+" ✍️");
+  });
+});
+/* saklar on-off */
+d.querySelectorAll(".sw").forEach(function(sw){
+  sw.addEventListener("click",function(){
+    var on=sw.classList.toggle("on");
+    sw.setAttribute("aria-pressed",on?"true":"false");
+  });
+});
+/* chip target */
+d.querySelectorAll(".tgt").forEach(function(b){
+  b.addEventListener("click",function(){
+    target=parseInt(b.dataset.t,10)||target;
+    d.querySelectorAll(".tgt").forEach(function(x){x.classList.toggle("on",x===b);});
+    upd();
+    toastMsg("Target diganti: "+rp(target)+" ✅");
+  });
+});
+/* reset */
+d.getElementById("reset-demo").addEventListener("click",function(){
+  saldo=842000;terpakai=1158000;totalHari=73000;
+  var lis=list.querySelectorAll("li");
+  lis.forEach(function(li,i){if(i>3){li.remove();}});
+  upd();
+  toastMsg("Demo di-reset ke awal ↺");
+});
+upd();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>GymKuy — Demo Aplikasi Mobile by mood</title>
+<meta name="description" content="Demo aplikasi mobile GymKuy: teman gym dengan streak, ceklis latihan interaktif, progress ring & estimasi kalori. Dibuat oleh studio IT mood.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"></noscript>
+<style>
+:root{--brand:#15803D;--brand-soft:#DCFCE7;--ink:#12201A;--bg:#F3F8F3;--card:#fff;--line:#DDEEE0;--mut:#6F8277}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:34px 14px;color:var(--ink);background:var(--bg);background-image:radial-gradient(rgba(18,32,26,.06) 1.1px,transparent 1.2px);background-size:22px 22px}
+.phone{width:min(392px,100%);background:var(--ink);border-radius:46px;padding:11px;box-shadow:10px 12px 0 rgba(18,32,26,.16)}
+.screen{position:relative;background:var(--bg);border-radius:36px;height:min(742px,82vh);display:flex;flex-direction:column;overflow:hidden}
+.punch{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:88px;height:24px;background:var(--ink);border-radius:999px;z-index:9}
+.statusbar{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:14px 22px 4px;font-size:.78rem;font-weight:700}
+.app-body{flex:1;overflow-y:auto;padding:12px 18px 18px;display:flex;flex-direction:column;gap:16px;scrollbar-width:none}
+.app-body::-webkit-scrollbar{display:none}
+.app-head{display:flex;align-items:center;gap:12px}
+.avatar{width:44px;height:44px;border-radius:14px;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:800;font-size:1.05rem;flex-shrink:0}
+.hello{display:flex;flex-direction:column;min-width:0}
+.hello b{font-size:1.02rem}
+.hello small{color:var(--mut);font-size:.74rem;font-weight:600}
+.lbl{font-size:.95rem;font-weight:800;display:flex;align-items:baseline;gap:6px}
+.lbl small{color:var(--mut);font-size:.72rem;font-weight:600}
+.tabbar{flex-shrink:0;display:flex;background:var(--card);border-top:1px solid var(--line);padding:10px 8px calc(12px + env(safe-area-inset-bottom))}
+.tabbar .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.64rem;font-weight:700;color:var(--mut);font-family:inherit;background:none;border:0;cursor:pointer;padding:0}
+.tabbar .tab i{font-style:normal;font-size:1.12rem}
+.tabbar .tab.on{color:var(--brand)}
+.view{display:flex;flex-direction:column;gap:16px}
+.view[hidden]{display:none}
+.toast{position:absolute;left:50%;bottom:74px;transform:translate(-50%,12px);background:var(--ink);color:#fff;font-size:.76rem;font-weight:600;padding:9px 16px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:20;max-width:85%;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stats3>div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center}
+.stats3 b{display:block;font-size:1.3rem;color:var(--brand)}
+.stats3 small{color:var(--mut);font-size:.66rem;font-weight:700;text-transform:uppercase}
+.bars{display:flex;align-items:flex-end;gap:9px;height:104px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px}
+.bars i{flex:1;display:block;background:var(--brand-soft);border-radius:7px 7px 3px 3px}
+.bars i.hot{background:var(--brand)}
+.set{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:6px 14px;display:flex;flex-direction:column}
+.set-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;font-size:.84rem;font-weight:600;border-bottom:1px solid var(--line);cursor:pointer}
+.set-row:last-child{border-bottom:0}
+.set-row em{font-style:normal;font-size:.7rem;font-weight:700;color:var(--mut)}
+.set-row.jdone em{color:var(--brand)}
+.set-row.jdone span{opacity:.55;text-decoration:line-through}
+.set-row b{font-size:.8rem}
+.bgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.badge-b{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:4px;text-align:center;cursor:pointer}
+.badge-b i{font-style:normal;font-size:1.5rem}
+.badge-b b{font-size:.74rem}
+.badge-b small{font-size:.62rem;color:var(--mut);font-weight:600}
+.badge-b:not(.open){opacity:.45;filter:grayscale(1)}
+.backpill{position:fixed;left:16px;bottom:16px;z-index:50;background:var(--ink);color:#fff;text-decoration:none;font-size:.76rem;font-weight:700;padding:10px 16px;border-radius:999px;box-shadow:0 8px 20px rgba(0,0,0,.28)}
+.credit{font-size:.78rem;color:var(--mut);text-align:center;max-width:430px}
+.credit b{color:var(--ink)}
+@media(max-width:480px){body{padding:0;gap:0}.phone{width:100%;border-radius:0;padding:0;box-shadow:none}.screen{border-radius:0;height:100dvh}.credit,.backpill{display:none}}
+.ring-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px}
+.ring-wrap{position:relative;width:112px;height:112px;flex-shrink:0}
+.ring{width:112px;height:112px;transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:var(--brand-soft);stroke-width:11}
+.ring-val{fill:none;stroke:var(--brand);stroke-width:11;stroke-linecap:round;stroke-dasharray:327;stroke-dashoffset:327;transition:stroke-dashoffset .45s}
+.ring-mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring-mid b{font-size:1.5rem}
+.ring-mid small{font-size:.6rem;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+.ring-side{display:flex;flex-direction:column;gap:2px;min-width:0}
+.ring-side b{font-size:1.2rem;color:var(--brand)}
+.ring-side small{font-size:.7rem;font-weight:700;color:var(--mut)}
+.ring-side .msg{margin-top:6px;font-size:.72rem;font-weight:700;background:var(--brand-soft);color:var(--brand);padding:5px 10px;border-radius:99px;width:fit-content}
+.streak{margin-left:auto;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:8px 12px;font-size:.72rem;font-weight:800;flex-shrink:0}
+.moves{list-style:none;display:flex;flex-direction:column;gap:9px}
+.move{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+.move b{font-size:.86rem;display:block}
+.move small{color:var(--mut);font-size:.7rem;font-weight:600}
+.move em{margin-left:auto;font-style:normal;font-weight:800;font-size:.74rem;color:var(--brand);flex-shrink:0}
+.chk{width:26px;height:26px;border-radius:9px;border:2px solid var(--brand);background:#fff;cursor:pointer;flex-shrink:0;display:grid;place-items:center;font-size:.8rem;font-weight:800;color:transparent;padding:0}
+.move.done .chk{background:var(--brand);color:#fff}
+.move.done b{text-decoration:line-through;opacity:.5}
+.banner{background:var(--brand);color:#fff;border-radius:18px;padding:16px;font-weight:700;font-size:.85rem;text-align:center;line-height:1.5}
+.days{display:flex;gap:8px}
+.day{flex:1;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:9px 4px}
+.day small{display:block;font-size:.6rem;font-weight:800;color:var(--mut);text-transform:uppercase}
+.day b{font-size:.95rem}
+.day.on{background:var(--brand-soft);border-color:var(--brand)}
+
+</style>
+</head>
+<body>
+<div class="phone"><div class="screen">
+<span class="punch" aria-hidden="true"></span>
+<div class="statusbar" aria-hidden="true"><span>12.45</span><span>📶 5G 🔋</span></div>
+<div class="app-body">
+  <div class="view on" id="v-mulai">
+  <div class="app-head">
+    <span class="avatar" aria-hidden="true">💪</span>
+    <div class="hello"><b>Push Day</b><small>Kamis, 14 Agu · sesi sore</small></div>
+    <span class="streak">🔥 12 hari</span>
+  </div>
+  <div class="ring-card">
+    <div class="ring-wrap">
+      <svg class="ring" viewBox="0 0 112 112" aria-hidden="true"><circle class="ring-bg" cx="56" cy="56" r="52"/><circle class="ring-val" id="ring" cx="56" cy="56" r="52"/></svg>
+      <div class="ring-mid"><b id="done-n">0</b><small>/5 ok</small></div>
+    </div>
+    <div class="ring-side">
+      <b id="kalori">0 kkal</b><small>terbakar est.</small>
+      <span class="msg" id="msg">gas mulai! 💪</span>
+    </div>
+  </div>
+  <h2 class="lbl">Latihan hari ini <small>— tap buat ceklis</small></h2>
+  <ul class="moves" id="moves">
+    <li class="move"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai Bench Press selesai">✓</button><div><b>Bench Press</b><small>4 × 8 · 60 kg</small></div><em>🔥64</em></li>
+    <li class="move"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai Squat selesai">✓</button><div><b>Squat</b><small>4 × 8 · 80 kg</small></div><em>🔥96</em></li>
+    <li class="move"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai Pull Up selesai">✓</button><div><b>Pull Up</b><small>3 × 8 · beban badan</small></div><em>🔥58</em></li>
+    <li class="move"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai Plank selesai">✓</button><div><b>Plank</b><small>3 × 60 detik</small></div><em>🔥24</em></li>
+    <li class="move"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai Deadlift selesai">✓</button><div><b>Deadlift</b><small>5 × 5 · 70 kg</small></div><em>🔥88</em></li>
+  </ul>
+  <div class="banner" id="banner" hidden>🎉 Push Day selesai! Streak 12 → 13 hari. Jangan lupa stretching &amp; minum. 🧊</div>
+  <h2 class="lbl">Minggu ini</h2>
+  <div class="days" aria-hidden="true">
+    <div class="day on"><small>sen</small><b>✓</b></div>
+    <div class="day on"><small>sel</small><b>✓</b></div>
+    <div class="day"><small>rab</small><b>😴</b></div>
+    <div class="day on"><small>kam</small><b>•</b></div>
+    <div class="day"><small>jum</small><b>–</b></div>
+    <div class="day"><small>sab</small><b>–</b></div>
+    <div class="day"><small>min</small><b>–</b></div>
+  </div>
+  </div>
+
+  <div class="view" id="v-jadwal" hidden>
+    <div class="app-head">
+      <span class="avatar" aria-hidden="true">📅</span>
+      <div class="hello"><b>Jadwal Mingguan</b><small>tap baris buat tandai selesai</small></div>
+      <span class="streak">3/6</span>
+    </div>
+    <div class="set">
+      <div class="set-row jdone"><span><b>Sen</b> · Push Day</span><em>✓ selesai</em></div>
+      <div class="set-row"><span><b>Sel</b> · Pull Day</span><em>tap ✓</em></div>
+      <div class="set-row" data-rest="1"><span><b>Rab</b> · Rest 😴</span><em>recovery</em></div>
+      <div class="set-row"><span><b>Kam</b> · Leg Day</span><em>tap ✓</em></div>
+      <div class="set-row"><span><b>Jum</b> · Cardio 20 Menit</span><em>tap ✓</em></div>
+      <div class="set-row" data-rest="1"><span><b>Sab</b> · Bebas</span><em>recovery</em></div>
+    </div>
+    <div class="banner" id="jd-banner" hidden>🏆 Semua hari latihan selesai minggu ini — konsisten banget!</div>
+  </div>
+
+  <div class="view" id="v-progres" hidden>
+    <div class="app-head">
+      <span class="avatar" aria-hidden="true">📈</span>
+      <div class="hello"><b>Progres</b><small>minggu ini vs minggu lalu</small></div>
+    </div>
+    <div class="stats3">
+      <div><b>3</b><small>sesi selesai</small></div>
+      <div><b>480</b><small>kkal terbakar</small></div>
+      <div><b>165</b><small>menit latihan</small></div>
+    </div>
+    <h2 class="lbl">Kalori per hari</h2>
+    <div class="bars" aria-hidden="true">
+      <i style="height:30px"></i><i style="height:44px"></i><i class="hot" style="height:76px"></i><i style="height:38px"></i><i style="height:22px"></i><i style="height:52px"></i><i style="height:18px"></i>
+    </div>
+    <h2 class="lbl">Rekor pribadi</h2>
+    <div class="set">
+      <div class="set-row"><span>Bench Press</span><b>65 kg × 5</b></div>
+      <div class="set-row"><span>Squat</span><b>85 kg × 5</b></div>
+      <div class="set-row"><span>Deadlift</span><b>80 kg × 5</b></div>
+    </div>
+  </div>
+
+  <div class="view" id="v-badge" hidden>
+    <div class="app-head">
+      <span class="avatar" aria-hidden="true">🏆</span>
+      <div class="hello"><b>Badge</b><small>2 dari 6 terbuka</small></div>
+    </div>
+    <div class="bgrid">
+      <div class="badge-b open"><i>🔥</i><b>Streak 12 Hari</b><small>latihan tanpa putus</small></div>
+      <div class="badge-b open"><i>💪</i><b>Push Master</b><small>10 push day selesai</small></div>
+      <div class="badge-b"><i>🏋️</i><b>100 Ton Club</b><small>total angkatan seumur hidup</small></div>
+      <div class="badge-b"><i>🌅</i><b>Morning Warrior</b><small>5 sesi pagi buta</small></div>
+      <div class="badge-b"><i>🥗</i><b>Meal Plan 7 Hari</b><small>diet konsisten seminggu</small></div>
+      <div class="badge-b"><i>👑</i><b>Consistency King</b><small>30 sesi total</small></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<nav class="tabbar" aria-label="Menu demo">
+  <button class="tab on" type="button" data-v="mulai"><i>🏃</i>Mulai</button><button class="tab" type="button" data-v="jadwal"><i>📅</i>Jadwal</button><button class="tab" type="button" data-v="progres"><i>📈</i>Progres</button><button class="tab" type="button" data-v="badge"><i>🏆</i>Badge</button>
+</nav>
+</div></div>
+<a class="backpill" href="../karya.html#aplikasi-mobile">◀ mood / karya</a>
+<p class="credit">Demo aplikasi mobile <b>GymKuy</b> — dibuat oleh <b>mood</b> ✦ semua data di atas cuma contoh.</p>
+<script>
+(function(){
+"use strict";
+var d=document;
+var kal=[64,96,58,24,88],done=0,kalori=0,C=327,MAX=5;
+var elN=d.getElementById("done-n"),elK=d.getElementById("kalori"),
+    elRing=d.getElementById("ring"),elMsg=d.getElementById("msg"),banner=d.getElementById("banner"),
+    jdBanner=d.getElementById("jd-banner"),toastEl=d.getElementById("toast");
+var msgs=["gas mulai! 💪","panas dahulu 🔥","yg serius ya 👀","hampir genk! 😤","tinggal dikit 💪"];
+var toastT;
+function toastMsg(m){
+  toastEl.textContent=m;toastEl.classList.add("show");
+  clearTimeout(toastT);
+  toastT=setTimeout(function(){toastEl.classList.remove("show");},1800);
+}
+function upd(){elN.textContent=done;elK.textContent=kalori+" kkal";elRing.style.strokeDashoffset=C*(1-done/MAX);}
+/* tab */
+var tabs=d.querySelectorAll(".tabbar .tab"),views=d.querySelectorAll(".app-body .view");
+tabs.forEach(function(t){
+  t.addEventListener("click",function(){
+    tabs.forEach(function(x){x.classList.remove("on");});
+    t.classList.add("on");
+    views.forEach(function(v){v.hidden=(v.id!=="v-"+t.dataset.v);});
+    d.querySelector(".app-body").scrollTop=0;
+  });
+});
+/* ceklis */
+d.querySelectorAll("#moves .move").forEach(function(li,i){
+  console.log("MOVES forEach li=",i);
+  var btn=li.querySelector(".chk");
+  btn.addEventListener("click",function(){
+    var on=!li.classList.contains("done");
+    li.classList.toggle("done",on);
+    btn.setAttribute("aria-pressed",on?"true":"false");
+    done+=on?1:-1;
+    kalori+=on?kal[i]:-kal[i];
+    upd();
+    if(done===MAX){banner.hidden=false;elMsg.textContent="selesai! 🎉";}
+    else{banner.hidden=true;elMsg.textContent=msgs[done]||msgs[0];}
+  });
+});
+/* jadwal */
+d.querySelectorAll("#v-jadwal .set-row").forEach(function(r){
+  if(r.dataset.rest)return;
+  r.addEventListener("click",function(){
+    var on=r.classList.toggle("jdone");
+    r.querySelector("em").textContent=on?"✓ selesai":"tap ✓";
+    toastMsg(on?r.querySelector("b").textContent+" selesai ✅":"dibatalkan ↺");
+    jdBanner.hidden=(d.querySelectorAll("#v-jadwal .set-row.jdone").length<4);
+  });
+});
+/* badge */
+d.querySelectorAll(".badge-b").forEach(function(b){
+  b.addEventListener("click",function(){
+    if(b.classList.contains("open"))toastMsg(b.querySelector("b").textContent+" — udah kamu kuasain 🏆");
+    else toastMsg("🔒 "+b.querySelector("b").textContent+" — selesaikan misinya dulu");
+  });
+});
+})();
+</script>
+</body>
+</html>

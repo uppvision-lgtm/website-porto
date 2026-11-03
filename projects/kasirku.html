@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KasirKu — Sistem POS Warung &amp; Kafe</title>
+<meta name="description" content="Dashboard POS KasirKu: kasir cepat, stok sync, laporan harian otomatis. Demo web app oleh mood.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"></noscript>
+<style>
+:root{--ink:#0f172a;--bg:#f1f5f9;--brand:#4f46e5;--brand-soft:#eef2ff;--green:#16a34a;--red:#dc2626;--line:#e2e8f0;--mut:#64748b}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+.shell{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
+.sidebar{background:var(--ink);color:#cbd5e1;padding:26px 18px;display:flex;flex-direction:column;gap:28px;position:sticky;top:0;height:100vh}
+.brand{color:#fff;font-weight:800;font-size:1.3rem;letter-spacing:-.02em;padding-left:8px}
+.brand span{color:#818cf8}
+.menu{display:flex;flex-direction:column;gap:4px;font-size:.92rem;font-weight:600}
+.menu a{color:#94a3b8;text-decoration:none;padding:11px 14px;border-radius:11px}
+.menu a:hover{background:#1e293b;color:#fff}
+.menu a.on{background:var(--brand);color:#fff}
+.promo{margin-top:auto;background:#1e293b;border-radius:16px;padding:16px;font-size:.82rem;line-height:1.55}
+.promo b{color:#fff;display:block;margin-bottom:6px}
+.promo a{color:#a5b4fc;font-weight:700}
+.main{padding:28px 32px;display:flex;flex-direction:column;gap:24px}
+.topbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar h1{font-size:1.5rem;font-weight:800;letter-spacing:-.02em}
+.datechip{background:#fff;border:1px solid var(--line);padding:7px 14px;border-radius:999px;font-size:.8rem;font-weight:600;color:var(--mut)}
+.search{margin-left:auto;background:#fff;border:1px solid var(--line);border-radius:11px;padding:10px 16px;font-size:.85rem;color:#94a3b8;min-width:230px}
+.ava{width:40px;height:40px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:800;flex-shrink:0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}
+.stat .l{font-size:.74rem;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.08em}
+.stat .v{font-size:1.55rem;font-weight:800;margin-top:8px;letter-spacing:-.02em}
+.stat .d{font-size:.78rem;font-weight:700;margin-top:4px}
+.up{color:var(--green)}.down{color:var(--red)}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:16px;align-items:start}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}
+.panel h2{font-size:1rem;font-weight:800;margin-bottom:18px}
+.panel h2 small{color:var(--mut);font-weight:600;font-size:.78rem;margin-left:8px}
+.bars{display:flex;align-items:flex-end;gap:12px;height:190px;padding-top:6px}
+.bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px;height:100%}
+.bar i{display:block;width:100%;max-width:48px;background:#c7d2fe;border-radius:8px 8px 0 0}
+.bar.hot i{background:var(--brand)}
+.bar small{font-size:.72rem;color:var(--mut);font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th{text-align:left;color:var(--mut);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;padding:10px 8px;border-bottom:1px solid var(--line)}
+td{padding:13px 8px;border-bottom:1px solid var(--line);font-weight:500}
+tr:last-child td{border-bottom:none}
+.pill{background:#dcfce7;color:var(--green);font-weight:700;font-size:.72rem;padding:4px 11px;border-radius:999px;white-space:nowrap}
+.top-item{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:.88rem}
+.top-item:last-child{border-bottom:none}
+.top-item b{width:150px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top-item .pct{height:7px;background:var(--brand-soft);border-radius:99px;overflow:hidden;flex:1}
+.top-item .pct i{display:block;height:100%;background:var(--brand);border-radius:99px}
+.top-item em{font-style:normal;font-weight:700;color:var(--mut);font-size:.8rem}
+.rank{width:27px;height:27px;border-radius:9px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-weight:800;font-size:.8rem;flex-shrink:0}
+.foot{color:var(--mut);font-size:.8rem;text-align:center;padding:10px 0 4px}
+.backpill{position:fixed;left:16px;bottom:16px;z-index:999;background:#C8F04B;color:#141414;border:3px solid #141414;border-radius:12px;box-shadow:4px 4px 0 #141414;padding:10px 16px;font-weight:700;font-size:.88rem;text-decoration:none;transform:rotate(-2deg);transition:transform .15s}
+.backpill:hover{transform:rotate(0deg) translate(2px,2px);box-shadow:2px 2px 0 #141414}
+@media(max-width:900px){
+  .shell{grid-template-columns:1fr}
+  .sidebar{position:static;height:auto;flex-direction:row;align-items:center;gap:16px;padding:14px 18px;flex-wrap:wrap}
+  .menu{flex-direction:row;overflow-x:auto;font-size:.85rem}
+  .promo{display:none}
+  .grid{grid-template-columns:1fr}
+  .search{display:none}
+  .main{padding:20px 16px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">🧾 Kasir<span>Ku</span></div>
+    <nav class="menu" aria-label="Menu utama KasirKu">
+      <a class="on" href="#" aria-current="page">Dashboard</a>
+      <a href="#">Transaksi</a>
+      <a href="#">Produk</a>
+      <a href="#">Stok</a>
+      <a href="#">Laporan</a>
+      <a href="#">Pengaturan</a>
+    </nav>
+    <div class="promo">
+      <b>Udah punya warung / kafe?</b>
+      Sistem POS kayak gini bisa jadi milikmu dalam 3 minggu. Dibikin oleh <a href="../index.html">mood</a> — studio IT.
+    </div>
+  </aside>
+  <main class="main">
+    <div class="topbar">
+      <h1>Dashboard</h1>
+      <span class="datechip">Hari ini · Jumat, 14 Agustus 2026</span>
+      <div class="search">🔎 Cari produk / transaksi…</div>
+      <div class="ava" aria-hidden="true">R</div>
+    </div>
+    <div class="stats">
+      <div class="stat"><span class="l">Omzet Hari Ini</span><div class="v">Rp 2.480.000</div><div class="d up">▲ 12% vs kemarin</div></div>
+      <div class="stat"><span class="l">Transaksi</span><div class="v">128</div><div class="d up">▲ 8% vs kemarin</div></div>
+      <div class="stat"><span class="l">Item Terjual</span><div class="v">342</div><div class="d up">▲ 5% vs kemarin</div></div>
+      <div class="stat"><span class="l">Rata-rata / Struk</span><div class="v">Rp 19.375</div><div class="d down">▼ 2% vs kemarin</div></div>
+    </div>
+    <div class="grid">
+      <div class="panel">
+        <h2>Penjualan 7 Hari Terakhir <small>omzet per hari</small></h2>
+        <div class="bars">
+          <div class="bar"><i style="height:38%"></i><small>Sen</small></div>
+          <div class="bar"><i style="height:52%"></i><small>Sel</small></div>
+          <div class="bar"><i style="height:44%"></i><small>Rab</small></div>
+          <div class="bar"><i style="height:63%"></i><small>Kam</small></div>
+          <div class="bar"><i style="height:78%"></i><small>Jum</small></div>
+          <div class="bar hot"><i style="height:100%"></i><small>Sab</small></div>
+          <div class="bar"><i style="height:58%"></i><small>Min</small></div>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Produk Terlaris <small>minggu ini</small></h2>
+        <div class="top-item"><span class="rank">1</span><b>Americano Dingin</b><span class="pct"><i style="width:82%"></i></span><em>82</em></div>
+        <div class="top-item"><span class="rank">2</span><b>Nasi Goreng Gila</b><span class="pct"><i style="width:74%"></i></span><em>74</em></div>
+        <div class="top-item"><span class="rank">3</span><b>Croissant Butter</b><span class="pct"><i style="width:61%"></i></span><em>61</em></div>
+        <div class="top-item"><span class="rank">4</span><b>Es Teh Manis</b><span class="pct"><i style="width:55%"></i></span><em>55</em></div>
+        <div class="top-item"><span class="rank">5</span><b>Kopi Susu Senja</b><span class="pct"><i style="width:47%"></i></span><em>47</em></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>Transaksi Terakhir <small>realtime</small></h2>
+      <table>
+        <thead><tr><th>ID</th><th>Waktu</th><th>Item</th><th>Metode</th><th>Total</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>#INV-1284</td><td>13.42</td><td>2× Americano, 1× Croissant</td><td>QRIS</td><td><b>Rp 68.000</b></td><td><span class="pill">Lunas</span></td></tr>
+          <tr><td>#INV-1283</td><td>13.31</td><td>1× Nasi Goreng Gila</td><td>Tunai</td><td><b>Rp 18.000</b></td><td><span class="pill">Lunas</span></td></tr>
+          <tr><td>#INV-1282</td><td>13.24</td><td>3× Es Teh, 2× Risoles</td><td>QRIS</td><td><b>Rp 27.500</b></td><td><span class="pill">Lunas</span></td></tr>
+          <tr><td>#INV-1281</td><td>13.07</td><td>1× Kopi Susu Senja</td><td>Debit</td><td><b>Rp 22.000</b></td><td><span class="pill">Lunas</span></td></tr>
+          <tr><td>#INV-1280</td><td>12.58</td><td>4× Ayam Geprek + nasi</td><td>QRIS</td><td><b>Rp 76.000</b></td><td><span class="pill">Lunas</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="foot">© 2026 KasirKu — demo dibuat oleh <b>mood</b> ✦ <a href="../index.html" style="color:inherit">kembali ke portfolio</a></div>
+  </main>
+</div>
+<a class="backpill" href="../karya.html">◀ mood / portfolio</a>
+</body>
+</html>

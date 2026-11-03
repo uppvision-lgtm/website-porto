@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kopi Senja — Coffee Shop &amp; Roastery, Bandung</title>
+<meta name="description" content="Kopi Senja: coffee shop & roastery di Bandung sejak 2019. Menyeduh cerita di setiap senja. Demo company profile oleh mood.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&amp;family=Karla:wght@400;700&amp;display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&amp;family=Karla:wght@400;700&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&amp;family=Karla:wght@400;700&amp;display=swap" rel="stylesheet"></noscript>
+<style>
+:root{--cream:#f6f1e7;--ink:#231710;--acc:#b4573e;--gold:#c89b3c;--line:#e3d9c8}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Karla',sans-serif;background:var(--cream);color:var(--ink);line-height:1.7}
+.serif{font-family:'Playfair Display',serif}
+.topnote{background:var(--ink);color:var(--cream);text-align:center;font-size:.78rem;letter-spacing:.1em;padding:9px 14px;text-transform:uppercase}
+nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:20px 6vw;border-bottom:1px solid var(--line);gap:12px}
+nav .grp{display:flex;gap:30px}
+nav .grp.r{justify-content:flex-end}
+nav a{color:var(--ink);text-decoration:none;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+nav a:hover{color:var(--acc)}
+.logo{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;letter-spacing:.03em;text-decoration:none;color:var(--ink)}
+.hero{position:relative;min-height:78vh;display:grid;place-items:center;text-align:center;color:#fff;overflow:hidden}
+.hero img,.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(25,12,6,.38),rgba(25,12,6,.6))}
+.hero .inner{position:relative;z-index:2;padding:50px 22px;max-width:780px}
+.kicker{letter-spacing:.36em;font-size:.76rem;text-transform:uppercase}
+.hero h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.3rem,6vw,4.1rem);line-height:1.14;margin:20px 0 30px}
+.hero h1 em{font-style:italic;color:#f2d9a4}
+.ln{color:#fff;text-decoration:none;border-bottom:1px solid #fff;padding-bottom:5px;letter-spacing:.22em;font-size:.78rem;text-transform:uppercase;font-weight:700}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:64px;padding:96px 8vw;align-items:center}
+.sig .imgs{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:end}
+.sig .imgs img{width:100%;border-radius:6px;display:block;filter:sepia(10%) contrast(1.02)}
+.sig .imgs img:last-child{aspect-ratio:3/3.6;object-fit:cover}
+.overline{color:var(--acc);letter-spacing:.3em;font-size:.74rem;text-transform:uppercase;font-weight:700}
+.sig h2,.story h2{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.2;margin:14px 0 26px}
+.mlist{display:flex;flex-direction:column;gap:15px;margin-top:8px}
+.mi{display:flex;align-items:baseline;gap:10px;font-size:1.02rem}
+.mi b{font-weight:700}
+.mi small{display:block;color:#8a7a6a;font-size:.82rem}
+.mi .dots{flex:1;border-bottom:2px dotted #cdbfa9;transform:translateY(-4px);min-width:30px}
+.mi .pr{font-family:'Playfair Display',serif;color:var(--acc);font-size:1.1rem;white-space:nowrap}
+.note{font-size:.85rem;color:#8a7a6a;font-style:italic;margin-top:18px}
+.story{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;padding:96px 8vw;align-items:center}
+.story img{width:100%;border-radius:6px;display:block}
+.drop::first-letter{font-family:'Playfair Display',serif;font-size:3.1em;float:left;line-height:.83;padding-right:12px;color:var(--acc)}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:34px;padding:78px 8vw;text-align:center}
+.info h3{font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:10px;font-weight:700}
+.info p{font-size:.95rem;color:#5d5145}
+.info a{color:var(--acc);font-weight:700;text-decoration:none;border-bottom:1px solid var(--acc)}
+footer{text-align:center;padding:36px 20px;border-top:1px solid var(--line);font-size:.85rem;color:#5d5145}
+footer .serif{font-size:1.15rem;color:var(--ink)}
+footer a{color:var(--acc);font-weight:700;text-decoration:none}
+.backpill{position:fixed;left:16px;bottom:16px;z-index:999;background:#C8F04B;color:#141414;border:3px solid #141414;border-radius:12px;box-shadow:4px 4px 0 #141414;padding:10px 16px;font-weight:700;font-size:.88rem;text-decoration:none;transform:rotate(-2deg);transition:transform .15s;font-family:'Karla',sans-serif}
+.backpill:hover{transform:rotate(0deg) translate(2px,2px);box-shadow:2px 2px 0 #141414}
+@media(max-width:880px){
+  .sig,.story{grid-template-columns:1fr;padding:64px 7vw;gap:34px}
+  nav{grid-template-columns:1fr;justify-items:center;gap:12px}
+  nav .grp{justify-content:center;flex-wrap:wrap;gap:16px}
+  .hero{min-height:64vh}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="topnote">Gratis ongkir area Bandung untuk order via aplikasi ojek online ☕</div>
+<nav>
+  <div class="grp"><a href="#menu">Menu</a><a href="#cerita">Cerita</a></div>
+  <a class="logo" href="#">Kopi Senja</a>
+  <div class="grp r"><a href="#lokasi">Lokasi</a><a href="#lokasi">Kontak</a></div>
+</nav>
+<header class="hero">
+  <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1600&q=60" aria-label="Video suasana kedai kopi saat pagi hari">
+    <source src="../assets/videos/kedai-senja.mp4" type="video/mp4">
+  </video>
+  <div class="inner">
+    <div class="kicker">Sejak 2019 · Dago, Bandung</div>
+    <h1>Menyeduh <em>cerita</em> di setiap senja.</h1>
+    <a class="ln" href="#menu">Lihat Menu ↓</a>
+  </div>
+</header>
+<section class="sig" id="menu">
+  <div class="imgs">
+    <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=900&q=80" alt="Proses manual brew di bar Kopi Senja" loading="lazy" decoding="async">
+    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80" alt="Secangkir latte khas Kopi Senja" loading="lazy" decoding="async">
+  </div>
+  <div>
+    <span class="overline">Menu Signature</span>
+    <h2>Diseduh pelan, <em style="font-style:italic">dinikmati lama.</em></h2>
+    <div class="mlist">
+      <div class="mi"><span><b>Kopi Senja Signature</b><small>palm sugar, espresso, susu segar</small></span><span class="dots"></span><span class="pr">28k</span></div>
+      <div class="mi"><span><b>Americano</b><small>double shot, es, air mineral</small></span><span class="dots"></span><span class="pr">22k</span></div>
+      <div class="mi"><span><b>Latte Senja</b><small>lembut, latte art tiap cup</small></span><span class="dots"></span><span class="pr">26k</span></div>
+      <div class="mi"><span><b>V60 Single Origin</b><small>Gayo / Kintamani, rotasi mingguan</small></span><span class="dots"></span><span class="pr">30k</span></div>
+      <div class="mi"><span><b>Croissant Butter</b><small>dipanggang tiap pagi, stok terbatas</small></span><span class="dots"></span><span class="pr">20k</span></div>
+    </div>
+    <p class="note">* harga dalam ribuan rupiah. Biji whole beans 200gr juga tersedia buat diseduh di rumah.</p>
+  </div>
+</section>
+<section class="story" id="cerita">
+  <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80" alt="Suasana roastery dan kedai Kopi Senja" loading="lazy" decoding="async">
+  <div>
+    <span class="overline">Cerita Kami</span>
+    <h2>Dari roastery kecil di Dago.</h2>
+    <p class="drop">Berawal dari satu mesin sangrai bekas dan obsesi soal tanggal panggang, Kopi Senja kini melayani tiga kedai dan ratusan langganan kopi rumahan. Kami tetap menyangrai tiap Selasa &amp; Jumat — karena buat kami, kopi yang enak itu soal ketelitian, bukan kebetulan. Datang sore hari, dan biar senja yang bikin cerita.</p>
+  </div>
+</section>
+<section class="info" id="lokasi">
+  <div><h3>Jam Buka</h3><p>Senin–Minggu<br>07.00 – 22.00 WIB<br>live acoustic tiap Jumat 19.00</p></div>
+  <div><h3>Alamat</h3><p>Jl. Senja No. 8<br>Dago, Bandung<br>parkir luas · ada musala</p></div>
+  <div><h3>Instagram</h3><p><a href="#">@kopisenja</a><br>DM untuk reservasi,<br>event &amp; catering</p></div>
+</section>
+<footer><span class="serif">Kopi Senja</span> — coffee shop &amp; roastery · demo website dibuat oleh <a href="../index.html">mood</a> © 2026</footer>
+<a class="backpill" href="../karya.html">◀ mood / portfolio</a>
+<script>
+(function(){
+  "use strict";
+  if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  var v=document.querySelector(".hero video");
+  if(v){v.removeAttribute("autoplay");v.pause();}
+})();
+</script>
+</body>
+</html>

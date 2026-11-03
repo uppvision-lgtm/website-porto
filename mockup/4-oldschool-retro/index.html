@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOOD — Mockup 4: Old School Retro Terminal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2EEE3; --ink:#1B1710;
+  --accent:#D4572A; --dark:#12100C; --green:#7CE38B; --cream:#FBF8EF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Mono',monospace;line-height:1.65;overflow-x:hidden}
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+
+/* topbar */
+.top{border-bottom:2px solid var(--ink);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase}
+.top .wrap{display:flex;justify-content:space-between;padding-top:12px;padding-bottom:12px;gap:10px;flex-wrap:wrap}
+.top b{color:var(--accent)}
+
+/* nav */
+.nav{border-bottom:2px solid var(--ink);position:sticky;top:0;z-index:50;background:var(--paper)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px}
+.brand{font-family:'Archivo Black',sans-serif;font-size:1.5rem;letter-spacing:.02em;text-decoration:none;color:var(--ink)}
+.brand em{font-style:normal;color:var(--accent)}
+.nav ul{display:flex;gap:24px;list-style:none;font-size:.8rem;font-weight:600;letter-spacing:.08em}
+.nav ul a{color:var(--ink);text-decoration:none}
+.nav ul a:hover{color:var(--accent)}
+.nav ul a i{font-style:normal;color:var(--accent);margin-right:4px}
+
+/* hero */
+.hero{padding:80px 0 70px}
+.label{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;border:2px solid var(--ink);display:inline-block;padding:6px 12px;background:var(--cream);font-weight:600}
+.hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(2.6rem,7vw,4.8rem);line-height:1.02;text-transform:uppercase;margin:26px 0 20px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .sub{max-width:540px;margin-bottom:36px;font-size:1rem}
+.hero .ctas{display:flex;gap:16px;flex-wrap:wrap}
+.btn{display:inline-block;font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:.9rem;text-decoration:none;text-transform:uppercase;letter-spacing:.06em;border:2px solid var(--ink);padding:14px 26px;color:var(--ink);background:var(--cream);box-shadow:6px 6px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.btn-accent{background:var(--accent);color:#fff}
+
+/* terminal */
+.term{background:var(--dark);color:var(--green);border:2px solid var(--ink);box-shadow:10px 10px 0 var(--accent);margin-top:56px;font-size:.95rem}
+.term-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:2px solid #2A2620;background:#191611}
+.term-bar i{width:11px;height:11px;border-radius:50%;background:#3A342A;display:block}
+.term-bar i.r{background:#C7503E}.term-bar i.y{background:#C9A227}.term-bar i.g{background:#4E9A51}
+.term-bar span{margin-left:8px;font-size:.72rem;letter-spacing:.14em;color:#8A8371;text-transform:uppercase}
+.term-body{padding:24px;line-height:1.9}
+.term-body .dim{color:#6E6754}
+.term-body .cmd{color:#F4EFE4}
+.term-body .ok{color:var(--green)}
+.prompt{color:var(--accent);font-weight:700}
+.cursor{display:inline-block;width:.6em;height:1.1em;background:var(--green);vertical-align:text-bottom;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* sections */
+section{padding:76px 0}
+.sec-head{margin-bottom:44px}
+.sec-head .label{margin-bottom:18px}
+.sec-head h2{font-family:'Archivo Black',sans-serif;font-size:clamp(1.7rem,4.2vw,2.7rem);text-transform:uppercase;line-height:1.1}
+.sec-head h2 em{font-style:normal;color:var(--accent)}
+/* services */
+.svc-list{border-top:2px solid var(--ink)}
+.svc-row{display:flex;align-items:baseline;gap:16px;padding:22px 0;border-bottom:2px dotted rgba(27,23,16,.35);flex-wrap:wrap}
+.svc-row .no{color:var(--accent);font-weight:700;font-size:.9rem;letter-spacing:.1em}
+.svc-row h3{font-family:'Archivo Black',sans-serif;font-size:1.25rem;text-transform:uppercase;letter-spacing:.02em}
+.svc-row p{width:100%;max-width:620px;font-size:.9rem}
+.svc-row .tech{margin-left:auto;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#7A715C;white-space:nowrap}
+
+/* works */
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{border:2px solid var(--ink);background:var(--cream);box-shadow:6px 6px 0 var(--ink)}
+.fig{height:150px;border-bottom:2px solid var(--ink);display:flex;align-items:center;justify-content:center;font-family:'Archivo Black',sans-serif;font-size:1.35rem;text-transform:uppercase;color:var(--ink)}
+.works .card:nth-child(1) .fig{background:repeating-linear-gradient(45deg,var(--paper),var(--paper) 10px,#E6E0CF 10px,#E6E0CF 20px)}
+.works .card:nth-child(2) .fig{background:var(--dark);color:var(--green)}
+.works .card:nth-child(3) .fig{background:var(--accent);color:#fff}
+.fig-cap{display:flex;justify-content:space-between;gap:10px;padding:12px 14px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase}
+.fig-cap b{color:var(--accent)}
+.card-desc{padding:0 14px 16px;font-size:.88rem}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;border:2px solid var(--ink);background:var(--cream);box-shadow:6px 6px 0 var(--accent)}
+.step{padding:24px 20px;border-left:2px dotted rgba(27,23,16,.3)}
+.step:first-child{border-left:0}
+.step .n{font-family:'Archivo Black',sans-serif;font-size:1.6rem;color:var(--accent)}
+.step h3{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin:10px 0 8px}
+.step p{font-size:.85rem}
+
+/* cta */
+.cta{border-top:2px solid var(--ink);text-align:center;padding:90px 0}
+.big-outline{font-family:'Archivo Black',sans-serif;font-size:clamp(2.6rem,8vw,5rem);line-height:1;text-transform:uppercase;color:transparent;-webkit-text-stroke:2px var(--ink)}
+.cta .sub{max-width:520px;margin:20px auto 36px}
+.cta .sub b{color:var(--accent)}
+
+/* footer */
+footer{border-top:2px solid var(--ink);padding:34px 0;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer b{color:var(--accent)}
+
+@media(max-width:860px){
+  .works{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .step{border-left:0;border-top:2px dotted rgba(27,23,16,.3)}
+  .step:first-child,.step:nth-child(2){border-top:0}
+  .nav ul{display:none}
+  .svc-row .tech{margin-left:0;width:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="wrap">
+    <span><b>MOOD</b> COMPUTING CO.</span>
+    <span>EST. 2024 — INDONESIA</span>
+    <span>WEB / APPS / AI / POS</span>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="wrap">
+    <a class="brand" href="#">mood<em>*</em></a>
+    <ul>
+      <li><a href="#layanan"><i>[01]</i>LAYANAN</a></li>
+      <li><a href="#karya"><i>[02]</i>KARYA</a></li>
+      <li><a href="#proses"><i>[03]</i>PROSES</a></li>
+      <li><a href="#kontak"><i>[04]</i>KONTAK</a></li>
+    </ul>
+    <a class="btn btn-accent" href="#kontak" style="padding:10px 18px;font-size:.78rem">$ konsultasi</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="label">// TIM IT — SERIUS NGODING, SERIUS DELIVER</span>
+    <h1>SOFTWARE YANG <em>BENERAN</em> JALAN.</h1>
+    <p class="sub">Kami <b>mood</b> — tim kecil dengan output besar. Website, aplikasi mobile, machine learning, dan sistem POS: dibangun dengan standar engineering yang ketat, dikomunikasikan dengan bahasa manusia.</p>
+    <div class="ctas">
+      <a class="btn btn-accent" href="#kontak">$ mulai-proyek --dengan-mood</a>
+      <a class="btn" href="#karya">lihat-karya/</a>
+    </div>
+    <div class="term">
+      <div class="term-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>mood@studio: ~/proyek-klien</span></div>
+      <div class="term-body">
+        <div><span class="prompt">$</span> <span class="cmd">mood init "ide-anda"</span></div>
+        <div class="dim">&gt; menganalisis kebutuhan... selesai</div>
+        <div class="dim">&gt; menyusun desain &amp; arsitektur... selesai</div>
+        <div><span class="prompt">$</span> <span class="cmd">mood build --rapi --on-time</span></div>
+        <div class="ok">&gt; deploy sukses ✓ dipakai klien setiap hari</div>
+        <div><span class="prompt">$</span> <span class="cmd">status tim</span> <span class="dim"># kopi: terisi</span> <span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+</header>
+<section id="layanan" class="wrap">
+  <div class="sec-head">
+    <span class="label">// 01 — DAFTAR LAYANAN</span>
+    <h2>APA SAJA YANG KAMI <em>KERJAKAN</em>.</h2>
+  </div>
+  <div class="svc-list">
+    <div class="svc-row">
+      <span class="no">[01]</span>
+      <h3>Website &amp; Web App</h3>
+      <span class="tech">Next.js / React / Laravel</span>
+      <p>Company profile, sistem internal, e-commerce — cepat, stabil, dan mudah dirawat. Kode bersih bukan pilihan, tapi standar.</p>
+    </div>
+    <div class="svc-row">
+      <span class="no">[02]</span>
+      <h3>Aplikasi Mobile</h3>
+      <span class="tech">Flutter / Kotlin</span>
+      <p>Android &amp; iOS dari satu basis kode. Dari MVP untuk validasi ide sampai aplikasi produksi skala besar.</p>
+    </div>
+    <div class="svc-row">
+      <span class="no">[03]</span>
+      <h3>Machine Learning &amp; AI</h3>
+      <span class="tech">Python / TensorFlow / LLM</span>
+      <p>Prediksi permintaan, computer vision, chatbot AI — teknologi yang menyelesaikan masalah bisnis, bukan sekadar demo keren.</p>
+    </div>
+    <div class="svc-row">
+      <span class="no">[04]</span>
+      <h3>Sistem POS &amp; Operasional</h3>
+      <span class="tech">Custom / Integrasi</span>
+      <p>Kasir, inventori, pelaporan otomatis. Sistem yang bikin operasional harian jalan tanpa drama.</p>
+    </div>
+  </div>
+</section>
+
+<section id="karya" class="wrap" style="border-top:2px solid var(--ink)">
+  <div class="sec-head" style="margin-top:76px">
+    <span class="label">// 02 — PORTOFOLIO</span>
+    <h2>BUKTI, BUKAN <em>JANJI</em>.</h2>
+  </div>
+  <div class="works">
+    <div class="card">
+      <div class="fig">KasirKu</div>
+      <div class="fig-cap"><span>FIG. 01</span><b>POS RETAIL</b></div>
+      <p class="card-desc">Aplikasi kasir untuk 40+ gerai. Laporan harian tersusun otomatis, stok selalu akurat.</p>
+    </div>
+    <div class="card">
+      <div class="fig">SmartCast</div>
+      <div class="fig-cap"><span>FIG. 02</span><b>ML FORECAST</b></div>
+      <p class="card-desc">Model prediksi stok dengan akurasi 92%. Machine learning yang benar-benar dipakai produksi.</p>
+    </div>
+    <div class="card">
+      <div class="fig">GoKantin</div>
+      <div class="fig-cap"><span>FIG. 03</span><b>WEB APP</b></div>
+      <p class="card-desc">Platform pesan-antar kantin kampus. 5.000+ transaksi per bulan, uptime 99,9%.</p>
+    </div>
+  </div>
+</section>
+
+<section id="proses" class="wrap">
+  <div class="sec-head">
+    <span class="label">// 03 — CARA KERJA</span>
+    <h2>PROSES YANG <em>JELAS</em>, HASIL YANG TERUKUR.</h2>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="n">01</div>
+      <h3>DISKUSI</h3>
+      <p>Ngobrol soal kebutuhan &amp; tujuan. Gratis, tanpa istilah teknis yang membingungkan.</p>
+    </div>
+    <div class="step">
+      <div class="n">02</div>
+      <h3>RANCANG</h3>
+      <p>Desain &amp; arsitektur disepakati lebih dulu. Semua transparan sebelum kode ditulis.</p>
+    </div>
+    <div class="step">
+      <div class="n">03</div>
+      <h3>BANGUN</h3>
+      <p>Development dengan progress rutin. Anda selalu tahu proyek sampai mana.</p>
+    </div>
+    <div class="step">
+      <div class="n">04</div>
+      <h3>SERAHKAN</h3>
+      <p>Testing, launching, dan dukungan purna jual. Sistem kami pastikan benar-benar jalan.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="kontak">
+  <div class="wrap">
+    <div class="big-outline">PUNYA PROYEK?<br>MARI KITA <em style="-webkit-text-stroke-color:var(--accent);color:var(--accent);font-style:normal">GAS</em>.</div>
+    <p class="sub">Ceritakan kebutuhan Anda — <b>balasan dalam 24 jam</b> berisi gambaran solusi + estimasi awal. Konsultasi pertama tanpa biaya.</p>
+    <a class="btn btn-accent" href="mailto:halo@mood.dev">$ kontak --ke : halo@mood.dev</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 <b>MOOD</b> COMPUTING CO.</span>
+    <span>WEB / APPS / AI / POS</span>
+    <span>DIBANGUN DENGAN ☕ + KODE RAPI</span>
+  </div>
+</footer>
+
+</body>
+</html>

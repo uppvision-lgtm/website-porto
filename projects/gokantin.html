@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GoKantin — Pesan Makanan Kampus Tanpa Antre</title>
+<meta name="description" content="GoKantin: pesan makanan kantin kampus dari HP, bayar QRIS, ambil tanpa ngantri. Demo web app oleh mood.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&amp;family=Nunito:wght@400;700;800&amp;display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&amp;family=Nunito:wght@400;700;800&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&amp;family=Nunito:wght@400;700;800&amp;display=swap" rel="stylesheet"></noscript>
+<style>
+:root{--ink:#1e1b18;--bg:#fff8ef;--or:#f97316;--gr:#22c55e;--yl:#facc15;--pk:#f9a8d4;--line:#1e1b18}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+h1,h2,h3,.bf{font-family:'Baloo 2',cursive}
+nav{display:flex;align-items:center;gap:22px;padding:16px 6vw;position:sticky;top:0;background:var(--bg);border-bottom:3px solid var(--line);z-index:10;flex-wrap:wrap}
+.logo{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.35rem;background:var(--yl);border:3px solid var(--line);border-radius:16px;padding:4px 14px;box-shadow:4px 4px 0 var(--line);transform:rotate(-2deg);text-decoration:none;color:var(--ink)}
+nav a.l{font-weight:800;color:var(--ink);text-decoration:none}
+nav a.l:hover{color:var(--or)}
+.cart{margin-left:auto;background:var(--gr);color:#fff;border:3px solid var(--line);border-radius:999px;padding:9px 20px;font-family:'Baloo 2',cursive;font-weight:700;box-shadow:4px 4px 0 var(--line);cursor:pointer;font-size:1rem}
+.cart:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--line)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;padding:64px 6vw;align-items:center}
+.hero h1{font-size:clamp(2rem,4.6vw,3.3rem);line-height:1.1}
+.hero h1 mark{background:var(--yl);padding:0 .16em;border-radius:10px}
+.hero p{margin:16px 0 24px;font-size:1.06rem;max-width:470px}
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.chips span{background:#fff;border:2px solid var(--line);border-radius:999px;padding:7px 15px;font-weight:800;font-size:.82rem}
+.pic{position:relative;margin:14px 0}
+.pic img{width:100%;border-radius:28px;border:3px solid var(--line);box-shadow:10px 10px 0 var(--or);display:block}
+.float{position:absolute;background:#fff;border:3px solid var(--line);border-radius:14px;padding:8px 15px;font-family:'Baloo 2',cursive;font-weight:800;box-shadow:4px 4px 0 var(--line)}
+.f1{top:-18px;right:20px;background:var(--yl);transform:rotate(4deg)}
+.f2{bottom:-18px;left:20px;background:var(--pk);transform:rotate(-3deg)}
+.msec{padding:64px 6vw}
+.center{text-align:center}
+h2.big{font-size:clamp(1.7rem,3.6vw,2.4rem)}
+.subc{text-align:center;opacity:.72;margin-top:8px}
+.grid6{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:26px;margin-top:40px}
+.dish{background:#fff;border:3px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:6px 6px 0 var(--line);transition:transform .15s,box-shadow .15s;display:flex;flex-direction:column}
+.dish:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--line)}
+.dish img{width:100%;height:150px;object-fit:cover;border-bottom:3px solid var(--line);display:block}
+.dish .c{padding:16px;display:flex;flex-direction:column;gap:7px;flex:1}
+.dish h3{font-size:1.12rem}
+.dish p{font-size:.85rem;opacity:.75}
+.dish .row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px;gap:8px}
+.price{font-family:'Baloo 2',cursive;font-weight:800;color:var(--or);font-size:1.18rem}
+.add{background:var(--gr);color:#fff;border:2px solid var(--line);border-radius:12px;padding:8px 15px;font-family:'Baloo 2',cursive;font-weight:700;cursor:pointer;box-shadow:3px 3px 0 var(--line)}
+.add:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--line)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:40px}
+.st{background:#fff;border:3px solid var(--line);border-radius:20px;padding:24px;box-shadow:6px 6px 0 var(--line)}
+.st .n{width:44px;height:44px;display:grid;place-items:center;background:var(--yl);border:3px solid var(--line);border-radius:50%;font-family:'Baloo 2',cursive;font-weight:800;font-size:1.25rem;margin-bottom:12px}
+.st h3{font-size:1.1rem;margin-bottom:4px}
+.st p{font-size:.9rem;opacity:.8}
+.quote-strip{margin:26px 6vw 70px;background:var(--or);color:#fff;border:3px solid var(--line);border-radius:24px;padding:32px;text-align:center;box-shadow:8px 8px 0 var(--line)}
+.quote-strip p{font-family:'Baloo 2',cursive;font-weight:700;font-size:1.25rem;max-width:640px;margin:0 auto 10px}
+.quote-strip span{font-weight:800;opacity:.9;font-size:.9rem}
+footer{padding:26px 6vw;border-top:3px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-weight:700;font-size:.9rem}
+footer a{color:var(--or)}
+.backpill{position:fixed;left:16px;bottom:16px;z-index:999;background:#C8F04B;color:#141414;border:3px solid #141414;border-radius:12px;box-shadow:4px 4px 0 #141414;padding:10px 16px;font-weight:700;font-size:.88rem;text-decoration:none;transform:rotate(-2deg);transition:transform .15s}
+.backpill:hover{transform:rotate(0deg) translate(2px,2px);box-shadow:2px 2px 0 #141414}
+@media(max-width:880px){.hero{grid-template-columns:1fr;padding-top:44px;gap:34px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="#">🍱 GoKantin</a>
+  <a class="l" href="#menu">Menu Hari Ini</a>
+  <a class="l" href="#cara">Cara Order</a>
+  <a class="l" href="#">Mitra Kantin</a>
+  <button class="cart" id="cart" type="button">🛒 Keranjang (<span id="cartN">0</span>)</button>
+</nav>
+<header class="hero">
+  <div>
+    <h1>Laper di kampus? <mark>Order dulu</mark>, lolos antrean.</h1>
+    <p>Pesan dari kantin favorit pas masih di kelas — pas bel pulang, pesananmu udah nunggu di rak ambil. Bayar QRIS, nggak perlu drama uang receh.</p>
+    <div class="chips"><span>✓ Tanpa ngantri</span><span>✓ Bayar QRIS</span><span>✓ Siap 10 menit</span></div>
+    <div style="display:flex;gap:14px;margin-top:28px;flex-wrap:wrap">
+      <a class="add" style="text-decoration:none;font-size:1.05rem;padding:12px 24px" href="#menu">Lihat Menu 🍜</a>
+    </div>
+  </div>
+  <div class="pic">
+    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80" alt="Aneka menu makanan kantin di atas meja" fetchpriority="high" decoding="async">
+    <span class="float f1">⏱️ Siap 10 menit</span>
+    <span class="float f2">🔥 4.9 · 2rb+ review</span>
+  </div>
+</header>
+<section class="msec" id="menu">
+  <h2 class="big center">Menu Hari Ini 🍴</h2>
+  <p class="subc">Update tiap pagi langsung dari kantin — habis ya habis.</p>
+  <div class="grid6">
+    <article class="dish">
+      <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=80" alt="Nasi dengan ayam katsu dan sayur" loading="lazy" decoding="async">
+      <div class="c"><h3>Ayam Katsu Rice</h3><p>Nasi hangat, ayam katsu crispy, saus mayo pedas.</p><div class="row"><span class="price">Rp 15k</span><button class="add" type="button">+ Keranjang</button></div></div>
+    </article>
+    <article class="dish">
+      <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=900&q=80" alt="Semangkuk mie ayam" loading="lazy" decoding="async">
+      <div class="c"><h3>Mie Ayam Jumbo</h3><p>Mie kenyal, ayam kecap, bakso mini, taburan bawang.</p><div class="row"><span class="price">Rp 13k</span><button class="add" type="button">+ Keranjang</button></div></div>
+    </article>
+    <article class="dish">
+      <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=900&q=80" alt="Rice bowl salmon dengan sayuran" loading="lazy" decoding="async">
+      <div class="c"><h3>Rice Bowl Salmon</h3><p>Menu sehat buat yang lagi cutting — salmon, veggies, rice.</p><div class="row"><span class="price">Rp 18k</span><button class="add" type="button">+ Keranjang</button></div></div>
+    </article>
+    <article class="dish">
+      <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80" alt="Salad bowl segar berisi sayuran" loading="lazy" decoding="async">
+      <div class="c"><h3>Salad Bowl Segar</h3><p>Mix sayur, telur rebus, dressing sesame — fresh abis.</p><div class="row"><span class="price">Rp 10k</span><button class="add" type="button">+ Keranjang</button></div></div>
+    </article>
+    <article class="dish">
+      <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=900&q=80" alt="Nasi campur porsi besar dalam wadah" loading="lazy" decoding="async">
+      <div class="c"><h3>Nasi Campur Bu Sri</h3><p>Balanced meal ala rumahan, porsi ngeb, laap bisa nambah.</p><div class="row"><span class="price">Rp 14k</span><button class="add" type="button">+ Keranjang</button></div></div>
+    </article>
+    <article class="dish">
+      <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=900&q=80" alt="Roti bakar manis dengan topping" loading="lazy" decoding="async">
+      <div class="c"><h3>Roti Bakar Cokelat Keju</h3><p>Manis-abusan, partner paling setia waktu larian tugas.</p><div class="row"><span class="price">Rp 8k</span><button class="add" type="button">+ Keranjang</button></div></div>
+    </article>
+  </div>
+</section>
+<section class="msec" id="cara" style="padding-top:0">
+  <h2 class="big center">Cara Order ⚡</h2>
+  <p class="subc">Tiga langkah, dua menit, zero antrean.</p>
+  <div class="steps">
+    <div class="st"><span class="n">1</span><h3>Pilih Menu</h3><p>Scroll menu, tekan + Keranjang. Bisa checkout bareng teman sekelas biar hemat ongkir.</p></div>
+    <div class="st"><span class="n">2</span><h3>Bayar QRIS</h3><p>Scan, selesai. Nggak perlu panik cari uang pas 500an lagi.</p></div>
+    <div class="st"><span class="n">3</span><h3>Ambil di Rak</h3><p>Tunjukin kode order di rak ambil. Makanan masih panas, kamu masih sempat-sempatnya.</p></div>
+  </div>
+</section>
+<section class="quote-strip">
+  <p>"Dulu istirahat 15 menit habis buat ngantri. Sekarang 15 menit buat makan. Life changing fr."</p>
+  <span>— Rafi, Teknik '24 · ★★★★★</span>
+</section>
+<footer>
+  <span>© 2026 GoKantin — demo dibuat oleh <a href="../index.html">mood</a></span>
+  <span>Mitra: 12 kantin kampus &amp; 40+ tenan</span>
+</footer>
+<a class="backpill" href="../karya.html">◀ mood / portfolio</a>
+<script>
+(function(){
+  "use strict";
+  var n=0;
+  function render(){document.getElementById("cartN").textContent=n;}
+  document.querySelectorAll("button.add").forEach(function(b){
+    b.addEventListener("click",function(){
+      n++;render();
+      var old=b.textContent;
+      b.textContent="Masuk ✓";
+      setTimeout(function(){b.textContent=old;},900);
+    });
+  });
+  var cart=document.getElementById("cart");
+  var busy=false;
+  cart.addEventListener("click",function(){
+    if(busy)return;
+    busy=true;
+    cart.textContent=n?("🛒 "+n+" item siap checkout ✅"):"🛒 Kosong nih, pilih menu dulu 😅";
+    setTimeout(function(){
+      cart.innerHTML="🛒 Keranjang (<span id=\"cartN\">"+n+"</span>)";
+      busy=false;
+    },1500);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Racunin — Demo Aplikasi Mobile by mood</title>
+<meta name="description" content="Demo aplikasi mobile Racunin: feed racun kuliner dengan filter kategori, rating & tombol suka interaktif. Dibuat oleh studio IT mood.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"></noscript>
+<style>
+:root{--brand:#E11D48;--brand-soft:#FFE4EC;--ink:#2A141C;--bg:#FDF4F7;--card:#fff;--line:#F5DFE8;--mut:#8A6B77}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:34px 14px;color:var(--ink);background:var(--bg);background-image:radial-gradient(rgba(42,20,28,.06) 1.1px,transparent 1.2px);background-size:22px 22px}
+.phone{width:min(392px,100%);background:var(--ink);border-radius:46px;padding:11px;box-shadow:10px 12px 0 rgba(42,20,28,.16)}
+.screen{position:relative;background:var(--bg);border-radius:36px;height:min(742px,82vh);display:flex;flex-direction:column;overflow:hidden}
+.punch{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:88px;height:24px;background:var(--ink);border-radius:999px;z-index:9}
+.statusbar{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:14px 22px 4px;font-size:.78rem;font-weight:700}
+.app-body{flex:1;overflow-y:auto;padding:12px 18px 18px;display:flex;flex-direction:column;gap:16px;scrollbar-width:none}
+.app-body::-webkit-scrollbar{display:none}
+.app-head{display:flex;align-items:center;gap:12px}
+.avatar{width:44px;height:44px;border-radius:14px;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:800;font-size:1.05rem;flex-shrink:0}
+.hello{display:flex;flex-direction:column;min-width:0}
+.hello b{font-size:1.02rem}
+.hello small{color:var(--mut);font-size:.74rem;font-weight:600}
+.tabbar{flex-shrink:0;display:flex;background:var(--card);border-top:1px solid var(--line);padding:10px 8px calc(12px + env(safe-area-inset-bottom))}
+.tabbar .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.64rem;font-weight:700;color:var(--mut);font-family:inherit;background:none;border:0;cursor:pointer;padding:0}
+.tabbar .tab i{font-style:normal;font-size:1.12rem}
+.tabbar .tab.on{color:var(--brand)}
+.view{display:flex;flex-direction:column;gap:16px}
+.view[hidden]{display:none}
+.toast{position:absolute;left:50%;bottom:74px;transform:translate(-50%,12px);background:var(--ink);color:#fff;font-size:.76rem;font-weight:600;padding:9px 16px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:20;max-width:85%;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.set{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:6px 14px;display:flex;flex-direction:column}
+.set-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;font-size:.84rem;font-weight:600;border-bottom:1px solid var(--line)}
+.set-row:last-child{border-bottom:0}
+.sw{width:44px;height:26px;border-radius:99px;background:var(--line);position:relative;cursor:pointer;border:0;padding:0;transition:background .2s;flex-shrink:0}
+.sw::after{content:"";position:absolute;width:20px;height:20px;border-radius:50%;background:#fff;top:3px;left:3px;transition:left .2s}
+.sw.on{background:var(--brand)}
+.sw.on::after{left:21px}
+.kartu-profil{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}
+.resetbtn{width:100%;padding:13px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-family:inherit;font-weight:700;font-size:.84rem;cursor:pointer;color:var(--ink)}
+.map{position:relative;height:300px;background:repeating-linear-gradient(0deg,#fff 0 34px,var(--line) 34px 35px),repeating-linear-gradient(90deg,#fff 0 34px,var(--line) 34px 35px);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.pin{position:absolute;display:flex;flex-direction:column;align-items:center;font-size:1.2rem;cursor:pointer;background:none;border:0;font-family:inherit}
+.pin small{font-size:.6rem;font-weight:800;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:2px 6px;color:var(--ink);margin-top:2px}
+.pin:active{transform:scale(.9)}
+.petanote{font-size:.78rem;color:var(--mut);font-weight:600}
+.frow{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:.84rem;font-weight:600}
+.backpill{position:fixed;left:16px;bottom:16px;z-index:50;background:var(--ink);color:#fff;text-decoration:none;font-size:.76rem;font-weight:700;padding:10px 16px;border-radius:999px;box-shadow:0 8px 20px rgba(0,0,0,.28)}
+.credit{font-size:.78rem;color:var(--mut);text-align:center;max-width:430px}
+.credit b{color:var(--ink)}
+@media(max-width:480px){body{padding:0;gap:0}.phone{width:100%;border-radius:0;padding:0;box-shadow:none}.screen{border-radius:0;height:100dvh}.credit,.backpill{display:none}}
+.search{background:var(--card);border:1px solid var(--line);border-radius:99px;padding:12px 18px;font-size:.82rem;font-weight:600;color:var(--mut)}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{font-family:inherit;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:8px 15px;font-size:.76rem;font-weight:800;color:var(--mut);cursor:pointer;white-space:nowrap;transition:transform .12s;flex-shrink:0}
+.chip:active{transform:scale(.94)}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.feeds{display:flex;flex-direction:column;gap:14px}
+.food{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.food img{display:block;width:100%;height:132px;object-fit:cover;background:var(--brand-soft)}
+.f-body{padding:13px 15px 15px;display:flex;flex-direction:column;gap:6px}
+.f-top{display:flex;align-items:baseline;gap:8px}
+.f-top b{font-size:.92rem}
+.f-top em{margin-left:auto;font-style:normal;font-weight:800;font-size:.74rem;color:var(--brand);background:var(--brand-soft);padding:3px 9px;border-radius:99px;flex-shrink:0}
+.f-body>small{color:var(--mut);font-size:.72rem;font-weight:600}
+.f-bot{display:flex;align-items:center;justify-content:space-between;margin-top:2px}
+.badge{font-size:.64rem;font-weight:800;letter-spacing:.06em;background:var(--ink);color:#fff;padding:4px 10px;border-radius:99px}
+.like{font-family:inherit;border:1px solid var(--line);background:#fff;border-radius:99px;padding:7px 13px;font-size:.95rem;cursor:pointer;transition:transform .12s}
+.like:active{transform:scale(1.2)}
+.like[aria-pressed="true"]{background:var(--brand-soft);border-color:var(--brand)}
+.favchip{margin-left:auto;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:8px 12px;font-size:.72rem;font-weight:800;flex-shrink:0}
+.kosong{text-align:center;color:var(--mut);font-size:.82rem;font-weight:600;padding:20px 0}
+
+</style>
+</head>
+<body>
+<div class="phone"><div class="screen">
+<span class="punch" aria-hidden="true"></span>
+<div class="statusbar" aria-hidden="true"><span>12.45</span><span>📶 5G 🔋</span></div>
+<div class="app-body">
+  <div class="view on" id="v-beranda">
+  <div class="app-head">
+    <span class="avatar" aria-hidden="true">🍜</span>
+    <div class="hello"><b>Racunin</b><small>racun terbaru buat kamu hari ini 🔥</small></div>
+    <span class="favchip" id="favchip">🤍 0</span>
+  </div>
+  <div class="search" aria-hidden="true">🔎 racun apa hari ini?</div>
+  <div class="chips" id="chips" role="group" aria-label="Filter kategori">
+    <button class="chip on" type="button" data-f="semua">Semua</button>
+    <button class="chip" type="button" data-f="pedes">Pedes</button>
+    <button class="chip" type="button" data-f="manis">Manis</button>
+    <button class="chip" type="button" data-f="gurih">Gurih</button>
+    <button class="chip" type="button" data-f="minum">Minum</button>
+  </div>
+  <div class="feeds" id="feeds">
+    <article class="food" data-kat="pedes">
+      <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=70" alt="Mangkuk mie pedas" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=70'">
+      <div class="f-body">
+        <div class="f-top"><b>Seblak Rasa Bahaya</b><em>4.8★</em></div>
+        <small>Bandung · mulai Rp12rb · buka 09.00–22.00</small>
+        <div class="f-bot"><span class="badge">RACUN 🔥</span><button class="like" type="button" aria-pressed="false" aria-label="Suka Seblak Rasa Bahaya">🤍</button></div>
+      </div>
+    </article>
+    <article class="food" data-kat="manis">
+      <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=600&q=70" alt="Es krim dan dessert manis" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=70'">
+      <div class="f-body">
+        <div class="f-top"><b>Matcha Bingsoo</b><em>4.9★</em></div>
+        <small>Jaksel · mulai Rp38rb · antre ya namanya</small>
+        <div class="f-bot"><span class="badge">RACUN 🔥</span><button class="like" type="button" aria-pressed="false" aria-label="Suka Matcha Bingsoo">🤍</button></div>
+      </div>
+    </article>
+    <article class="food" data-kat="gurih">
+      <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=70" alt="Nasi dengan lauk pauk" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=70'">
+      <div class="f-body">
+        <div class="f-top"><b>Nasi Gulai Kawah</b><em>4.7★</em></div>
+        <small>Bogor · mulai Rp25rb · abis jam 2 siang</small>
+        <div class="f-bot"><span class="badge">RACUN 🔥</span><button class="like" type="button" aria-pressed="false" aria-label="Suka Nasi Gulai Kawah">🤍</button></div>
+      </div>
+    </article>
+    <article class="food" data-kat="minum">
+      <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=600&q=70" alt="Segelas kopi susu" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=70'">
+      <div class="f-body">
+        <div class="f-top"><b>Es Kopi Kenyang</b><em>4.6★</em></div>
+        <small>Setiabudi · mulai Rp18rb · gula dicoret pls</small>
+        <div class="f-bot"><span class="badge">RACUN 🔥</span><button class="like" type="button" aria-pressed="false" aria-label="Suka Es Kopi Kenyang">🤍</button></div>
+      </div>
+    </article>
+    <article class="food" data-kat="pedes">
+      <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=70" alt="Ayam goreng crispy" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=70'">
+      <div class="f-body">
+        <div class="f-top"><b>Ayam Geprek Mercon</b><em>4.8★</em></div>
+        <small>Yogyakarta · mulai Rp20rb · level 5 = ampun</small>
+        <div class="f-bot"><span class="badge">RACUN 🔥</span><button class="like" type="button" aria-pressed="false" aria-label="Suka Ayam Geprek Mercon">🤍</button></div>
+      </div>
+    </article>
+    <article class="food" data-kat="manis">
+      <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=70" alt="Croissant butter" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=70'">
+      <div class="f-body">
+        <div class="f-top"><b>Croissant Butter</b><em>4.9★</em></div>
+        <small>Bandung · mulai Rp28rb · abis sebelum siang</small>
+        <div class="f-bot"><span class="badge">RACUN 🔥</span><button class="like" type="button" aria-pressed="false" aria-label="Suka Croissant Butter">🤍</button></div>
+      </div>
+    </article>
+  </div>
+  <p class="kosong" id="kosong" hidden>belom ada racun di kategori ini 🤔 coba kategori lain.</p>
+  </div>
+
+  <div class="view" id="v-peta" hidden>
+    <div class="app-head">
+      <span class="avatar" aria-hidden="true">🗺</span>
+      <div class="hello"><b>Peta Racun</b><small>sebaran racun di sekitar kamu</small></div>
+    </div>
+    <div class="map" aria-hidden="true">
+      <span class="pin" style="left:16%;top:20%" data-info="Seblak Rasa Bahaya · 4.8★ · mulai Rp12rb">📍<small>Seblak</small></span>
+      <span class="pin" style="left:64%;top:16%" data-info="Matcha Bingsoo · 4.9★ · mulai Rp38rb">📍<small>Matcha</small></span>
+      <span class="pin" style="left:36%;top:46%" data-info="Nasi Gulai Kawah · 4.7★ · mulai Rp25rb">📍<small>Gulai</small></span>
+      <span class="pin" style="left:72%;top:56%" data-info="Es Kopi Kenyang · 4.6★ · mulai Rp18rb">📍<small>Kopi</small></span>
+      <span class="pin" style="left:24%;top:72%" data-info="Ayam Geprek Mercon · 4.8★ · mulai Rp20rb">📍<small>Geprek</small></span>
+      <span class="pin" style="left:60%;top:82%" data-info="Croissant Butter · 4.9★ · mulai Rp28rb">📍<small>Croissant</small></span>
+    </div>
+    <p class="petanote">📍 Tap pin buat lihat info singkat. Peta ini versi gaya-gayaan — nanti nyambung ke maps beneran.</p>
+  </div>
+
+  <div class="view" id="v-favorit" hidden>
+    <div class="app-head">
+      <span class="avatar" aria-hidden="true">🤍</span>
+      <div class="hello"><b>Favorit</b><small>racun yang kamu suka</small></div>
+      <span class="favchip" id="favchip2">🤍 0</span>
+    </div>
+    <div class="feeds" id="favlist"></div>
+    <div class="kosong" id="fav-empty" hidden>Belum ada favorit — tap 🤍 di kartu racun di Beranda, nanti muncul di sini.</div>
+  </div>
+
+  <div class="view" id="v-profil" hidden>
+    <div class="app-head">
+      <span class="avatar" aria-hidden="true">👤</span>
+      <div class="hello"><b>Profil</b><small>akun demo — tanpa login beneran</small></div>
+    </div>
+    <div class="kartu-profil">
+      <span class="avatar" aria-hidden="true">🍜</span>
+      <div class="hello"><b>Pecinta Racun</b><small>level: pedes mania 🌶</small></div>
+    </div>
+    <h2>Pengaturan</h2>
+    <div class="set">
+      <div class="set-row"><span>🔔 Notifikasi racun baru</span><button class="sw on" type="button" aria-pressed="true" aria-label="Notifikasi racun baru"></button></div>
+      <div class="set-row"><span>🌶 Mode pedas ekstra</span><button class="sw" type="button" aria-pressed="false" aria-label="Mode pedas ekstra"></button></div>
+    </div>
+    <button class="resetbtn" type="button" id="reset-demo">↺ Reset favorit</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<nav class="tabbar" aria-label="Menu demo">
+  <button class="tab on" type="button" data-v="beranda"><i>🏠</i>Beranda</button><button class="tab" type="button" data-v="peta"><i>🗺</i>Peta</button><button class="tab" type="button" data-v="favorit"><i>🤍</i>Favorit</button><button class="tab" type="button" data-v="profil"><i>👤</i>Profil</button>
+</nav>
+</div></div>
+<a class="backpill" href="../karya.html#aplikasi-mobile">◀ mood / karya</a>
+<p class="credit">Demo aplikasi mobile <b>Racunin</b> — dibuat oleh <b>mood</b> ✦ nama resto &amp; angka cuma contoh.</p>
+<script>
+(function(){
+"use strict";
+var d=document;
+var chips=d.querySelectorAll("#chips .chip");
+var foods=d.querySelectorAll("#feeds .food");
+var kosong=d.getElementById("kosong");
+var fav=d.getElementById("favchip");
+var favchip2=d.getElementById("favchip2");
+var n=0,favArr=[];
+var toastEl=d.getElementById("toast"),toastT;
+function toastMsg(m){
+  toastEl.textContent=m;toastEl.classList.add("show");
+  clearTimeout(toastT);
+  toastT=setTimeout(function(){toastEl.classList.remove("show");},1800);
+}
+function rebuildFav(){
+  var list=d.getElementById("favlist");
+  list.innerHTML=favArr.map(function(nm){
+    return '<div class="frow"><span>🍜 '+nm+'</span><b>❤️</b></div>';
+  }).join("");
+  d.getElementById("fav-empty").hidden=favArr.length>0;
+}
+/* tab */
+var tabs=d.querySelectorAll(".tabbar .tab"),views=d.querySelectorAll(".app-body .view");
+tabs.forEach(function(t){
+  t.addEventListener("click",function(){
+    tabs.forEach(function(x){x.classList.remove("on");});
+    t.classList.add("on");
+    views.forEach(function(v){v.hidden=(v.id!=="v-"+t.dataset.v);});
+    d.querySelector(".app-body").scrollTop=0;
+  });
+});
+/* filter */
+chips.forEach(function(c){
+  c.addEventListener("click",function(){
+    chips.forEach(function(x){x.classList.remove("on");});
+    c.classList.add("on");
+    var f=c.dataset.f,tampil=0;
+    foods.forEach(function(art){
+      var ok=f==="semua"||art.dataset.kat===f;
+      art.style.display=ok?"":"none";
+      if(ok)tampil++;
+    });
+    kosong.hidden=tampil>0;
+  });
+});
+/* like — tersinkron dengan tab Favorit */
+d.querySelectorAll(".like").forEach(function(b){
+  b.addEventListener("click",function(){
+    var on=b.getAttribute("aria-pressed")!=="true";
+    b.setAttribute("aria-pressed",on?"true":"false");
+    b.textContent=on?"❤️":"🤍";
+    var nm=b.getAttribute("aria-label").replace("Suka ","");
+    if(on){favArr.push(nm);}else{favArr=favArr.filter(function(x){return x!==nm;});}
+    n=favArr.length;
+    fav.textContent=(on?"❤️ ":"🤍 ")+n;
+    favchip2.textContent=fav.textContent;
+    rebuildFav();
+  });
+});
+/* peta */
+d.querySelectorAll("#v-peta .pin").forEach(function(p){
+  p.addEventListener("click",function(){
+    toastMsg(p.dataset.info);
+  });
+});
+/* reset favorit */
+d.getElementById("reset-demo").addEventListener("click",function(){
+  d.querySelectorAll('.like[aria-pressed="true"]').forEach(function(b){b.click();});
+  toastMsg("Favorit dibersihkan ↺");
+});
+})();
+</script>
+</body>
+</html>

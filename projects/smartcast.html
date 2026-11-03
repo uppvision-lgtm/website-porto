@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartCast — Platform Podcast</title>
+<meta name="description" content="SmartCast: dengerin podcast favorit tanpa gangguan — player custom, waveform, rekomendasi episode. Demo website oleh mood.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
+<style>
+:root{--bg:#0a0a14;--panel:#141422;--ink:#f1f0ff;--mut:#9b98b8;--vio:#a78bfa;--lime:#d9f99d;--line:#262640}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+nav{display:flex;align-items:center;gap:26px;padding:18px 6vw;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(10,10,20,.9);backdrop-filter:blur(8px);z-index:10}
+.logo{font-weight:700;font-size:1.3rem;color:var(--ink);text-decoration:none;letter-spacing:-.02em}
+.logo b{color:var(--vio)}
+nav a.l{color:var(--mut);text-decoration:none;font-weight:500;font-size:.95rem}
+nav a.l:hover{color:var(--ink)}
+nav .cta{margin-left:auto;background:var(--vio);color:#14102a;padding:10px 20px;border-radius:999px;font-weight:700;text-decoration:none;font-size:.92rem}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;padding:72px 6vw;align-items:center}
+.badge{display:inline-block;border:1px solid var(--vio);color:var(--vio);padding:6px 15px;border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.16em}
+.hero h1{font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.08;margin:20px 0;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--vio)}
+.hero p{color:var(--mut);max-width:480px;font-size:1.02rem}
+.btns{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+.btn-p{background:var(--lime);color:#141a0a;padding:14px 24px;border-radius:12px;font-weight:700;text-decoration:none;border:none;font-size:1rem;cursor:pointer}
+.btn-g{border:1px solid var(--line);color:var(--ink);padding:14px 24px;border-radius:12px;text-decoration:none;font-weight:700}
+.hstats{display:flex;gap:38px;margin-top:36px;flex-wrap:wrap}
+.hstats b{display:block;font-size:1.55rem;letter-spacing:-.02em}
+.hstats span{color:var(--mut);font-size:.85rem}
+.player{background:linear-gradient(160deg,#1a1630,#12121f);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 30px 80px rgba(124,90,255,.16)}
+.player img{width:100%;border-radius:14px;aspect-ratio:1/1;object-fit:cover;display:block}
+.now{display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:12px}
+.now .t{font-size:.85rem;color:var(--mut)}
+.now .t b{display:block;color:var(--ink);font-size:.98rem}
+.play{width:54px;height:54px;border-radius:50%;background:var(--vio);border:none;color:#14102a;font-size:1.25rem;cursor:pointer;flex-shrink:0}
+.wave{display:flex;align-items:center;gap:3px;height:58px;margin:16px 0 14px}
+.wave i{flex:1;background:#372f5e;border-radius:2px;height:30%;animation:wob 1.15s ease-in-out infinite;animation-play-state:paused}
+.player.playing .wave i{animation-play-state:running}
+@keyframes wob{0%,100%{height:16%}50%{height:var(--h,70%)}}
+.prog{height:5px;background:var(--line);border-radius:99px;overflow:hidden}
+.prog i{display:block;width:38%;height:100%;background:var(--vio)}
+.sec{padding:72px 6vw}
+.sec>.sub{color:var(--mut);margin-top:-24px;margin-bottom:34px;max-width:520px}
+.sec h2{font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:14px;letter-spacing:-.02em}
+.eps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.ep{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .2s}
+.ep:hover{transform:translateY(-6px)}
+.ep img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
+.ep .c{padding:18px}
+.cat{color:var(--lime);font-size:.72rem;font-weight:700;letter-spacing:.16em}
+.ep h3{margin:9px 0 6px;font-size:1.05rem;line-height:1.35}
+.ep p{color:var(--mut);font-size:.87rem}
+.ep .row{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:.8rem;color:var(--mut)}
+.ep .row b{color:var(--vio)}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.f{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--panel)}
+.f .ic{font-size:1.6rem}
+.f h3{font-size:1.02rem;margin:10px 0 6px}
+.f p{color:var(--mut);font-size:.88rem}
+.cta-band{margin:20px 6vw 70px;background:linear-gradient(120deg,#7c5aff,#3b2a86);border-radius:24px;padding:48px 30px;text-align:center}
+.cta-band h2{font-size:clamp(1.5rem,3vw,2.2rem)}
+.cta-band p{color:#e4defc;margin:12px auto 26px;max-width:460px}
+.cta-band .btn-p{display:inline-block}
+footer{padding:28px 6vw;border-top:1px solid var(--line);color:var(--mut);font-size:.85rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a{color:var(--vio);font-weight:700;text-decoration:none}
+.backpill{position:fixed;left:16px;bottom:16px;z-index:999;background:#C8F04B;color:#141414;border:3px solid #141414;border-radius:12px;box-shadow:4px 4px 0 #141414;padding:10px 16px;font-weight:700;font-size:.88rem;text-decoration:none;transform:rotate(-2deg);transition:transform .15s}
+.backpill:hover{transform:rotate(0deg) translate(2px,2px);box-shadow:2px 2px 0 #141414}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:44px;gap:30px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="#">Smart<b>Cast</b></a>
+  <a class="l" href="#trending">Trending</a>
+  <a class="l" href="#fitur">Fitur</a>
+  <a class="l" href="#">Kreator</a>
+  <a class="cta" href="#">Masuk</a>
+</nav>
+<header class="hero">
+  <div>
+    <span class="badge">🎧 PLATFORM PODCAST</span>
+    <h1>Dengerin suara-oranye favorit, <em>tanpa gangguan.</em></h1>
+    <p>Stream ribuan episode dari kreator lokal, download buat dijalan, dan dukung kreator favoritmu langsung dari app.</p>
+    <div class="btns">
+      <button class="btn-p" id="playHero" type="button">▶ Mulai Dengerin</button>
+      <a class="btn-g" href="#trending">Jelajah Episode</a>
+    </div>
+    <div class="hstats">
+      <div><b>128rb</b><span>pendengar aktif</span></div>
+      <div><b>4.500+</b><span>episode tayang</span></div>
+      <div><b>4.9★</b><span>rating aplikasi</span></div>
+    </div>
+  </div>
+  <div class="player" id="player">
+    <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&w=900&q=80" alt="Mikrofon podcast di studio" fetchpriority="high" decoding="async">
+    <div class="now">
+      <div class="t"><b>Ep. 132 — Cerita di Balik Studio</b>Diputar: 18 dari 47 menit</div>
+      <button class="play" id="playBtn" type="button" aria-label="Putar atau jeda episode">▶</button>
+    </div>
+    <div class="wave" aria-hidden="true"><i style="--h:35%;height:35%"></i><i style="--h:60%;height:60%"></i><i style="--h:80%;height:80%"></i><i style="--h:45%;height:45%"></i><i style="--h:70%;height:70%"></i><i style="--h:30%;height:30%"></i><i style="--h:90%;height:90%"></i><i style="--h:55%;height:55%"></i><i style="--h:65%;height:65%"></i><i style="--h:40%;height:40%"></i><i style="--h:85%;height:85%"></i><i style="--h:50%;height:50%"></i><i style="--h:75%;height:75%"></i><i style="--h:32%;height:32%"></i><i style="--h:95%;height:95%"></i><i style="--h:60%;height:60%"></i><i style="--h:42%;height:42%"></i><i style="--h:78%;height:78%"></i><i style="--h:52%;height:52%"></i><i style="--h:88%;height:88%"></i><i style="--h:38%;height:38%"></i><i style="--h:66%;height:66%"></i></div>
+    <div class="prog"><i></i></div>
+  </div>
+</header>
+<section class="sec" id="trending">
+  <h2>Trending Minggu Ini</h2>
+  <p class="sub">Episode paling banyak didengerin pendengar SmartCast pekan ini.</p>
+  <div class="eps">
+    <article class="ep">
+      <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=900&q=80" alt="Cover episode: mikrofon di studio malam" loading="lazy" decoding="async">
+      <div class="c"><span class="cat">CERITA · MISTERI</span><h3>Malam-Malam Sunyi: Kisah Penjaga Stasiun</h3><p>Sinyal Malam · Ep. 44</p><div class="row"><span>42 min</span><b>▶ 24,1rb putar</b></div></div>
+    </article>
+    <article class="ep">
+      <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=900&q=80" alt="Cover episode: mic dan headphone" loading="lazy" decoding="async">
+      <div class="c"><span class="cat">FINANSIAL · NGOBROL</span><h3>Uang Kecil Tapi Mau Nabung, Gak Sih?</h3><p>Ruang Rapat Ransum · Ep. 87</p><div class="row"><span>36 min</span><b>▶ 19,8rb putar</b></div></div>
+    </article>
+    <article class="ep">
+      <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=900&q=80" alt="Cover episode: headphone di tempat gelap" loading="lazy" decoding="async">
+      <div class="c"><span class="cat">LATE NIGHT · CHILL</span><h3>LO-FI &amp; Obrolan Lama Jam 2 Pagi</h3><p>Headphone Club · Ep. 120</p><div class="row"><span>58 min</span><b>▶ 17,2rb putar</b></div></div>
+    </article>
+  </div>
+</section>
+<section class="sec" id="fitur" style="padding-top:0">
+  <h2>Kenapa SmartCast?</h2>
+  <div class="feat">
+    <div class="f"><span class="ic">🔇</span><h3>Nol Iklan Nyeleneh</h3><p>Iklan cuma di awal, pendek, dan relevan — biasanya malah dari kreatornya sendiri.</p></div>
+    <div class="f"><span class="ic">⬇️</span><h3>Download Offline</h3><p>Simpan episode buat dijalan — hemat kuota, tetap jalan tanpa sinyal.</p></div>
+    <div class="f"><span class="ic">💜</span><h3>Dukung Kreator</h3><p>Tip kreator favorit langsung dari app. 90% masuk ke dompet kreator, kami cuma 10%.</p></div>
+  </div>
+</section>
+<section class="cta-band">
+  <h2>Punya suara yang layak didenger?</h2>
+  <p>Buka channel kamu di SmartCast — upload pertama gampang, analytics-nya jujur, nggak ada syarat aneh.</p>
+  <a class="btn-p" href="#">Mulai Jadi Kreator →</a>
+</section>
+<footer>
+  <span>© 2026 SmartCast — demo dibuat oleh <a href="../index.html">mood</a></span>
+  <span>iOS · Android · Web</span>
+</footer>
+<a class="backpill" href="../karya.html">◀ mood / portfolio</a>
+<script>
+(function(){
+  "use strict";
+  var p=document.getElementById("player");
+  var b=document.getElementById("playBtn");
+  var h=document.getElementById("playHero");
+  function tgl(){
+    var on=p.classList.toggle("playing");
+    b.textContent=on?"❚❚":"▶";
+    h.textContent=on?"❚❚ Jeda":"▶ Mulai Dengerin";
+  }
+  b.addEventListener("click",tgl);
+  h.addEventListener("click",tgl);
+})();
+</script>
+</body>
+</html>

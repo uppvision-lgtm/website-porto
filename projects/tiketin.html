@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SENROPAH FEST '26 — Tiket.in</title>
+<meta name="description" content="Senropah Fest '26 — 14–16 Agustus 2026, Gawana Field Yogyakarta. Amankan tiketmu sekarang di Tiket.in. Demo website event oleh mood.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"></noscript>
+<style>
+:root{--bg:#0c0c0e;--ink:#f5f2ec;--mut:#b9b6c2;--pk:#ff3d81;--or:#ff8a3d;--line:#26262c}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.ab{font-family:'Archivo Black',sans-serif}
+.marq{background:linear-gradient(90deg,var(--pk),var(--or));color:#0c0c0e;white-space:nowrap;overflow:hidden;padding:11px 0;font-family:'Archivo Black',sans-serif;font-size:.9rem;letter-spacing:.1em}
+.marq div{display:inline-block;animation:mv 20s linear infinite}
+@keyframes mv{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+nav{display:flex;align-items:center;gap:26px;padding:16px 6vw;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(12,12,14,.92);backdrop-filter:blur(6px);z-index:20;flex-wrap:wrap}
+.logo{font-family:'Archivo Black',sans-serif;font-size:1.3rem;text-decoration:none;color:var(--ink)}
+.logo span{background:linear-gradient(90deg,var(--pk),var(--or));-webkit-background-clip:text;background-clip:text;color:transparent}
+nav a.l{color:var(--mut);text-decoration:none;font-weight:500;font-size:.95rem}
+nav a.l:hover{color:var(--ink)}
+.gas{margin-left:auto;background:var(--pk);color:#fff;text-decoration:none;font-family:'Archivo Black',sans-serif;padding:11px 20px;border-radius:8px;font-size:.9rem}
+.hero{position:relative;text-align:center;padding:104px 6vw 92px;overflow:hidden}
+.hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.34}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(62% 62% at 50% 38%,transparent,rgba(12,12,14,.92))}
+.hero .in{position:relative;z-index:2}
+.kick{letter-spacing:.4em;font-size:.8rem;color:var(--mut);text-transform:uppercase;font-weight:700}
+.fest{font-family:'Archivo Black',sans-serif;font-size:clamp(2.7rem,9vw,6.4rem);line-height:.98;text-transform:uppercase;margin-top:16px}
+.fest .fill{background:linear-gradient(90deg,var(--pk),var(--or));-webkit-background-clip:text;background-clip:text;color:transparent}
+.fest .out{color:transparent;-webkit-text-stroke:2px var(--ink)}
+.meta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px;font-weight:700}
+.meta span{border:1px solid var(--line);padding:9px 18px;border-radius:999px;font-size:.92rem;background:rgba(12,12,14,.5)}
+.cd{display:flex;gap:14px;justify-content:center;margin:36px 0 32px;flex-wrap:wrap}
+.cd div{background:#141418;border:1px solid var(--line);border-radius:14px;padding:16px 10px;min-width:92px}
+.cd b{font-family:'Archivo Black',sans-serif;font-size:2.1rem;display:block}
+.cd small{color:var(--mut);font-size:.68rem;letter-spacing:.18em}
+.btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.b1{background:linear-gradient(90deg,var(--pk),var(--or));color:#fff;text-decoration:none;font-family:'Archivo Black',sans-serif;padding:17px 32px;border-radius:10px;font-size:1rem}
+.b2{border:1.5px solid var(--ink);color:var(--ink);text-decoration:none;font-weight:700;padding:17px 32px;border-radius:10px}
+.sec{padding:84px 6vw}
+.sec h2{font-family:'Archivo Black',sans-serif;font-size:clamp(1.6rem,3.6vw,2.6rem);text-transform:uppercase;margin-bottom:36px;letter-spacing:.01em}
+.sec h2 span{color:transparent;-webkit-text-stroke:1.5px var(--pk)}
+.lineup{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:22px}
+.art{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);margin:0}
+.art img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;filter:grayscale(35%);transition:transform .4s,filter .4s}
+.art:hover img{transform:scale(1.05);filter:grayscale(0)}
+.art .nm{position:absolute;left:0;right:0;bottom:0;padding:20px 18px;background:linear-gradient(transparent,rgba(0,0,0,.88));font-family:'Archivo Black',sans-serif;font-size:1.3rem;text-transform:uppercase;color:#fff}
+.art .tg{position:absolute;top:14px;left:14px;background:var(--pk);color:#fff;padding:5px 13px;font-size:.7rem;font-weight:700;letter-spacing:.16em;border-radius:5px}
+.support{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.support span{border:1px solid var(--line);padding:9px 17px;border-radius:999px;color:#cfccd6;font-size:.9rem}
+.support span b{color:var(--ink)}
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:22px}
+.tier{border:1px solid var(--line);border-radius:18px;padding:28px;background:#121216}
+.tier.vip{border-color:var(--or);background:linear-gradient(165deg,#1e1318,#121216)}
+.tier h3{font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:1.05rem}
+.tier .pr{font-family:'Archivo Black',sans-serif;font-size:2rem;margin:14px 0}
+.tier .pr small{font-size:.9rem;color:var(--mut);font-family:'Space Grotesk',sans-serif}
+.tier .sold{color:#7c7a86;text-decoration:line-through}
+.tier ul{list-style:none;color:var(--mut);font-size:.9rem;display:flex;flex-direction:column;gap:9px}
+.tier a{display:block;text-align:center;margin-top:22px;text-decoration:none;font-family:'Archivo Black',sans-serif;padding:14px;border-radius:9px;background:var(--ink);color:#0c0c0e}
+.tier.vip a{background:linear-gradient(90deg,var(--pk),var(--or));color:#fff}
+.tier .off{display:block;text-align:center;margin-top:22px;background:#1c1c22;color:#7c7a86;padding:14px;border-radius:9px;font-family:'Archivo Black',sans-serif}
+.venue{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.venue img{width:100%;border-radius:16px;border:1px solid var(--line);aspect-ratio:16/11;object-fit:cover;display:block}
+.vlist{display:flex;flex-direction:column;gap:18px;margin-top:6px}
+.vlist div{border-left:3px solid var(--or);padding-left:16px}
+.vlist b{font-family:'Archivo Black',sans-serif;font-size:.95rem;text-transform:uppercase;letter-spacing:.04em}
+.vlist p{color:var(--mut);font-size:.92rem}
+footer{border-top:1px solid var(--line);padding:30px 6vw;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#8f8c98;font-size:.85rem}
+footer a{color:var(--pk);font-weight:700;text-decoration:none}
+.backpill{position:fixed;left:16px;bottom:16px;z-index:999;background:#C8F04B;color:#141414;border:3px solid #141414;border-radius:12px;box-shadow:4px 4px 0 #141414;padding:10px 16px;font-weight:700;font-size:.88rem;text-decoration:none;transform:rotate(-2deg);transition:transform .15s}
+.backpill:hover{transform:rotate(0deg) translate(2px,2px);box-shadow:2px 2px 0 #141414}
+.vidtgl{position:absolute;right:18px;bottom:18px;z-index:3;background:rgba(12,12,14,.6);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:8px 15px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.8rem;cursor:pointer;backdrop-filter:blur(4px)}
+.vidtgl:hover{border-color:var(--pk);color:#fff}
+@media(max-width:880px){.venue{grid-template-columns:1fr}.cd div{min-width:74px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="marq" aria-hidden="true"><div>SENROPAH FEST '26 ✦ 14–16 AGUSTUS ✦ GAWANA FIELD, YOGYAKARTA ✦ SENROPAH FEST '26 ✦ 14–16 AGUSTUS ✦ GAWANA FIELD, YOGYAKARTA ✦ </div></div>
+<nav>
+  <a class="logo" href="#">Tiket<span>.in</span></a>
+  <a class="l" href="#lineup">Lineup</a>
+  <a class="l" href="#tiket">Tiket</a>
+  <a class="l" href="#venue">Venue</a>
+  <a class="gas" href="#tiket">Gas Ticket</a>
+</nav>
+<header class="hero">
+  <video class="bg" autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1600&q=60" aria-label="Video kerumunan penonton festival musik">
+    <source src="../assets/videos/fest-crowd.mp4" type="video/mp4">
+  </video>
+  <button class="vidtgl" id="vidtgl" type="button" aria-pressed="false">⏸ Jeda video</button>
+  <div class="in">
+    <div class="kick">Tiket.in × Senropah Present</div>
+    <h1 class="fest"><span class="out">Senropah</span><br><span class="fill">Fest '26</span></h1>
+    <div class="meta"><span>📅 14–16 Agustus 2026</span><span>📍 Gawana Field, Yogyakarta</span><span>🎤 40+ penampil</span></div>
+    <div class="cd" aria-label="Hitung mundur menuju festival">
+      <div><b id="dd">00</b><small>HARI</small></div>
+      <div><b id="hh">00</b><small>JAM</small></div>
+      <div><b id="mm">00</b><small>MENIT</small></div>
+      <div><b id="ss">00</b><small>DETIK</small></div>
+    </div>
+    <div class="btns"><a class="b1" href="#tiket">Gas Beli Tiket →</a><a class="b2" href="#lineup">Lihat Lineup</a></div>
+  </div>
+</header>
+<section class="sec" id="lineup">
+  <h2>Headliner <span>Lineup</span></h2>
+  <div class="lineup">
+    <figure class="art"><img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=80" alt="DJ LunarA tampil di depan kerumunan" loading="lazy" decoding="async"><span class="tg">DAY 1</span><figcaption class="nm">DJ LunarA</figcaption></figure>
+    <figure class="art"><img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=900&q=80" alt="Sore Tigabelas manggung di panggung utama" loading="lazy" decoding="async"><span class="tg">DAY 2</span><figcaption class="nm">Sore Tigabelas</figcaption></figure>
+    <figure class="art"><img src="https://images.unsplash.com/photo-1526401485004-46910ecc8e51?auto=format&fit=crop&w=900&q=80" alt="Kunang dan Raksasa menyapa penonton" loading="lazy" decoding="async"><span class="tg">DAY 3</span><figcaption class="nm">Kunang &amp; Raksasa</figcaption></figure>
+  </div>
+  <div class="support">
+    <span>+ <b>Batik Overload</b></span><span><b>Koplo Reborn</b></span><span><b>Sisir Austral</b></span><span><b>Pagi Buta</b></span><span><b>Radio Headphone</b></span><span><b>Nelayan Bulan</b></span><span>…dan 30+ nama lainnya</span>
+  </div>
+</section>
+<section class="sec" id="tiket" style="padding-top:0">
+  <h2>Amankan <span>Tiketmu</span></h2>
+  <div class="tiers">
+    <div class="tier">
+      <h3>Presale</h3>
+      <div class="pr sold">Rp 250k</div>
+      <ul><li>✓ Akses 3 hari</li><li>✓ Gratis sticker pack</li><li>✗ Kuota terbatas — habis</li></ul>
+      <span class="off">SOLD OUT 😭</span>
+    </div>
+    <div class="tier">
+      <h3>Regular</h3>
+      <div class="pr">Rp 350k <small>/ 3 hari</small></div>
+      <ul><li>✓ Akses 3 hari penuh</li><li>✓ Food court &amp; merch area</li><li>✓ Locker gratis</li></ul>
+      <a href="#">Beli Regular</a>
+    </div>
+    <div class="tier vip">
+      <h3>VIP 🌟</h3>
+      <div class="pr">Rp 750k <small>/ 3 hari</small></div>
+      <ul><li>✓ Semua fasilitas Regular</li><li>✓ Front row zone + lounge ber-AC</li><li>✓ Merch eksklusif + fast lane</li></ul>
+      <a href="#">Beli VIP</a>
+    </div>
+  </div>
+</section>
+<section class="sec" id="venue" style="padding-top:0">
+  <h2>Venue <span>&amp; Info</span></h2>
+  <div class="venue">
+    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80" alt="Suasana malam festival dengan lampu panggung" loading="lazy" decoding="async">
+    <div class="vlist">
+      <div><b>📍 Lokasi</b><p>Gawana Field, Jl. Kaliurang KM 8, Sleman, Yogyakarta — 20 menit dari terminal.</p></div>
+      <div><b>🕒 Gate Buka</b><p>15.00 WIB tiap hari. Headliner mulai 20.00, selesai 24.00.</p></div>
+      <div><b>🎫 Ketentuan</b><p>Usia 17+ (bawa identitas), tiket e-QR discan di gate, satu tiket untuk satu orang.</p></div>
+    </div>
+  </div>
+</section>
+<footer>
+  <span>© 2026 Tiket.in × Senropah Fest — demo dibuat oleh <a href="../index.html">mood</a></span>
+  <span>Partnership: humas@senropahfest.id</span>
+</footer>
+<a class="backpill" href="../karya.html">◀ mood / portfolio</a>
+<script>
+(function(){
+  "use strict";
+  var t=new Date("2026-08-14T15:00:00+07:00").getTime();
+  var dd=document.getElementById("dd"),hh=document.getElementById("hh"),mm=document.getElementById("mm"),ss=document.getElementById("ss");
+  function pad(n){return n<10?"0"+n:""+n;}
+  function tick(){
+    var d=Math.max(0,t-Date.now());
+    dd.textContent=pad(Math.floor(d/864e5));
+    hh.textContent=pad(Math.floor(d%864e5/36e5));
+    mm.textContent=pad(Math.floor(d%36e5/6e4));
+    ss.textContent=pad(Math.floor(d%6e4/1e3));
+  }
+  tick();
+  setInterval(tick,1000);
+})();
+</script>
+<script>
+(function(){
+  "use strict";
+  var v=document.querySelector(".hero video.bg");
+  var tgl=document.getElementById("vidtgl");
+  if(!v||!tgl)return;
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+    v.removeAttribute("autoplay");
+    v.pause();
+    tgl.textContent="▶ Putar video";
+    tgl.setAttribute("aria-pressed","true");
+  }
+  tgl.addEventListener("click",function(){
+    if(v.paused){
+      v.play();
+      tgl.textContent="⏸ Jeda video";
+      tgl.setAttribute("aria-pressed","false");
+    }else{
+      v.pause();
+      tgl.textContent="▶ Putar video";
+      tgl.setAttribute("aria-pressed","true");
+    }
+  });
+})();
+</script>
+</body>
+</html>

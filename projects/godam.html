@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Godam — Studi Kasus: Suite Otomasi IG (Komen, Edit Video, Upload) | mood</title>
+<meta name="description" content="Studi kasus Godam: suite otomasi Instagram — auto komen ber-AI (DeepSeek), auto edit video (link → Reels 9:16 dengan lower-third ala berita TV), auto upload via browser. FastAPI + Celery + Redis + Playwright. Proyek asli oleh mood.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&amp;family=Space+Grotesk:wght@400;500;700&amp;family=Caveat:wght@600&amp;display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&amp;family=Space+Grotesk:wght@400;500;700&amp;family=Caveat:wght@600&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&amp;family=Space+Grotesk:wght@400;500;700&amp;family=Caveat:wght@600&amp;display=swap" rel="stylesheet"></noscript>
+<style>
+:root{--bg:#FBF6EC;--ink:#141414;--lime:#C8F04B;--purple:#B69BFF;--pink:#FF90E8;--yellow:#FFD43B;--blue:#8ECAE6;--bd:3px solid var(--ink);--sh:7px 7px 0 var(--ink);--shs:4px 4px 0 var(--ink)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:'Space Grotesk',sans-serif;line-height:1.6;background-image:radial-gradient(rgba(20,20,20,.07) 1.2px,transparent 1.3px);background-size:26px 26px}
+h1,h2,h3{font-family:'Archivo',sans-serif;font-weight:900;line-height:1.08;text-transform:uppercase}
+.hand{font-family:'Caveat',cursive;font-weight:600}
+.wrap{max-width:1020px;margin:0 auto;padding:0 5vw}
+.backpill{position:fixed;left:16px;top:16px;z-index:50;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:700;font-size:.78rem;padding:10px 16px;border:var(--bd);box-shadow:var(--shs)}
+.backpill:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.hero{padding:92px 0 26px}
+.badge{display:inline-block;background:var(--lime);border:var(--bd);box-shadow:var(--shs);padding:6px 14px;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;transform:rotate(-1.5deg)}
+.hero h1{font-size:clamp(2.6rem,7vw,4.6rem);margin:26px 0 6px}
+.hero .hand{font-size:1.5rem;display:block;transform:rotate(-1.5deg);margin-bottom:18px}
+.sub{font-size:1.08rem;max-width:660px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chip{background:#fff;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);padding:6px 14px;font-weight:700;font-size:.78rem}
+section{padding:46px 0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:20px;text-align:center}
+.stat .n{display:inline-block;font-family:'Archivo';font-weight:900;font-size:clamp(1.8rem,4vw,2.7rem);border:var(--bd);box-shadow:var(--shs);padding:8px 18px;background:var(--lime);transform:rotate(-1.5deg)}
+.stat:nth-child(2) .n{background:var(--pink)}
+.stat:nth-child(3) .n{background:var(--blue)}
+.stat:nth-child(4) .n{background:var(--purple)}
+.stat:nth-child(even) .n{transform:rotate(1.5deg)}
+.stat .l{display:block;margin-top:12px;font-weight:700;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase}
+h2{font-size:clamp(1.6rem,3.5vw,2.3rem);margin-bottom:8px}
+.lede{opacity:.85;font-weight:500;max-width:660px;margin-bottom:28px}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.gal figure{background:#fff;border:var(--bd);box-shadow:var(--shs);padding:12px;transition:transform .15s,box-shadow .15s}
+.gal figure:hover{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.gal img{width:100%;display:block;border:2px solid var(--ink)}
+.gal figcaption{font-size:.84rem;font-weight:600;padding:12px 6px 4px;opacity:.9}
+.gal .wide{grid-column:1/-1}
+.steps{list-style:none;display:grid;gap:20px;counter-reset:st}
+.steps li{counter-increment:st;background:#fff;border:var(--bd);box-shadow:var(--shs);padding:20px 22px;display:flex;gap:18px;align-items:flex-start}
+.steps li::before{content:counter(st,decimal-leading-zero);font-family:'Archivo';font-weight:900;font-size:2rem;line-height:1.1;color:transparent;-webkit-text-stroke:2px var(--ink);flex-shrink:0}
+.steps b{display:block;font-family:'Archivo';text-transform:uppercase;font-size:1rem;margin-bottom:4px}
+.steps p{font-size:.95rem;opacity:.9}
+.band{background:var(--ink);color:var(--bg);border:var(--bd);box-shadow:var(--sh);padding:28px;margin-top:10px}
+.band h2{color:var(--lime)}
+.band p{opacity:.92;font-size:.95rem;margin-top:10px}
+.fitchips{display:flex;flex-wrap:wrap;gap:11px}
+.vidbox{position:relative;background:#fff;border:var(--bd);box-shadow:var(--sh)}
+.vidbox video{display:none;width:100%;background:#000}
+.vidbox.has-video video{display:block}
+.vidbox .nofilm{padding:42px 26px;text-align:center}
+.vidbox.has-video .nofilm{display:none}
+.nofilm .big{font-size:2.4rem;display:block;margin-bottom:10px}
+.nofilm p{font-size:.92rem;opacity:.85;max-width:560px;margin:6px auto 0}
+.nofilm code{background:var(--bg);border:2px solid var(--ink);padding:2px 8px;font-weight:700;font-size:.85rem}
+.flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.node{background:#fff;border:var(--bd);box-shadow:var(--shs);padding:12px 16px;font-weight:700;font-size:.86rem}
+.node small{display:block;font-weight:600;opacity:.7;font-size:.72rem}
+.arrow{font-weight:900;font-size:1.3rem}
+.term{background:#101418;color:#D6E2F0;border:var(--bd);box-shadow:var(--sh);font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:.83rem;line-height:1.75;padding:22px 24px;overflow-x:auto}
+.term .t-top{display:flex;gap:7px;margin-bottom:14px}
+.term .t-top i{width:11px;height:11px;border-radius:50%;background:#3A4A5A}
+.term .p{color:#7CE38B}
+.term .o{color:#FFD43B}
+.term .m{color:#8fa3b8}
+.cta{margin:52px 0 0;background:var(--ink);color:var(--bg);border:var(--bd);box-shadow:var(--sh);padding:36px 30px;text-align:center}
+.cta h2{color:var(--lime)}
+.cta p{margin:14px auto 24px;max-width:540px;font-size:.98rem}
+.btn{display:inline-block;font-family:'Archivo';font-weight:700;text-transform:uppercase;text-decoration:none;background:var(--lime);color:var(--ink);border:3px solid var(--bg);box-shadow:5px 5px 0 var(--lime);padding:12px 22px}
+.btn:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--lime)}
+.credit{padding:28px 0 44px;text-align:center;font-size:.85rem;opacity:.8}
+@media(max-width:700px){.gal{grid-template-columns:1fr}.hero{padding-top:84px}}
+</style>
+</head>
+<body>
+<a class="backpill" href="../karya.html#proyek-asli">◀ mood / karya</a>
+<div class="wrap">
+<main>
+<header class="hero">
+  <span class="badge">Proyek Asli ✓ Sudah Berdiri Beneran</span>
+  <h1>Godam<span style="color:var(--purple)">.</span></h1>
+  <span class="hand">(komen, edit video, upload — tiga mesin, satu antrean.)</span>
+  <p class="sub">Suite otomasi Instagram: <b>auto komen</b> ber-AI dengan tiga pilihan nada, <b>auto edit video</b> — tempel link, jadi Reels 9:16 dengan lower-third ala berita TV — dan <b>auto upload</b> lewat browser yang meniru manusia. Semua digerakkan antrean yang sama: frontend <b>Next.js</b>, API <b>FastAPI</b>, worker <b>Celery</b> + <b>Redis</b>, browser <b>Playwright</b>, render <b>ffmpeg</b>, otak <b>DeepSeek</b>.</p>
+  <div class="chips">
+    <span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">FastAPI</span><span class="chip">Celery</span><span class="chip">Redis</span><span class="chip">Playwright</span><span class="chip">yt-dlp</span><span class="chip">FFmpeg</span><span class="chip">DeepSeek AI</span><span class="chip">Supabase</span><span class="chip">Docker Compose</span><span class="chip">GitHub Actions</span>
+  </div>
+</header>
+
+<section aria-label="Angka kunci">
+  <div class="stats">
+    <div class="stat"><span class="n">3</span><span class="l">mesin: komen, edit, upload</span></div>
+    <div class="stat"><span class="n">9:16</span><span class="l">render kanvas 1080×1920</span></div>
+    <div class="stat"><span class="n">1×</span><span class="l">encode per render — tanpa degradasi</span></div>
+    <div class="stat"><span class="n">300 MB</span><span class="l">maksimal video per unggahan</span></div>
+  </div>
+</section>
+
+<section aria-label="Tiga mesin utama">
+  <h2>Tiga Mesin, Satu Antrean.</h2>
+  <p class="lede">Semua fitur jalan lewat pola yang sama: kirim job → masuk antrean → dikerjakan worker → pantau status. Nggak ada yang nunggu diam-diam.</p>
+  <h3 style="margin:20px 0 10px">① Auto Komen</h3>
+  <div class="flow">
+    <span class="node">Link postingan</span>
+    <span class="arrow" aria-hidden="true">→</span>
+    <span class="node">FastAPI<small>POST /api/start-job + tone</small></span>
+    <span class="arrow" aria-hidden="true">→</span>
+    <span class="node">DeepSeek<small>komen per nada + fallback lokal</small></span>
+    <span class="arrow" aria-hidden="true">→</span>
+    <span class="node">Playwright<small>tempel komentar</small></span>
+    <span class="arrow" aria-hidden="true">→</span>
+    <span class="node">Instagram<small>✅</small></span>
+  </div>
+  <h3 style="margin:26px 0 10px">② Auto Edit Video</h3>
+  <div class="flow">
+    <span class="node">Tempel link<small>IG / TikTok / YouTube / MP4</small></span>
+    <span class="arrow" aria-hidden="true">→</span>
+    <span class="node">yt-dlp<small>unduh sumber</small></span>
+    <span class="arrow" aria-hidden="true">→</span>
+    <span class="node">DeepSeek<small>hook 3 baris ala berita</small></span>
+    <span class="arrow" aria-hidden="true">→</span>
+    <span class="node">FFmpeg 1×<small>kanvas 9:16 + overlay + intro/outro</small></span>
+    <span class="arrow" aria-hidden="true">→</span>
+    <span class="node">output.mp4<small>bisa diunduh ✅</small></span>
+  </div>
+  <h3 style="margin:26px 0 10px">③ Auto Upload</h3>
+  <div class="flow">
+    <span class="node">Video + caption</span>
+    <span class="arrow" aria-hidden="true">→</span>
+    <span class="node">Supabase<small>signed URL / multipart</small></span>
+    <span class="arrow" aria-hidden="true">→</span>
+    <span class="node">Playwright<small>tiru manusia: Buat → caption → Bagikan</small></span>
+    <span class="arrow" aria-hidden="true">→</span>
+    <span class="node">Instagram<small>reel tayang ✅</small></span>
+  </div>
+  <p class="lede" style="margin:18px 0 0">Tiap task bisa dipantau lewat endpoint status masing-masing. Health check di <b>/health</b>, dokumentasi interaktif otomatis di <b>/docs</b>.</p>
+</section>
+
+<section aria-label="Contoh API">
+  <h2>API-nya Kayak Gini.</h2>
+  <p class="lede">Empat endpoint utama — satu per mesin. Kirim job, pantau statusnya, ambil hasilnya.</p>
+  <div class="term" role="img" aria-label="Contoh perintah API Godam: kirim job lalu cek status">
+    <div class="t-top" aria-hidden="true"><i></i><i></i><i></i></div>
+<span class="p">$</span> curl -X POST http://localhost:8000/api/start-job  -d <span class="o">'{"target":"…","tone":"netral"}'</span>
+<span class="m"># → komen ber-AI sesuai nada, batch 10, maks 100 per job</span>
+<span class="p">$</span> curl -X POST http://localhost:8000/api/video/hook   -d <span class="o">'{"naskah":"…"}'</span>
+<span class="m"># → DeepSeek merapikan jadi 3 baris lower-third gaya berita</span>
+<span class="p">$</span> curl -X POST http://localhost:8000/api/video/jobs   -d <span class="o">'{"link":"…","template_id":"reels"}'</span>
+<span class="m"># → yt-dlp unduh sumber → render 9:16 → unduh output.mp4</span>
+<span class="p">$</span> curl -X POST http://localhost:8000/api/upload/start -d <span class="o">'{"username":"…","caption":"…"}'</span>
+<span class="m"># → browser Playwright mengunggah: Buat → caption → Bagikan</span>
+  </div>
+</section>
+
+<section aria-label="Fitur unggulan">
+  <div class="band">
+    <h2>✦ Fitur Favorit: Live Login Assist</h2>
+    <p>Pas Instagram ngeblok login otomatis dengan CAPTCHA/checkpoint, panel <b>menyiarkan browser login langsung ke halaman web</b> — frame di-refresh ±450 ms, klik kamu diteruskan ke browser sungguhan. Selesaikan CAPTCHA manual, sessionid otomatis dipakai untuk job berikutnya. Ada tombol <b>Ketik</b> &amp; <b>Enter</b> buat challenge teks.</p>
+    <p>Kebijakan retry-nya sopan: password salah &amp; akun nggak ditemukan <b>nggak</b> di-retry otomatis, retry pertama nunggu 300 detik, dan worker nggak usil ambil task baru sebelum task lama beneran selesai. Satu browser per task, selalu ditutup di <b>finally</b>.</p>
+  </div>
+</section>
+
+<section aria-label="Fitur edit video">
+  <div class="band">
+    <h2>✦ Edit Video: Lower-Third ala Berita TV</h2>
+    <p>Tempel link (IG/TikTok/YouTube/MP4) → <b>yt-dlp</b> mengunduh sumbernya → naskah kamu dirapikan <b>DeepSeek</b> jadi tiga baris lower-third gaya berita televisi: headline–detail–pesan, maksimal 36 karakter per baris, huruf kapital semua. Kalau AI lagi ngambek, ada cadangan ringkasan sederhana — fitur ini nggak pernah gagal total.</p>
+    <p>Render digabung jadi <b>satu proses ffmpeg</b>: video sumber dipasang ke kanvas template 1080×1920, ditumpuk overlay PNG &amp; teks, lalu disambung intro/outro — sekali encode, tanpa penurunan kualitas berlapis. Progres render keluar realtime, ada guard timeout 30 menit, dan hasilnya bisa langsung diunduh dari panel.</p>
+  </div>
+</section>
+
+<section aria-label="Fitur lengkap">
+  <h2>Semua yang Ada di Dalamnya.</h2>
+  <p class="lede">Dari antrean sampai pipeline deploy.</p>
+  <div class="fitchips">
+    <span class="chip">Antrean Celery + Redis</span>
+    <span class="chip">AI komen DeepSeek — 3 nada</span>
+    <span class="chip">Bank komentar fallback per nada</span>
+    <span class="chip">Auto edit video: link → 9:16</span>
+    <span class="chip">Hook AI 3 baris + cadangan</span>
+    <span class="chip">yt-dlp multi-platform</span>
+    <span class="chip">Render 1-pass ffmpeg</span>
+    <span class="chip">Progress render realtime</span>
+    <span class="chip">Auto upload tiru-manusia (ID/EN)</span>
+    <span class="chip">Supabase signed upload</span>
+    <span class="chip">Auth + enkripsi Fernet</span>
+    <span class="chip">Presence realtime</span>
+    <span class="chip">Rate limit harian per IP</span>
+    <span class="chip">Live Login Assist (CAPTCHA)</span>
+    <span class="chip">Docker Compose + CI/CD</span>
+    <span class="chip">Blueprint Render + Upstash</span>
+  </div>
+</section>
+
+<section aria-label="Arsitektur produksi">
+  <h2>Dua Jalur Produksi.</h2>
+  <p class="lede">Monorepo yang sama, tinggal pilih selera deploy.</p>
+  <ol class="steps">
+    <li><div><b>Jalur Cloud</b><p>Browser → Vercel (frontend + proxy API) → Render Web Service (FastAPI) → Upstash Redis ↔ Render Worker (Celery + Playwright). API dan worker dipisah sengaja — proses Playwright nggak cocok dengan batas serverless.</p></div></li>
+    <li><div><b>Jalur VPS</b><p>Push ke main → GitHub Actions SSH ke VPS Hostinger → git pull + docker compose. Secret (env, SSH key, session) nggak pernah ikut commit; frontend meneruskan request ke backend lewat BACKEND_API_URL.</p></div></li>
+  </ol>
+</section>
+
+<section aria-label="Video cara kerja">
+  <h2>Video Cara Kerja.</h2>
+  <p class="lede">Animasi alur API — digenerate otomatis dari README. Ganti rekaman asli kapan pun kamu mau (pakai nama file yang sama).</p>
+  <div class="vidbox">
+    <video controls preload="metadata" data-src="../assets/videos/godam.mp4"></video>
+    <div class="nofilm">
+      <span class="big">🎬</span>
+      <b>Slot video ini otomatis terisi.</b>
+      <p>Rekam layar panel, simpan sebagai <code>assets/videos/godam.mp4</code> — refresh halaman ini, videonya langsung muncul di sini.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta" aria-label="Ajakan kontak">
+  <h2>Mau Suite Otomasi kayak Gini?</h2>
+  <p>Komen, edit video, upload — tiga mesin dalam satu antrean, dari arsitektur sampai deploy otomatis. Ceritakan kasus kamu, kami susun alurnya.</p>
+  <a class="btn" href="mailto:halo@mood.dev">Gas, Ngobrol Dulu →</a>
+</section>
+
+</main>
+<p class="credit">Halaman studi kasus — bagian dari portofolio <b>mood</b> ✦ arsitektur &amp; alur diambil dari repo proyek aslinya.</p>
+</div>
+<script>
+(function(){
+"use strict";
+var v=document.querySelector("video[data-src]");
+if(!v)return;
+var url=v.getAttribute("data-src"), box=v.closest(".vidbox");
+fetch(url,{method:"HEAD"}).then(function(r){
+  if(r.ok){v.src=url;box.classList.add("has-video");}
+  else{box.classList.add("no-video");}
+}).catch(function(){box.classList.add("no-video");});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PhoneFarm — Studi Kasus: Device Farm 20 HP Android | mood</title>
+<meta name="description" content="Studi kasus PhoneFarm: panel web untuk mengontrol farm HP Android dari Mac — layar live via scrcpy, kontrol ADB dari browser, workspace auto komen Instagram. Proyek asli oleh mood.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&amp;family=Space+Grotesk:wght@400;500;700&amp;family=Caveat:wght@600&amp;display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&amp;family=Space+Grotesk:wght@400;500;700&amp;family=Caveat:wght@600&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&amp;family=Space+Grotesk:wght@400;500;700&amp;family=Caveat:wght@600&amp;display=swap" rel="stylesheet"></noscript>
+<style>
+:root{--bg:#FBF6EC;--ink:#141414;--lime:#C8F04B;--purple:#B69BFF;--pink:#FF90E8;--yellow:#FFD43B;--blue:#8ECAE6;--bd:3px solid var(--ink);--sh:7px 7px 0 var(--ink);--shs:4px 4px 0 var(--ink)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:'Space Grotesk',sans-serif;line-height:1.6;background-image:radial-gradient(rgba(20,20,20,.07) 1.2px,transparent 1.3px);background-size:26px 26px}
+h1,h2,h3{font-family:'Archivo',sans-serif;font-weight:900;line-height:1.08;text-transform:uppercase}
+.hand{font-family:'Caveat',cursive;font-weight:600}
+.wrap{max-width:1020px;margin:0 auto;padding:0 5vw}
+.backpill{position:fixed;left:16px;top:16px;z-index:50;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:700;font-size:.78rem;padding:10px 16px;border:var(--bd);box-shadow:var(--shs)}
+.backpill:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.hero{padding:92px 0 26px}
+.badge{display:inline-block;background:var(--lime);border:var(--bd);box-shadow:var(--shs);padding:6px 14px;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;transform:rotate(-1.5deg)}
+.hero h1{font-size:clamp(2.6rem,7vw,4.6rem);margin:26px 0 6px}
+.hero .hand{font-size:1.5rem;display:block;transform:rotate(-1.5deg);margin-bottom:18px}
+.sub{font-size:1.08rem;max-width:660px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chip{background:#fff;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);padding:6px 14px;font-weight:700;font-size:.78rem}
+section{padding:46px 0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:20px;text-align:center}
+.stat .n{display:inline-block;font-family:'Archivo';font-weight:900;font-size:clamp(1.8rem,4vw,2.7rem);border:var(--bd);box-shadow:var(--shs);padding:8px 18px;background:var(--lime);transform:rotate(-1.5deg)}
+.stat:nth-child(2) .n{background:var(--pink)}
+.stat:nth-child(3) .n{background:var(--blue)}
+.stat:nth-child(4) .n{background:var(--purple)}
+.stat:nth-child(even) .n{transform:rotate(1.5deg)}
+.stat .l{display:block;margin-top:12px;font-weight:700;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase}
+h2{font-size:clamp(1.6rem,3.5vw,2.3rem);margin-bottom:8px}
+.lede{opacity:.85;font-weight:500;max-width:660px;margin-bottom:28px}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.gal figure{background:#fff;border:var(--bd);box-shadow:var(--shs);padding:12px;transition:transform .15s,box-shadow .15s}
+.gal figure:hover{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.gal img{width:100%;display:block;border:2px solid var(--ink)}
+.gal figcaption{font-size:.84rem;font-weight:600;padding:12px 6px 4px;opacity:.9}
+.gal .wide{grid-column:1/-1}
+.steps{list-style:none;display:grid;gap:20px;counter-reset:st}
+.steps li{counter-increment:st;background:#fff;border:var(--bd);box-shadow:var(--shs);padding:20px 22px;display:flex;gap:18px;align-items:flex-start}
+.steps li::before{content:counter(st,decimal-leading-zero);font-family:'Archivo';font-weight:900;font-size:2rem;line-height:1.1;color:transparent;-webkit-text-stroke:2px var(--ink);flex-shrink:0}
+.steps b{display:block;font-family:'Archivo';text-transform:uppercase;font-size:1rem;margin-bottom:4px}
+.steps p{font-size:.95rem;opacity:.9}
+.band{background:var(--ink);color:var(--bg);border:var(--bd);box-shadow:var(--sh);padding:28px;margin-top:10px}
+.band h2{color:var(--lime)}
+.band p{opacity:.92;font-size:.95rem;margin-top:10px}
+.fitchips{display:flex;flex-wrap:wrap;gap:11px}
+.vidbox{position:relative;background:#fff;border:var(--bd);box-shadow:var(--sh)}
+.vidbox video{display:none;width:100%;background:#000}
+.vidbox.has-video video{display:block}
+.vidbox .nofilm{padding:42px 26px;text-align:center}
+.vidbox.has-video .nofilm{display:none}
+.nofilm .big{font-size:2.4rem;display:block;margin-bottom:10px}
+.nofilm p{font-size:.92rem;opacity:.85;max-width:560px;margin:6px auto 0}
+.nofilm code{background:var(--bg);border:2px solid var(--ink);padding:2px 8px;font-weight:700;font-size:.85rem}
+.flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.node{background:#fff;border:var(--bd);box-shadow:var(--shs);padding:12px 16px;font-weight:700;font-size:.86rem}
+.node small{display:block;font-weight:600;opacity:.7;font-size:.72rem}
+.arrow{font-weight:900;font-size:1.3rem}
+.term{background:#101418;color:#D6E2F0;border:var(--bd);box-shadow:var(--sh);font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:.83rem;line-height:1.75;padding:22px 24px;overflow-x:auto}
+.term .t-top{display:flex;gap:7px;margin-bottom:14px}
+.term .t-top i{width:11px;height:11px;border-radius:50%;background:#3A4A5A}
+.term .p{color:#7CE38B}
+.term .o{color:#FFD43B}
+.term .m{color:#8fa3b8}
+.cta{margin:52px 0 0;background:var(--ink);color:var(--bg);border:var(--bd);box-shadow:var(--sh);padding:36px 30px;text-align:center}
+.cta h2{color:var(--lime)}
+.cta p{margin:14px auto 24px;max-width:540px;font-size:.98rem}
+.btn{display:inline-block;font-family:'Archivo';font-weight:700;text-transform:uppercase;text-decoration:none;background:var(--lime);color:var(--ink);border:3px solid var(--bg);box-shadow:5px 5px 0 var(--lime);padding:12px 22px}
+.btn:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--lime)}
+.credit{padding:28px 0 44px;text-align:center;font-size:.85rem;opacity:.8}
+@media(max-width:700px){.gal{grid-template-columns:1fr}.hero{padding-top:84px}}
+</style>
+</head>
+<body>
+<a class="backpill" href="../karya.html#proyek-asli">◀ mood / karya</a>
+<div class="wrap">
+<main>
+<header class="hero">
+  <span class="badge">Proyek Asli ✓ Sudah Berdiri Beneran</span>
+  <h1>Phone<span class="hand" style="text-transform:none">farm</span>.</h1>
+  <span class="hand">(20 HP Android di satu box, dikendaliin dari satu layar Mac.)</span>
+  <p class="sub">Panel web lokal buat melihat dan mengontrol farm perangkat Android: layar tiap HP streaming <b>live</b> lewat scrcpy → FFmpeg → WebSocket, kontrol penuh via ADB — tap, swipe, ketik — plus workspace Instagram: auto login, auto komen, auto upload. Ini bukan mockup; screenshot di bawah diambil langsung dari panel yang sedang jalan.</p>
+  <div class="chips">
+    <span class="chip">Node.js</span><span class="chip">React</span><span class="chip">scrcpy 5.0</span><span class="chip">FFmpeg</span><span class="chip">WebSocket</span><span class="chip">ADB / libusb</span><span class="chip">Python Serial</span><span class="chip">gnirehtet</span>
+  </div>
+</header>
+
+<section aria-label="Angka kunci">
+  <div class="stats">
+    <div class="stat"><span class="n">20</span><span class="l">slot box HP Android</span></div>
+    <div class="stat"><span class="n">5 dtk</span><span class="l">auto-scan perangkat</span></div>
+    <div class="stat"><span class="n">H.264</span><span class="l">streaming layar live</span></div>
+    <div class="stat"><span class="n">0</span><span class="l">file rekaman disimpan</span></div>
+  </div>
+</section>
+
+<section aria-label="Galeri panel">
+  <h2>Lihat Langsung Panelnya.</h2>
+  <p class="lede">Empat sudut panel — semuanya hasil screenshot asli, bukan render.</p>
+  <div class="gal">
+    <figure class="wide">
+      <img src="../assets/phonefarm/panel.jpg" alt="Dashboard PhoneFarm: dua layar Samsung live berdampingan, status farm 19 slot, panduan kontrol" decoding="async">
+      <figcaption><b>Dashboard perangkat</b> — layar tiap HP tampil live berdampingan (device dari box kebaca otomatis: model, baterai, versi Android). Panel kanan: peta 19 slot farm + panduan kontrol "klik = mengetuk, seret = menggeser".</figcaption>
+    </figure>
+    <figure>
+      <img src="../assets/phonefarm/ig-workspace.png" alt="Workspace Instagram PhoneFarm: menu auto komen dan auto upload postingan" loading="lazy" decoding="async">
+      <figcaption><b>Workspace Instagram</b> — pekerjaan IG dikelola per farm: auto komen &amp; auto upload. Akun dibaca langsung dari aplikasi Instagram yang sudah login di HP, tanpa password di panel.</figcaption>
+    </figure>
+    <figure>
+      <img src="../assets/phonefarm/ig-autokomen.png" alt="Halaman auto komen: daftar akun per HP dan pengaturan target serta jeda komentar" loading="lazy" decoding="async">
+      <figcaption><b>Auto komen</b> — pilih akun per HP (dikelompokkan otomatis), tulis target &amp; jeda antar komentar. Riwayat komentar mencegah kirim ulang dari username yang sama; akun nonaktif ditandai sendiri.</figcaption>
+    </figure>
+    <figure class="wide">
+      <img src="../assets/phonefarm/koneksi.png" alt="Halaman koneksi: status 20 slot fisik box, hub USB, dan kunci ADB" loading="lazy" decoding="async">
+      <figcaption><b>Koneksi perangkat</b> — status 20 slot fisik dibaca langsung dari pengendali box via serial (115200 8N1, CH340), beda sumber dengan deteksi ADB. Plus panduan diagnosa: daya, kabel, mode USB, kunci ADB.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section aria-label="Cara kerja">
+  <h2>Cara Kerjanya, Singkat Padat.</h2>
+  <p class="lede">Dari box berisi HP sampai browser Mac — empat langkah.</p>
+  <ol class="steps">
+    <li><div><b>Box × hub × Mac</b><p>Board Android berjejer di box 20-slot lewat hub USB. Pengendali box melapor via serial CH340, sementara HP kebaca ADB (libusb) — dua jalur data yang berbeda, biar status slot fisik nggak ketukar dengan perangkat yang terdeteksi.</p></div></li>
+    <li><div><b>Pemindaian otomatis</b><p>Tiap 5 detik panel memeriksa semua perangkat: model, versi Android, baterai, ukuran layar, status izin USB. Slot yang belum kedeteksi nggak dianggap rusak — cuma "belum terbaca", lengkap dengan panduan diagnosa.</p></div></li>
+    <li><div><b>Streaming H.264 realtime</b><p>Layar asli tiap HP dikirim scrcpy-server → FFmpeg → WebSocket, didekode langsung di browser. Satu sesi streaming per board, tanpa buffer dan tanpa file rekaman — ditutup begitu layar ditutup.</p></div></li>
+    <li><div><b>Kontrol kayak HP beneran</b><p>Klik = tap, seret = swipe atau long-press, scroll mouse = geser. Tombol Back/Home/Recent, wake/sleep, volume, kirim teks, unduh screenshot PNG. Pilih beberapa HP → kontrol sinkron ke semuanya sekaligus.</p></div></li>
+  </ol>
+</section>
+
+<section aria-label="Catatan engineering">
+  <div class="band">
+    <h2>✦ Dibangun Paranoid (dengan Sayang)</h2>
+    <p>Layanan cuma mendengarkan <b>127.0.0.1</b> — nggak pernah ke internet. API &amp; WebSocket dilindungi cookie lokal + pemeriksaan origin. Kunci ADB nggak pernah dikirim ke browser atau ikut repo. Password Instagram cuma hidup di memori selama proses, kolomnya dikosongkan setelah dikirim, dan nggak masuk inventaris/log.</p>
+    <p>Internet HP diambil lewat USB (gnirehtet), kunci board tambahan dimuat otomatis dari lokasi khusus, dan semua path binary bisa dioverride — panel ini didesain buat dipindah-pindah laptop tanpa drama.</p>
+  </div>
+</section>
+
+<section aria-label="Fitur lengkap">
+  <h2>Semua yang Bisa Dilakukan.</h2>
+  <p class="lede">Sekilas fitur yang sudah jalan di panel.</p>
+  <div class="fitchips">
+    <span class="chip">Live screen ±20 HP</span>
+    <span class="chip">Kontrol sinkron multi-device</span>
+    <span class="chip">Auto login IG batch 1–100 akun</span>
+    <span class="chip">Auto komen + anti kirim ulang</span>
+    <span class="chip">Auto upload postingan (roadmap)</span>
+    <span class="chip">Mode fokus per perangkat</span>
+    <span class="chip">Wake / sleep / volume</span>
+    <span class="chip">Kirim teks &amp; screenshot PNG</span>
+    <span class="chip">Status 20 slot via serial</span>
+    <span class="chip">Jeda stream saat Mac berat</span>
+    <span class="chip">Internet HP via USB (gnirehtet)</span>
+    <span class="chip">Launcher klik-dua-kali dari Finder</span>
+  </div>
+</section>
+
+<section aria-label="Video cara kerja">
+  <h2>Video Cara Kerja.</h2>
+  <p class="lede">Rekaman layar asli — 2,5 menit kontrol farm langsung dari panel (dikompres dari 301 MB jadi 9,9 MB, kualitas tetap tajam).</p>
+  <div class="vidbox">
+    <video controls preload="metadata" poster="../assets/phonefarm/panel.jpg" data-src="../assets/videos/phonefarm.mp4"></video>
+    <div class="nofilm">
+      <span class="big">🎬</span>
+      <b>Slot video ini otomatis terisi.</b>
+      <p>Rekam layar panel (QuickTime → Rekam Layar), simpan sebagai <code>assets/videos/phonefarm.mp4</code> — refresh halaman ini, videonya langsung muncul di sini.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta" aria-label="Ajakan kontak">
+  <h2>Mau Farm HP kayak Gini?</h2>
+  <p>Panel kontrol perangkat, otomasi, sampai integrasi hardware — dibangun dari nol sampai jalan. Ceritakan kebutuhan kamu, kami gambarin arsitekturnya.</p>
+  <a class="btn" href="mailto:halo@mood.dev">Gas, Ngobrol Dulu →</a>
+</section>
+
+</main>
+<p class="credit">Halaman studi kasus — bagian dari portofolio <b>mood</b> ✦ foto &amp; angka diambil langsung dari sistem yang sedang berjalan.</p>
+</div>
+<script>
+(function(){
+"use strict";
+var v=document.querySelector("video[data-src]");
+if(!v)return;
+var url=v.getAttribute("data-src"), box=v.closest(".vidbox");
+fetch(url,{method:"HEAD"}).then(function(r){
+  if(r.ok){v.src=url;box.classList.add("has-video");}
+  else{box.classList.add("no-video");}
+}).catch(function(){box.classList.add("no-video");});
+})();
+</script>
+</body>
+</html>
