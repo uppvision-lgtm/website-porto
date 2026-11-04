@@ -209,3 +209,15 @@ footer{background:var(--soft);border-top:1px solid var(--line);padding:64px 0 32
 .faq-item.open p{display:block}
 .faq-item .car{float:right;color:var(--muted);transition:transform .2s}
 .faq-item.open .car{transform:rotate(180deg)}
+
+/* ===== 4 Kartu Pilihan Layanan ===== */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.pilih{display:flex;flex-direction:column;gap:12px;background:#fff;border:1px solid #E6E8F0;border-radius:16px;padding:28px 24px;text-decoration:none;color:#232933;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.pilih:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(35,41,51,.10);border-color:#5B4DE0}
+.pilih .pic{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px}
+.pilih b{font-size:17px;font-weight:700;color:#232933}
+.pilih small{font-size:14px;line-height:1.55;color:#5A6472;flex:1}
+.pilih .go{font-size:14px;font-weight:600;color:#5B4DE0;margin-top:4px}
+.pilih:hover .go{text-decoration:underline}
+@media(max-width:1000px){.grid4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid4{grid-template-columns:1fr}}
