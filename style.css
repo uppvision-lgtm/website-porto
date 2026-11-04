@@ -221,3 +221,6 @@ footer{background:var(--soft);border-top:1px solid var(--line);padding:64px 0 32
 .pilih:hover .go{text-decoration:underline}
 @media(max-width:1000px){.grid4{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.grid4{grid-template-columns:1fr}}
+
+/* logo image */
+.logo img{height:40px;width:auto;display:block}
