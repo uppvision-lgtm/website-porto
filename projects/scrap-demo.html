@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScrapPulse — Demo Interaktif: Mesin Survei Big Data | GATRA</title>
+<meta name="description" content="Demo interaktif ScrapPulse: ketik kata kunci → pantau progres pengumpulan 5 sumber → dashboard sentimen, volume & topik langsung jadi. Versi simulasi dari proyek asli.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../favicon.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css?v=4">
+<style>
+.stage{max-width:1000px;margin:0 auto;padding:110px 24px 70px}
+.badge-am{background:#FEF3C7;color:#B45309}
+.dcard{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 2px 10px rgba(35,41,51,.06)}
+.searchbar{display:flex;flex-wrap:wrap;gap:10px;padding:22px}
+.searchbar input[type=text]{flex:2;min-width:220px;border:1.5px solid var(--line);border-radius:12px;padding:12px 16px;font:inherit;font-size:15px}
+.searchbar select{border:1.5px solid var(--line);border-radius:12px;padding:12px;font:inherit;font-size:14px;background:#fff}
+.steps{padding:6px 22px 18px;font-size:14px}
+.step{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line)}
+.step .st{font-weight:600;color:var(--muted)}
+.step.done .st{color:var(--ink)}
+.step .ok{color:#0A8F4C;font-weight:700}
+.step .wt{color:var(--amber);font-weight:700}
+.dash{padding:24px}
+.dgrid{display:grid;grid-template-columns:1.4fr 1fr;gap:20px;margin-top:18px}
+.dcard2{border:1px solid var(--line);border-radius:14px;padding:16px}
+.dcard2 h4{font-size:13px;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em}
+.donut{display:flex;align-items:center;gap:16px}
+.legend{font-size:13px;line-height:1.9}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:7px}
+.topic{display:inline-block;background:var(--soft);border-radius:999px;padding:6px 13px;font-size:12.5px;font-weight:600;margin:0 6px 8px 0}
+.quote{border-left:3px solid var(--primary);background:var(--soft);border-radius:0 10px 10px 0;padding:10px 14px;font-size:13.5px;margin-top:10px}
+.log{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:#0F1522;color:#9FE870;border-radius:12px;padding:14px 16px;min-height:64px;margin-top:14px;white-space:pre-wrap}
+@media(max-width:760px){.dgrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav"><div class="nav-in">
+  <a class="logo" href="../index.html"><img src="../assets/logo.jpg" alt="GATRA Global"></a>
+  <div class="menu"><a class="ml" href="../index.html#layanan">Layanan &amp; Produk</a>
+  <div><span class="ml">Karya <span class="car">▾</span></span><div class="drop">
+    <a href="../karya.html#apk"><span class="ic">📱</span><span><b>4 Demo Aplikasi Mobile</b><small>Jajan.in, GymKuy, Fokusin, Racunin</small></span></a>
+    <a href="../karya.html#web"><span class="ic">🌐</span><span><b>Demo Web &amp; Web App</b><small>KasirKu, ScrapPulse, dan lainnya</small></span></a>
+    <a href="../karya.html#proyek"><span class="ic">🧠</span><span><b>Studi Kasus ML &amp; Otomasi</b><small>Penjelasan &amp; tangkapan layar</small></span></a>
+  </div></div>
+  <div><span class="ml" onclick="location.href='../proses.html'">Proses</span></div>
+  <div><span class="ml" onclick="location.href='../faq.html'">FAQ</span></div></div>
+  <div class="nav-r"><span class="lang">🌐 ID</span><a class="btn btn-p" href="../index.html#kontak">Konsultasi Gratis</a></div>
+</div></nav>
+
+<div class="stage">
+  <div class="badge badge-am">⚡ Simulasi Interaktif — data contoh, alur sama dengan aslinya</div>
+  <div class="eyebrow2" style="margin-top:14px">Demo Web App — Machine Learning &amp; NLP</div>
+  <h1 style="font-size:clamp(28px,4vw,42px);margin:10px 0 0">Coba ScrapPulse</h1>
+  <p class="sub" style="max-width:680px">Ketik satu kata kunci, klik <b>Analisis</b>, dan lihat mesin bekerja: mengumpulkan 5 sumber, menganalisis sentimen dwibahasa, lalu menyusun dashboard survei — <span class="hl">langsung di browser ini</span>.</p>
+
+  <div class="dcard searchbar" style="margin-top:26px">
+    <input type="text" id="kw" list="sugg" placeholder="Ketik kata kunci… mis. indomie" value="indomie">
+    <datalist id="sugg"><option>indomie</option><option>messi</option><option>prabowo</option><option>ganjar</option><option>tesla</option><option>kopi susu</option></datalist>
+    <select id="days"><option value="7">7 hari</option><option value="14">14 hari</option><option value="30" selected>30 hari</option></select>
+    <select id="lang"><option value="id">Bahasa Indonesia</option><option value="en">English</option></select>
+    <button class="btn btn-p" id="go" onclick="run()">🔍 Analisis</button>
+  </div>
+
+  <div class="dcard" id="prog" style="display:none;margin-top:18px">
+    <div class="steps" id="steps"></div>
+    <div class="log" id="plog"></div>
+  </div>
+  <div class="dcard dash" id="dash" style="display:none;margin-top:18px">
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;align-items:center">
+      <div><div class="eyebrow2" style="margin:0">Laporan survei — kata: <b id="dkw">indomie</b></div>
+      <small id="dmeta" style="color:var(--muted);font-size:13px"></small></div>
+      <button class="btn btn-o" style="padding:8px 16px;font-size:13px" onclick="toast('📊 File Excel multi-sheet tersedia di versi production — demo ini menampilkan dashboard saja.')">⬇ Unduh Excel</button>
+    </div>
+    <div class="shields" style="justify-content:flex-start;margin-top:16px" id="dstats"></div>
+    <div class="dgrid">
+      <div class="dcard2"><h4>Volume pembahasan harian</h4><div id="chart"></div></div>
+      <div class="dcard2"><h4>Sentimen publik</h4><div class="donut">
+        <svg id="donut" width="130" height="130" viewBox="0 0 42 42"></svg>
+        <div class="legend" id="dleg"></div></div></div>
+      <div class="dcard2" style="grid-column:1/-1"><h4>Topik dominan</h4><div id="dtopic"></div></div>
+      <div class="dcard2" style="grid-column:1/-1"><h4>Kutipan terpilih</h4>
+        <div class="quote" id="qpos"></div><div class="quote" id="qneg" style="border-color:#E11D48"></div></div>
+      <div class="dcard2" style="grid-column:1/-1"><h4>Kontribusi media</h4><div id="dmedia"></div></div>
+    </div>
+    <div class="cta" style="justify-content:center;margin-top:22px">
+      <button class="btn btn-p" onclick="reset()">🔍 Analisis Kata Lain</button>
+      <a class="btn btn-o" href="../karya.html#proyek">Baca studi kasusnya →</a>
+    </div>
+  </div>
+  <div id="toast" style="position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 20px;border-radius:12px;font-size:14px;display:none;box-shadow:0 12px 30px rgba(0,0,0,.25);max-width:90vw;z-index:99"></div>
+  <p style="margin-top:34px;font-size:13.5px;color:var(--muted)">Ini <b>simulasi dengan data contoh</b> — di versi production, data diambil live dari Google News, Bing News, Hacker News, Wikipedia &amp; Google Trends. <a href="../karya.html#proyek" style="color:var(--primary);font-weight:600">Baca studi kasus lengkap →</a></p>
+</div>
+<a class="wa" href="https://wa.me/6281234567890" aria-label="Chat WhatsApp">💬</a>
+<script>
+"use strict";
+var $=function(i){return document.getElementById(i)};
+function hash(s){var h=0;for(var i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))>>>0}return h}
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function toast(m){var t=$("toast");t.textContent=m;t.style.display="block";clearTimeout(t._h);t._h=setTimeout(function(){t.style.display="none"},3600)}
+var SOURCES=[["Google News RSS","berita nasional ID+EN"],["Bing News RSS","link langsung ke penerbit"],["Hacker News","diskusi komunitas"],["Wikipedia Pageviews","proxy minat publik"],["Google Trends","indeks minat 0–100"]];
+function run(){
+  var kw=$("kw").value.trim()||"indomie",days=$("days").value,lang=$("lang").value,r=rng(hash(kw+days+lang));
+  $("go").disabled=true;$("go").textContent="Menganalisis…";$("dash").style.display="none";
+  $("prog").style.display="block";$("steps").innerHTML="";$("plog").textContent="";
+  var box=$("steps"),log=$("plog"),done=0;
+  SOURCES.forEach(function(src,i){
+    var row=document.createElement("div");row.className="step";
+    row.innerHTML='<span class="st">📡 '+src[0]+' <small style="opacity:.7">— '+src[1]+'</small></span><span class="wt">menunggu…</span>';
+    box.appendChild(row);
+    setTimeout(function(){var n=8+Math.floor(r()*65);row.className="step done";row.querySelector(".wt").outerHTML='<span class="ok">✓ '+n+' item</span>';
+      log.textContent+="["+new Date().toLocaleTimeString("id-ID")+"] GET "+src[0]+" → "+n+" item baru\n";done++;
+      if(done===SOURCES.length){log.textContent+="[..] newspaper4k: ekstraksi teks lengkap 12 artikel teratas\n";step2(kw,days,lang,r);}
+    },450+i*620);
+  });
+}
+function step2(kw,days,lang,r){
+  var box=$("steps"),row=document.createElement("div");row.className="step";
+  row.innerHTML='<span class="st">🧠 Analisis NLP<small style="display:block;opacity:.7">sentimen ID+EN · topik · bias media</small></span><span class="wt">memproses…</span>';
+  box.appendChild(row);$("plog").textContent+="[..] menganalisis sentimen & topik (leksikon ID + VADER)\n";
+  setTimeout(function(){row.className="step done";row.querySelector(".wt").outerHTML='<span class="ok">✓ selesai</span>';
+    $("plog").textContent+="[..] menyusun dashboard…\n";showDash(kw,days,lang,r);},1100);
+}
+function showDash(kw,days,lang,r){
+  var N=60+Math.floor(r()*180),peak=Math.floor(r()*days)+1;
+  var pos=Math.round(18+r()*22),neg=Math.round(7+r()*10),neu=100-pos-neg;
+  $("dkw").textContent=kw;
+  $("dmeta").textContent="Periode "+days+" hari terakhir · bahasa "+(lang==="id"?"Indonesia":"Inggris")+" · dibuat "+new Date().toLocaleDateString("id-ID");
+  $("dstats").innerHTML='<div class="shield">'+N+'<small>total pembahasan</small></div><div class="shield">H-'+peak+'<small>hari puncak</small></div><div class="shield">'+neu+'%<small>sentimen netral</small></div><div class="shield">+'+Math.round(8+r()*40)+'%<small>momentum 7 hari</small></div>';
+  var w=460,h=120,pts=[];for(var i=0;i<30;i++){pts.push(((Math.sin(i/3.2)*.5+.5)*45+r()*22+8).toFixed(1))}
+  var pl=pts.map(function(v,i){return (i*(w/29)).toFixed(1)+","+(h-8-v*(h/70)).toFixed(1)}).join(" ");
+  $("chart").innerHTML='<svg width="100%" height="'+h+'" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none"><polyline fill="none" stroke="#5B4DE0" stroke-width="2.5" points="'+pl+'"/></svg>';
+  var C=2*Math.PI*15.9;
+  $("donut").innerHTML='<circle r="15.9" cx="21" cy="21" fill="transparent" stroke="#94A3B8" stroke-width="6" stroke-dasharray="'+(neu*C/100).toFixed(1)+' '+C.toFixed(1)+'" transform="rotate(-90 21 21)"/><circle r="15.9" cx="21" cy="21" fill="transparent" stroke="#0A8F4C" stroke-width="6" stroke-dasharray="'+(pos*C/100).toFixed(1)+' '+C.toFixed(1)+'" stroke-dashoffset="-'+(neu*C/100).toFixed(1)+'" transform="rotate(-90 21 21)"/><circle r="15.9" cx="21" cy="21" fill="transparent" stroke="#E11D48" stroke-width="6" stroke-dasharray="'+(neg*C/100).toFixed(1)+' '+C.toFixed(1)+'" stroke-dashoffset="-'+((neu+pos)*C/100).toFixed(1)+'" transform="rotate(-90 21 21)"/><text x="21" y="24" text-anchor="middle" font-size="7" font-weight="700" fill="#232933">'+pos+'/'+neu+'/'+neg+'</text>';
+  $("dleg").innerHTML='<i style="background:#0A8F4C"></i>Positif '+pos+'%<br><i style="background:#94A3B8"></i>Netral '+neu+'%<br><i style="background:#E11D48"></i>Negatif '+neg+'%';
+  var pool=(kw==="indomie")?["mie instan","harga","ras baru","stok","konkuren"]:(kw==="messi"?["gol","transfer","inter miami","liga","fans"]:["debat","kebijakan","pilpres","koalisi","survei"]);
+  $("dtopic").innerHTML=pool.map(function(t){return '<span class="topic">'+t+'</span>'}).join("")+'<span class="topic">'+kw+'</span>';
+  $("qpos").innerHTML='<b style="color:#0A8F4C">POSITIF</b> — "'+kw+' memang pilihan terbaik, kualitasnya konsisten dan pelayanannya cepat."';
+  $("qneg").innerHTML='<b style="color:#E11D48">NEGATIF</b> — "Harga '+kw+' naik lagi tapi kualitas nggak mengikuti. Kecewa tahun ini."';
+  var media=[["kompas.com",Math.round(N*.24)],["cnbcindonesia.com",Math.round(N*.18)],["detik.com",Math.round(N*.14)],["tribunnews.com",Math.round(N*.11)]];
+  var sisa=N-media.reduce(function(a,m){return a+m[1]},0);media.push(["lainnya",sisa]);
+  $("dmedia").innerHTML=media.map(function(m){return '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="width:130px;font-size:13px;font-weight:600">'+m[0]+'</span><div style="flex:1;background:var(--soft);border-radius:99px;height:10px"><div style="width:'+Math.round(m[1]/N*100)+'%;height:10px;border-radius:99px;background:var(--primary)"></div></div><span style="font-size:12.5px;font-weight:700">'+m[1]+'</span></div>'}).join("");
+  $("prog").style.display="none";$("dash").style.display="block";
+  $("go").disabled=false;$("go").textContent="🔍 Analisis";
+  toast("✅ Laporan \""+kw+"\" selesai — scroll untuk melihat!");
+  $("dash").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function reset(){$("dash").style.display="none";$("prog").style.display="none";window.scrollTo({top:0,behavior:"smooth"});$("kw").focus()}
+</script>
+</body>
+</html>

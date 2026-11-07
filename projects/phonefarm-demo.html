@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PhoneFarm — Demo Interaktif: Panel Device Farm | GATRA</title>
+<meta name="description" content="Demo interaktif PhoneFarm: pilih perangkat dari farm 20 slot, mulai streaming, jalankan kontrol ADB (tap, swipe, ketik) dan pantau log — persis alur panel aslinya.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../favicon.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css?v=4">
+<style>
+.stage{max-width:1100px;margin:0 auto;padding:110px 24px 70px}
+.badge-am{background:#FEF3C7;color:#B45309}
+.statusbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-bottom:18px}
+.farm{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.slot{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:12px;cursor:pointer;text-align:left;font:inherit;transition:border-color .15s,transform .15s}
+.slot:hover{transform:translateY(-2px)}
+.slot.sel{border-color:var(--primary);box-shadow:0 0 0 2px var(--tint)}
+.slot .nm{font-weight:700;font-size:13px;margin-bottom:6px}
+.slot .stt{font-size:11.5px;font-weight:700;color:#0A8F4C}
+.slot.off{opacity:.5}
+.slot.off .stt{color:#94A3B8}
+.wrap2{display:grid;grid-template-columns:300px 1fr;gap:18px}
+.screen{aspect-ratio:9/18;background:linear-gradient(165deg,#1E2A44 0%,#3A4A7B 55%,#5B4DE0 130%);border-radius:18px;position:relative;overflow:hidden;border:6px solid #14141B}
+.screen .live{position:absolute;top:10px;right:10px;background:#E11D48;color:#fff;font-size:10px;font-weight:800;padding:2px 8px;border-radius:99px;display:none}
+.screen.islive .live{display:block;animation:pulse 1.4s infinite}
+@keyframes pulse{50%{opacity:.55}}
+.screen .icons{position:absolute;left:14px;right:14px;top:38%;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;justify-items:center}
+.screen .icons i{width:26px;height:26px;border-radius:8px;display:block}
+.ctrls{display:grid;gap:8px;margin-top:14px}
+.ctrls .row{display:flex;gap:8px}
+.ctrls button{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:9px;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer}
+.ctrls button:hover{border-color:var(--primary);color:var(--primary)}
+.ctrls input{flex:2;min-width:0;border:1.5px solid var(--line);border-radius:10px;padding:9px;font:inherit;font-size:12.5px}
+.fps{font-size:12.5px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:8px;margin-top:12px}
+.dcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 2px 10px rgba(35,41,51,.06)}
+.log{font-family:ui-monospace,Menlo,monospace;font-size:12px;background:#0F1522;color:#9FE870;border-radius:12px;padding:14px 16px;height:220px;overflow-y:auto;white-space:pre-wrap;margin-top:14px}
+@media(max-width:860px){.wrap2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav"><div class="nav-in">
+  <a class="logo" href="../index.html"><img src="../assets/logo.jpg" alt="GATRA Global"></a>
+  <div class="menu"><a class="ml" href="../index.html#layanan">Layanan &amp; Produk</a>
+  <div><span class="ml">Karya <span class="car">▾</span></span><div class="drop">
+    <a href="../karya.html#apk"><span class="ic">📱</span><span><b>4 Demo Aplikasi Mobile</b><small>Jajan.in, GymKuy, Fokusin, Racunin</small></span></a>
+    <a href="../karya.html#web"><span class="ic">🌐</span><span><b>Demo Web &amp; Web App</b><small>KasirKu, ScrapPulse, dan lainnya</small></span></a>
+    <a href="../karya.html#proyek"><span class="ic">🧠</span><span><b>Studi Kasus ML &amp; Otomasi</b><small>Penjelasan &amp; tangkapan layar</small></span></a>
+  </div></div>
+  <div><span class="ml" onclick="location.href='../proses.html'">Proses</span></div>
+  <div><span class="ml" onclick="location.href='../faq.html'">FAQ</span></div></div>
+  <div class="nav-r"><span class="lang">🌐 ID</span><a class="btn btn-p" href="../index.html#kontak">Konsultasi Gratis</a></div>
+</div></nav>
+<div class="stage">
+  <div class="badge badge-am">⚡ Simulasi Interaktif — alur sama dengan panel aslinya</div>
+  <div class="eyebrow2" style="margin-top:14px">Demo Web Panel — Machine Learning &amp; Otomasi</div>
+  <h1 style="font-size:clamp(28px,4vw,42px);margin:10px 0 0">Coba Panel PhoneFarm</h1>
+  <p class="sub" style="max-width:680px">Pilih perangkat dari farm, <span class="hl">mulai streaming</span>, lalu jalankan kontrol ADB — tap, swipe, ketik — dan pantau semuanya lewat log realtime.</p>
+
+  <div class="statusbar">
+    <div><b id="oncount">18/20</b> <span style="color:var(--muted);font-size:14px">perangkat online · hub serial aktif</span></div>
+    <button class="btn btn-o" style="padding:9px 18px;font-size:13.5px" id="scanbtn" onclick="scan()">🔄 Auto-scan ulang</button>
+  </div>
+  <div class="farm" id="farm"></div>
+
+  <div class="wrap2">
+    <div>
+      <div class="screen" id="screen"><span class="live">● LIVE</span>
+        <div style="color:#fff;text-align:center;padding-top:26px"><b id="devname" style="font-size:15px">Samsung 01</b><br><small style="opacity:.7">layar streaming</small></div>
+        <div class="icons"><i style="background:#FF6B6B"></i><i style="background:#4ECDC4"></i><i style="background:#FFD43B"></i><i style="background:#B69BFF"></i><i style="background:#4ECDC4"></i><i style="background:#FF90E8"></i><i style="background:#8ECAE6"></i><i style="background:#FF6B6B"></i></div>
+      </div>
+      <div class="fps" style="margin-top:12px">FPS stream:
+        <select id="fps" style="border:1.5px solid var(--line);border-radius:8px;padding:6px 10px;font:inherit;font-size:12.5px"><option>15</option><option selected>30</option><option>60</option></select>
+        <button class="btn btn-p" style="padding:8px 14px;font-size:12.5px;margin-left:auto" id="streambtn" onclick="stream()">▶ Mulai Streaming</button>
+      </div>
+    </div>
+    <div class="dcard">
+      <b style="font-size:15px">Kontrol ADB — <span id="selname">Samsung 01</span></b>
+      <div class="ctrls">
+        <div class="row"><button onclick="adb('input tap 540 1200')">👆 Tap tengah</button><button onclick="adb('input swipe 540 1400 540 400 300')">👆 Swipe atas</button></div>
+        <div class="row"><button onclick="adb('input keyevent KEYCODE_HOME')">🏠 Home</button><button onclick="adb('input keyevent KEYCODE_BACK')">↩ Back</button></div>
+        <div class="row"><input type="text" id="typetxt" placeholder="Teks untuk dikirim ke HP…" value="Halo dari PhoneFarm!"><button style="flex:1" onclick="adb('input text &quot;'+document.getElementById('typetxt').value+'&quot;')">⌨ Kirim</button></div>
+        <div class="row"><button onclick="adb('screencap -p /sdcard/shot.png')">📸 Screenshot</button><button onclick="adb('am start -a android.intent.action.VIEW')">🌐 Buka browser</button></div>
+      </div>
+      <div class="log" id="log">[boot] panel terhubung → 127.0.0.1:8787 (localhost only)
+[scan] auto-scan selesai → 20 perangkat terdeteksi (18 online)
+[ready] pilih perangkat, lalu jalankan kontrol ADB…</div>
+    </div>
+  </div>
+
+  <p style="margin-top:34px;font-size:13.5px;color:var(--muted)">Ini <b>simulasi alur yang sama</b> dengan panel asli — versi production streaming video H.264 nyata dari HP fisik via scrcpy → FFmpeg → WebSocket, dengan hardware yang terpasang di farm. <a href="../karya.html#proyek" style="color:var(--primary);font-weight:600">Baca studi kasus lengkap →</a></p>
+</div>
+<a class="wa" href="https://wa.me/6281234567890" aria-label="Chat WhatsApp">💬</a>
+<script>
+"use strict";
+var $=function(i){return document.getElementById(i)};
+var DEV=[],SEL="R58T01A",LIVE=false;
+function now(){return new Date().toLocaleTimeString("id-ID")}
+function addlog(t){var l=$("log");l.textContent+="["+now()+"] "+t+"\n";l.scrollTop=l.scrollHeight}
+function build(){
+  var f=$("farm");f.innerHTML="";DEV=[];
+  for(var i=1;i<=20;i++){
+    var on=(i%9!==0);
+    DEV.push({name:"Samsung "+String(i).padStart(2,"0"),ser:"R58T"+String(i).padStart(2,"A"),on:on});
+  }
+  DEV.forEach(function(d,i){
+    var b=document.createElement("button");b.className="slot"+(d.on?"":" off")+(d.ser===SEL?" sel":"");
+    b.innerHTML='<div class="nm">'+d.name+'</div><div class="stt">'+(d.on?"● online":"○ offline")+'</div>';
+    b.onclick=function(){if(!d.on){addlog("[warn] "+d.name+" offline — lewati");return}
+      SEL=d.ser;$("selname").textContent=d.name;$("devname").textContent=d.name;
+      document.querySelectorAll(".slot").forEach(function(s){s.classList.remove("sel")});
+      b.classList.add("sel");addlog("[select] "+d.name+" ("+d.ser+") dipilih")};
+    f.appendChild(b);
+  });
+  $("oncount").textContent=DEV.filter(function(d){return d.on}).length+"/20";
+}
+function scan(){
+  $("scanbtn").disabled=true;$("scanbtn").textContent="Memindai…";
+  addlog("[scan] memindai hub serial…");
+  setTimeout(function(){build();$("scanbtn").disabled=false;$("scanbtn").textContent="🔄 Auto-scan ulang";addlog("[scan] selesai → "+$("oncount").textContent+" online")},1300);
+}
+function stream(){
+  LIVE=!LIVE;
+  $("screen").classList.toggle("islive",LIVE);
+  $("streambtn").textContent=LIVE?"⏹ Hentikan":"▶ Mulai Streaming";
+  addlog("[stream] "+(LIVE?"ON — scrcpy → FFmpeg → WebSocket ("+$("fps").value+" fps)":"OFF — streaming dihentikan"));
+}
+function adb(cmd){
+  var d=DEV.find(function(x){return x.ser===SEL});
+  if(LIVE){addlog("[adb -s "+SEL+"] "+cmd+" ✓")}
+  else{addlog("[warn] streaming OFF — nyalakan dulu untuk melihat efeknya (perintah tetap dieksekusi: "+cmd+")")}
+}
+build();
+</script>
+</body>
+</html>

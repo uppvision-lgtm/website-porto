@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistem Automasi — Demo Interaktif: Otomasi Instagram | GATRA</title>
+<meta name="description" content="Demo interaktif Sistem Automasi: kirim job auto komen ber-AI, render video 9:16, dan auto upload — pantau antrean & log persis seperti panel aslinya.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../favicon.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css?v=4">
+<style>
+.stage{max-width:1000px;margin:0 auto;padding:110px 24px 70px}
+.badge-am{background:#FEF3C7;color:#B45309}
+.dcard{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 2px 10px rgba(35,41,51,.06)}
+.tabs{display:flex;gap:8px;margin:26px 0 0}
+.tab{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:12px;font:inherit;font-weight:700;font-size:14px;cursor:pointer}
+.tab.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+.panel{display:none;padding:22px}
+.panel.on{display:block}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em}
+.field input,.field select,.field textarea{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:11px 14px;font:inherit;font-size:14px;box-sizing:border-box}
+.field textarea{min-height:74px;resize:vertical}
+.log{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:#0F1522;color:#9FE870;border-radius:12px;padding:14px 16px;min-height:110px;margin-top:14px;white-space:pre-wrap}
+.komenout{display:none;border:1.5px solid var(--line);border-radius:12px;padding:14px;margin-top:12px;font-size:14px}
+.komenout .hd{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+.komenout .av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#5B4DE0,#B69BFF)}
+.komenout .un{font-weight:700;font-size:13.5px}
+.frame{display:none;margin:14px auto 0;width:200px;aspect-ratio:9/16;border:6px solid #14141B;border-radius:22px;background:linear-gradient(160deg,#232946,#5B4DE0);color:#fff;padding:16px;box-sizing:border-box;position:relative;overflow:hidden}
+.frame .l3{position:absolute;left:14px;right:14px;bottom:20px;font-size:11.5px;line-height:1.5}
+.frame .l3 b{background:#5B4DE0;padding:1px 6px}
+.frame .live{position:absolute;top:10px;right:10px;background:#E11D48;color:#fff;font-size:10px;font-weight:800;padding:2px 8px;border-radius:99px}
+.okb{display:none;margin-top:12px;background:#DCFCE7;color:#0A8F4C;font-weight:700;border-radius:10px;padding:10px 14px;font-size:13.5px}
+@media(max-width:760px){.tabs{flex-direction:column}}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav"><div class="nav-in">
+  <a class="logo" href="../index.html"><img src="../assets/logo.jpg" alt="GATRA Global"></a>
+  <div class="menu"><a class="ml" href="../index.html#layanan">Layanan &amp; Produk</a>
+  <div><span class="ml">Karya <span class="car">▾</span></span><div class="drop">
+    <a href="../karya.html#apk"><span class="ic">📱</span><span><b>4 Demo Aplikasi Mobile</b><small>Jajan.in, GymKuy, Fokusin, Racunin</small></span></a>
+    <a href="../karya.html#web"><span class="ic">🌐</span><span><b>Demo Web &amp; Web App</b><small>KasirKu, ScrapPulse, dan lainnya</small></span></a>
+    <a href="../karya.html#proyek"><span class="ic">🧠</span><span><b>Studi Kasus ML &amp; Otomasi</b><small>Penjelasan &amp; tangkapan layar</small></span></a>
+  </div></div>
+  <div><span class="ml" onclick="location.href='../proses.html'">Proses</span></div>
+  <div><span class="ml" onclick="location.href='../faq.html'">FAQ</span></div></div>
+  <div class="nav-r"><span class="lang">🌐 ID</span><a class="btn btn-p" href="../index.html#kontak">Konsultasi Gratis</a></div>
+</div></nav>
+
+<div class="stage">
+  <div class="badge badge-am">⚡ Simulasi Interaktif — alur & log sama dengan panel aslinya</div>
+  <div class="eyebrow2" style="margin-top:14px">Demo Web App — Machine Learning &amp; Otomasi</div>
+  <h1 style="font-size:clamp(28px,4vw,42px);margin:10px 0 0">Coba Sistem Automasi</h1>
+  <p class="sub" style="max-width:680px">Tiga mesin dalam satu antrean — sekarang kamu yang pegang kendalinya: <span class="hl">kirim job, pantau worker, lihat hasilnya</span>. Auto komen ber-AI, render video 9:16, sampai auto upload.</p>
+
+  <div class="tabs">
+    <button class="tab on" onclick="tab(0,this)">💬 Auto Komen</button>
+    <button class="tab" onclick="tab(1,this)">🎬 Auto Edit Video</button>
+    <button class="tab" onclick="tab(2,this)">🚀 Auto Upload</button>
+  </div>
+
+  <div class="dcard panel on" id="p0">
+    <div class="field"><label>Link postingan Instagram</label>
+    <input type="text" id="klink" value="https://instagram.com/p/CxK9mQ2LrTt"></div>
+    <div class="field"><label>Pilih nada komen</label>
+    <select id="tone"><option value="santai">😎 Santai</option><option value="formal">💼 Formal</option><option value="hype">🔥 Hype</option></select></div>
+    <button class="btn btn-p" id="kbtn" onclick="komen()">🚀 Kirim Job Komen</button>
+    <div class="komenout" id="kout"><div class="hd"><div class="av"></div><div><div class="un">gatra.auto</div><small style="color:var(--muted)">baru saja · via Playwright</small></div></div><div id="ktext"></div></div>
+    <div class="okb" id="kok">✅ SUKSES — 1 komentar terkirim</div>
+    <div class="log" id="klog">$ kirim job…</div>
+  </div>
+  <div class="dcard panel" id="p1">
+    <div class="field"><label>Link video sumber (IG / TikTok / YouTube)</label>
+    <input type="text" id="elink" value="https://tiktok.com/@bisnis/video/7301234"></div>
+    <button class="btn btn-p" id="ebtn" onclick="editvid()">🎬 Render Video 9:16</button>
+    <div class="frame" id="eframe"><span class="live">● RENDER</span><div class="l3" id="ehook"></div></div>
+    <div class="okb" id="eok">✅ SUKSES — video 9:16 siap diunduh (render 1-pass)</div>
+    <div class="log" id="elog">$ render pipeline…</div>
+  </div>
+
+  <div class="dcard panel" id="p2">
+    <div class="field"><label>Caption reel</label>
+    <textarea id="ucap">Booting sistem otomasi kami 🔥
+Dari ide jadi produk digital nyata.
+#gatraglobal #otomasi</textarea></div>
+    <button class="btn btn-p" id="ubtn" onclick="upload()">🚀 Upload Reel</button>
+    <div class="okb" id="uok">✅ SUKSES — "reel telah dibagikan" terverifikasi</div>
+    <div class="log" id="ulog">$ upload pipeline…</div>
+  </div>
+
+  <div id="toast" style="position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 20px;border-radius:12px;font-size:14px;display:none;box-shadow:0 12px 30px rgba(0,0,0,.25);max-width:90vw;z-index:99"></div>
+  <p style="margin-top:34px;font-size:13.5px;color:var(--muted)">Ini <b>simulasi alur yang sama</b> dengan panel asli (FastAPI + Celery + Redis + Playwright + DeepSeek) — versi production menjalankan aksi nyata ke Instagram dengan rate-limit harian &amp; Live Login Assist. <a href="../karya.html#proyek" style="color:var(--primary);font-weight:600">Baca studi kasus lengkap →</a></p>
+</div>
+<a class="wa" href="https://wa.me/6281234567890" aria-label="Chat WhatsApp">💬</a>
+<script>
+"use strict";
+var $=function(i){return document.getElementById(i)};
+var LIMIT=3;
+function tab(i,el){
+  document.querySelectorAll(".tab").forEach(function(t){t.classList.remove("on")});
+  el.classList.add("on");
+  document.querySelectorAll(".panel").forEach(function(p,i2){p.classList.toggle("on",i===i2)});
+}
+function toast(m){var t=$("toast");t.textContent=m;t.style.display="block";clearTimeout(t._h);t._h=setTimeout(function(){t.style.display="none"},3600)}
+function seq(logId,btnId,okId,lines,done){
+  var log=$(logId);log.textContent="";$(btnId).disabled=true;
+  lines.forEach(function(l,i){
+    setTimeout(function(){
+      log.textContent+="["+String(i*2+1).padStart(2,"0")+"] "+l+"\n";
+      if(i===lines.length-1){
+        $(btnId).disabled=false;
+        if(okId){$(okId).style.display="block"}
+        if(done){done()}
+      }
+    },500+i*700);
+  });
+}
+function komen(){
+  if(LIMIT<=0){toast("⚠️ Limit demo harian habis — reload halaman untuk reset.");return}
+  LIMIT--;
+  var tone=$("tone").value;
+  var K={santai:"Wah ini keren banget 🔥 lanjutkan!",
+         formal:"Konten yang sangat informatif. Terima kasih sudah berbagi.",
+         hype:"GILAAA 🔥🔥 INI YANG KITA TUNGGU! SIAPA YANG BELUM LIHAT, RUGI BANGET!"};
+  $("kok").style.display="none";$("kout").style.display="none";
+  seq("klog","kbtn","kok",[
+    "POST /api/start-job → job #"+(1000-LIMIT)+" masuk antrean (tone: "+tone+")",
+    "Celery worker mengambil job…",
+    "DeepSeek menulis komentar (nada: "+tone+")…",
+    "Playwright membuka postingan (headless=false)",
+    "Mengetik komentar… menekan Post",
+    "✓ Komentar terkirim & terverifikasi"
+  ],function(){
+    $("ktext").textContent=K[tone];
+    $("kout").style.display="block";
+    toast(LIMIT>0?"✅ Terkirim! Sisa job demo hari ini: "+LIMIT:"✅ Terkirim! Limit demo harian habis.");
+  });
+}
+function editvid(){
+  $("eok").style.display="none";$("eframe").style.display="none";
+  var hooks={1:["JANGAN SCROLL DULU","Ini rahasia bisnis 2026","Simpan dulu →"],
+             2:["3 KESALAHAN FATAL","yang bikin bisnismu stuck","Nomor 2 paling sering!"]};
+  var h=hooks[Math.random()<.5?1:2];
+  seq("elog","ebtn","eok",[
+    "yt-dlp: mengunduh video sumber… 100%",
+    "DeepSeek: menyusun hook 3 baris ala berita TV",
+    "ffmpeg: pasang ke kanvas 1080×1920 (9:16)",
+    "ffmpeg: overlay PNG + teks lower-third",
+    "ffmpeg: render 1-pass + intro/outro… 100%"
+  ],function(){
+    $("eframe").style.display="block";
+    var i=0;(function type(){if(i<h.length){$("ehook").innerHTML+= "<b>"+h[i]+"</b><br>";i++;setTimeout(type,500)}})();
+    toast("🎬 Video 9:16 selesai — 1× encode, tanpa degradasi!");
+  });
+}
+function upload(){
+  $("uok").style.display="none";
+  seq("ulog","ubtn","uok",[
+    "Playwright: buka instagram.com → klik Buat",
+    "Pilih berkas reel…",
+    "Mengetik caption per baris ("+$("ucap").value.split("\n").length+" baris)",
+    "Klik Bagikan…",
+    "✓ Teks \"reel telah dibagikan\" terdeteksi"
+  ]);
+}
+</script>
+</body>
+</html>
