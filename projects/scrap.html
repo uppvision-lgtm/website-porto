@@ -4,213 +4,116 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ScrapPulse — Studi Kasus: Mesin Big Data Survei (Scraping + Sentimen NLP) | GATRA</title>
-<meta name="description" content="Studi kasus ScrapPulse: mesin big data survei berbasis scraping — satu kata kunci jadi laporan siap pakai. 5 sumber publik (Google News, Bing News, Hacker News, Wikipedia, Trends), sentimen dwibahasa (leksikon ID + VADER EN), topik, bias media, dashboard + Excel. Proyek asli oleh GATRA.">
+<meta name="description" content="Studi kasus ScrapPulse: mesin big data survei berbasis scraping — satu kata kunci jadi laporan siap pakai. 5 sumber publik (Google News, Bing News, Hacker News, Wikipedia, Trends), sentimen dwibahasa (leksikon ID + VADER EN), topik, bias media, dashboard + Excel. Proyek asli GATRA.">
 <meta name="robots" content="noindex">
-<link rel="icon" href="data:,">
+<link rel="icon" href="../favicon.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&amp;family=Space+Grotesk:wght@400;500;700&amp;family=Caveat:wght@600&amp;display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&amp;family=Space+Grotesk:wght@400;500;700&amp;family=Caveat:wght@600&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&amp;family=Space+Grotesk:wght@400;500;700&amp;family=Caveat:wght@600&amp;display=swap" rel="stylesheet"></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css?v=4">
 <style>
-:root{--bg:#FBF6EC;--ink:#141414;--lime:#C8F04B;--purple:#B69BFF;--pink:#FF90E8;--yellow:#FFD43B;--blue:#8ECAE6;--bd:3px solid var(--ink);--sh:7px 7px 0 var(--ink);--shs:4px 4px 0 var(--ink)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:'Space Grotesk',sans-serif;line-height:1.6;background-image:radial-gradient(rgba(20,20,20,.07) 1.2px,transparent 1.3px);background-size:26px 26px}
-h1,h2,h3{font-family:'Archivo',sans-serif;font-weight:900;line-height:1.08;text-transform:uppercase}
-.hand{font-family:'Caveat',cursive;font-weight:600}
-.wrap{max-width:1020px;margin:0 auto;padding:0 5vw}
-.backpill{position:fixed;left:16px;top:16px;z-index:50;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:700;font-size:.78rem;padding:10px 16px;border:var(--bd);box-shadow:var(--shs)}
-.backpill:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
-.hero{padding:92px 0 26px}
-.badge{display:inline-block;background:var(--lime);border:var(--bd);box-shadow:var(--shs);padding:6px 14px;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;transform:rotate(-1.5deg)}
-.hero h1{font-size:clamp(2.6rem,7vw,4.6rem);margin:26px 0 6px}
-.hero .hand{font-size:1.5rem;display:block;transform:rotate(-1.5deg);margin-bottom:18px}
-.sub{font-size:1.08rem;max-width:660px}
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
-.chip{background:#fff;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);padding:6px 14px;font-weight:700;font-size:.78rem}
-section{padding:46px 0}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:20px;text-align:center}
-.stat .n{display:inline-block;font-family:'Archivo';font-weight:900;font-size:clamp(1.8rem,4vw,2.7rem);border:var(--bd);box-shadow:var(--shs);padding:8px 18px;background:var(--lime);transform:rotate(-1.5deg)}
-.stat:nth-child(2) .n{background:var(--pink)}
-.stat:nth-child(3) .n{background:var(--blue)}
-.stat:nth-child(4) .n{background:var(--purple)}
-.stat:nth-child(even) .n{transform:rotate(1.5deg)}
-.stat .l{display:block;margin-top:12px;font-weight:700;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase}
-h2{font-size:clamp(1.6rem,3.5vw,2.3rem);margin-bottom:8px}
-.lede{opacity:.85;font-weight:500;max-width:660px;margin-bottom:28px}
-.gal{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.gal figure{background:#fff;border:var(--bd);box-shadow:var(--shs);padding:12px;transition:transform .15s,box-shadow .15s}
-.gal figure:hover{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
-.gal img{width:100%;display:block;border:2px solid var(--ink)}
-.gal figcaption{font-size:.84rem;font-weight:600;padding:12px 6px 4px;opacity:.9}
-.gal .wide{grid-column:1/-1}
-.steps{list-style:none;display:grid;gap:20px;counter-reset:st}
-.steps li{counter-increment:st;background:#fff;border:var(--bd);box-shadow:var(--shs);padding:20px 22px;display:flex;gap:18px;align-items:flex-start}
-.steps li::before{content:counter(st,decimal-leading-zero);font-family:'Archivo';font-weight:900;font-size:2rem;line-height:1.1;color:transparent;-webkit-text-stroke:2px var(--ink);flex-shrink:0}
-.steps b{display:block;font-family:'Archivo';text-transform:uppercase;font-size:1rem;margin-bottom:4px}
-.steps p{font-size:.95rem;opacity:.9}
-.band{background:var(--ink);color:var(--bg);border:var(--bd);box-shadow:var(--sh);padding:28px;margin-top:10px}
-.band h2{color:var(--lime)}
-.band p{opacity:.92;font-size:.95rem;margin-top:10px}
-.fitchips{display:flex;flex-wrap:wrap;gap:11px}
-.vidbox{position:relative;background:#fff;border:var(--bd);box-shadow:var(--sh)}
+.flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:6px 0}
+.node{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-weight:600;font-size:13.5px;box-shadow:0 2px 8px rgba(35,41,51,.05)}
+.node small{display:block;font-weight:500;color:var(--muted);font-size:11.5px}
+.arrow{color:var(--primary);font-weight:800}
+.chipsflex{display:flex;flex-wrap:wrap;gap:10px}
+.chipsoft{background:var(--tint);color:var(--primary);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:600}
+.stepcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;gap:14px;align-items:flex-start;box-shadow:0 2px 8px rgba(35,41,51,.05)}
+.num{width:34px;height:34px;border-radius:10px;background:var(--tint);color:var(--primary);display:grid;place-items:center;font-weight:800;font-size:15px;flex-shrink:0}
+.stepcard .b{font-weight:700;color:var(--ink);margin-bottom:5px;font-size:15.5px}
+.stepcard p{color:var(--muted);font-size:14px;line-height:1.6;margin:0}
+.figtion{font-size:13.5px;color:var(--muted);line-height:1.55;padding:14px 16px 16px}
+.figtion b{color:var(--ink)}
+.vidbox{border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 12px 40px rgba(35,41,51,.12);background:#fff}
 .vidbox video{display:none;width:100%;background:#000}
 .vidbox.has-video video{display:block}
-.vidbox .nofilm{padding:42px 26px;text-align:center}
-.vidbox.has-video .nofilm{display:none}
-.nofilm .big{font-size:2.4rem;display:block;margin-bottom:10px}
-.nofilm p{font-size:.92rem;opacity:.85;max-width:560px;margin:6px auto 0}
-.nofilm code{background:var(--bg);border:2px solid var(--ink);padding:2px 8px;font-weight:700;font-size:.85rem}
-.flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.node{background:#fff;border:var(--bd);box-shadow:var(--shs);padding:12px 16px;font-weight:700;font-size:.86rem}
-.node small{display:block;font-weight:600;opacity:.7;font-size:.72rem}
-.arrow{font-weight:900;font-size:1.3rem}
-.cta{margin:52px 0 0;background:var(--ink);color:var(--bg);border:var(--bd);box-shadow:var(--sh);padding:36px 30px;text-align:center}
-.cta h2{color:var(--lime)}
-.cta p{margin:14px auto 24px;max-width:540px;font-size:.98rem}
-.btn{display:inline-block;font-family:'Archivo';font-weight:700;text-transform:uppercase;text-decoration:none;background:var(--lime);color:var(--ink);border:3px solid var(--bg);box-shadow:5px 5px 0 var(--lime);padding:12px 22px}
-.btn:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--lime)}
-.credit{padding:28px 0 44px;text-align:center;font-size:.85rem;opacity:.8}
-@media(max-width:700px){.gal{grid-template-columns:1fr}.hero{padding-top:84px}}
+.vidbox .nofilm{padding:38px 24px;text-align:center;color:var(--muted);font-size:14px}
+.vidbox .nofilm b{color:var(--ink);display:block;margin-bottom:6px;font-size:15px}
+.vidbox .nofilm code{background:var(--soft);border-radius:6px;padding:2px 8px;font-weight:600;color:var(--ink)}
+.bandnote{background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:26px 28px}
+.bandnote h3{font-size:17px;margin-bottom:8px}
+.bandnote p{color:var(--muted);font-size:14.5px;line-height:1.65;margin:0}
 </style>
 </head>
 <body>
-<a class="backpill" href="../karya.html#proyek">◀ gatra / karya</a>
-<div class="wrap">
-<main>
-<header class="hero">
-  <span class="badge">Proyek Asli ✓ Sudah Berdiri Beneran</span>
-  <h1>ScrapPulse<span style="color:var(--purple)">.</span></h1>
-  <span class="hand">(satu kata kunci masuk — laporan survei siap pakai keluar.)</span>
-  <p class="sub">Mesin <b>big data survei</b> berbasis scraping sumber publik. Cukup ketik satu kata — brand, produk, kandidat, atau isu — sistem otomatis mengumpulkan berita &amp; data dari <b>Google News, Bing News, Hacker News, Wikipedia Pageviews, dan Google Trends</b>, mengekstrak teks lengkap artikel teratas, lalu menganalisis: <b>volume &amp; momentum, sentimen dwibahasa, topik dominan, bias media</b> — dan menyerahkan <b>laporan siap pakai</b>: dashboard HTML interaktif, Excel multi-sheet, dan JSON. Mode websitenya pakai <b>Flask</b>: search bar → progres live → dashboard terbuka sendiri.</p>
-  <div class="chips">
-    <span class="chip">Python</span><span class="chip">Flask</span><span class="chip">pandas</span><span class="chip">matplotlib</span><span class="chip">VADER</span><span class="chip">Leksikon ID + negasi</span><span class="chip">newspaper4k</span><span class="chip">pytrends</span><span class="chip">News RSS</span><span class="chip">Hacker News API</span><span class="chip">Wikipedia Pageviews</span><span class="chip">openpyxl</span>
-  </div>
-</header>
-
-<section aria-label="Angka kunci">
-  <div class="stats">
-    <div class="stat"><span class="n">5</span><span class="l">sumber data publik aktif</span></div>
-    <div class="stat"><span class="n">2</span><span class="l">bahasa sentimen: ID + EN</span></div>
-    <div class="stat"><span class="n">3</span><span class="l">output: dashboard, XLSX, JSON</span></div>
-    <div class="stat"><span class="n">8</span><span class="l">negara di Top Search harian</span></div>
-  </div>
-</section>
-
-<section aria-label="Alur pipeline">
-  <h2>Dari Kata Kunci ke Laporan.</h2>
-  <p class="lede">Satu pipeline paralel dengan cache hormat 6 jam — cepat, hemat, dan sopan ke sumber.</p>
-  <div class="flow">
-    <span class="node">Kata kunci<small>brand · kandidat · tren</small></span>
-    <span class="arrow" aria-hidden="true">→</span>
-    <span class="node">Kumpulkan paralel<small>5 sumber publik + cache</small></span>
-    <span class="arrow" aria-hidden="true">→</span>
-    <span class="node">newspaper4k<small>teks lengkap 12 artikel</small></span>
-    <span class="arrow" aria-hidden="true">→</span>
-    <span class="node">Analisis NLP<small>sentimen · topik · bias</small></span>
-    <span class="arrow" aria-hidden="true">→</span>
-    <span class="node">Laporan<small>dashboard + XLSX + JSON</small></span>
-  </div>
-</section>
-
-<section aria-label="Galeri tangkapan layar">
-  <h2>Ini Wujud Aslinya.</h2>
-  <p class="lede">Screenshot langsung dari aplikasi yang berjalan — bukan mockup.</p>
-  <div class="gal">
-    <figure class="wide">
-      <img src="../assets/scrap/scrap-landing.jpg" alt="Landing page ScrapPulse: satu kata kunci, satu laporan survei" loading="lazy">
-      <figcaption>Landing page mode web — satu search bar, pilih periode &amp; bahasa, klik Analisis, pantau progres live.</figcaption>
-    </figure>
-    <figure class="wide">
-      <img src="../assets/scrap/scrap-charts.jpg" alt="Dashboard analisis: volume harian, donut sentimen, topik dominan, pageviews Wikipedia, kontribusi media" loading="lazy">
-      <figcaption>Dashboard analisis: volume harian + momentum, donut sentimen, topik dominan, perbandingan pageviews Wikipedia, dan kontribusi media per sumber (deteksi bias).</figcaption>
-    </figure>
-    <figure>
-      <img src="../assets/scrap/scrap-sentimen.jpg" alt="Tabel pembahasan terpilih dengan tag sentimen per berita" loading="lazy">
-      <figcaption>Pembahasan terpilih: tiap berita diberi tag NETRAL / POSITIF / NEGATIF lengkap dengan skor oleh mesin sentimen.</figcaption>
-    </figure>
-    <figure>
-      <img src="../assets/scrap/scrap-insight.jpg" alt="Laporan versi terang: insight kunci dan rekomendasi survei otomatis" loading="lazy">
-      <figcaption>Laporan versi terang: insight kunci, kutipan paling positif/negatif, dan rekomendasi desain survei otomatis.</figcaption>
-    </figure>
-  </div>
-</section>
-<section aria-label="Analisis yang dihasilkan">
-  <h2>Analisis yang Dikerjakan Mesin.</h2>
-  <p class="lede">Empat lapis analisis NLP yang biasanya dikerjakan tim riset — di sini otomatis dalam hitungan menit.</p>
-  <ol class="steps">
-    <li><div><b>Volume &amp; Momentum</b><p>Volume pembahasan harian, momentum 7 hari terakhir vs periode sebelumnya, dan hari puncak — tahu kapan topik itu naik daun.</p></div></li>
-    <li><div><b>Sentimen Dwibahasa</b><p>Bahasa Indonesia pakai leksikon + aturan negasi &amp; intensifier; Inggris pakai VADER. Rasio positif/negatif/netral harian yang bisa dipertanggungjawabkan.</p></div></li>
-    <li><div><b>Topik &amp; Bias Media</b><p>Topik dominan (unigram + bigram) dan media teratas per sentimen — langsung kelihatan outlet mana yang berbicara positif, mana yang cenderung negatif.</p></div></li>
-    <li><div><b>Kutipan &amp; Rekomendasi Survei</b><p>Kutipan paling positif &amp; negatif sebagai bahan hipotesis kuesioner, plus rekomendasi desain survei otomatis — misal "gali alasan keluhan", "ukur NPS".</p></div></li>
-  </ol>
-</section>
-
-<section aria-label="Mode web dan top search">
-  <h2>Mode Web &amp; Top Search.</h2>
-  <p class="lede">Bukan cuma CLI — ada antarmuka yang bisa dipakai orang non-teknis.</p>
-  <ol class="steps">
-    <li><div><b>Mode Website (Flask)</b><p>Landing page dengan search bar: ketik satu kata (atau bandingkan beberapa sekaligus), pilih periode &amp; bahasa, pantau progres live, dan dashboard laporan terbuka sendiri. Semua laporan lama terarsip di bagian Riwayat.</p></div></li>
-    <li><div><b>Top Search 🔥</b><p>Halaman /top menampilkan kata yang paling banyak dicari di Google hari ini (Google Trends Daily RSS, 8 negara) — klik ⚡ Analisis untuk langsung menganalisis kata yang sedang viral.</p></div></li>
-  </ol>
-</section>
-
-<section aria-label="Prinsip etika data">
-  <div class="band">
-    <h2>Dibangun Hormat pada Sumber.</h2>
-    <p>Semua data diambil dari <b>endpoint publik resmi</b> dengan rate-limit yang sopan: cache 6 jam untuk pipeline analisis, 30 menit untuk Top Search. Tiap sumber punya <b>status sendiri di laporan</b> — kalau satu sumber gagal, analisis tetap jalan. Hasil sentimen diposisikan jujur: <b>indikasi arah opini</b>, bukan pengganti survei lapangan.</p>
-  </div>
-</section>
-
-<section aria-label="Fitur lengkap">
-  <h2>Semua yang Ada di Dalamnya.</h2>
-  <p class="lede">Dari pengambilan data sampai file Excel siap SPSS.</p>
-  <div class="fitchips">
-    <span class="chip">5 sumber publik paralel</span>
-    <span class="chip">Google News RSS (ID + EN)</span>
-    <span class="chip">Bing News RSS — link penerbit</span>
-    <span class="chip">Hacker News API</span>
-    <span class="chip">Wikipedia Pageviews</span>
-    <span class="chip">Google Trends 0–100</span>
-    <span class="chip">newspaper4k teks lengkap</span>
-    <span class="chip">Sentimen ID: negasi + intensifier</span>
-    <span class="chip">VADER untuk Inggris</span>
-    <span class="chip">Topik unigram + bigram</span>
-    <span class="chip">Deteksi bias media</span>
-    <span class="chip">Kutipan positif &amp; negatif</span>
-    <span class="chip">Rekomendasi survei otomatis</span>
-    <span class="chip">Momentum 7 hari + hari puncak</span>
-    <span class="chip">Perbandingan multi-kata kunci</span>
-    <span class="chip">Excel multi-sheet SPSS-ready</span>
-    <span class="chip">JSON untuk pipeline lanjutan</span>
-    <span class="chip">Cache 6 jam hemat kuota</span>
-    <span class="chip">Status sumber realtime</span>
-    <span class="chip">Top Search 8 negara ⚡</span>
-  </div>
-</section>
-
-<section aria-label="Video cara kerja">
-  <h2>Video Cara Kerja.</h2>
-  <p class="lede">Rekam layar: ketik kata kunci → progres live → dashboard terbuka. Simpan sebagai <code>assets/videos/scrap.mp4</code> — slot ini otomatis mengisinya.</p>
-  <div class="vidbox">
-    <video controls preload="metadata" data-src="../assets/videos/scrap.mp4"></video>
-    <div class="nofilm">
-      <span class="big">🎬</span>
-      <b>Slot video ini otomatis terisi.</b>
-      <p>Rekam layar web ScrapPulse, simpan sebagai <code>assets/videos/scrap.mp4</code> — refresh halaman ini, videonya langsung muncul di sini.</p>
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <a class="logo" href="../index.html"><img src="../assets/logo.jpg" alt="GATRA Global"></a>
+    <div class="menu">
+      <a class="ml" href="../index.html#layanan">Layanan &amp; Produk</a>
+      <div>
+        <span class="ml">Karya <span class="car">▾</span></span>
+        <div class="drop">
+          <a href="../karya.html#apk"><span class="ic">📱</span><span><b>4 Demo Aplikasi Mobile</b><small>Jajan.in, GymKuy, Fokusin, Racunin</small></span></a>
+          <a href="../karya.html#web"><span class="ic">🌐</span><span><b>6 Demo Web Live</b><small>POS, podcast, kantin, kopi, festival, kamera</small></span></a>
+          <a href="../karya.html#proyek"><span class="ic">🧠</span><span><b>Proyek Asli ML &amp; Otomasi</b><small>PhoneFarm, Godam &amp; ScrapPulse</small></span></a>
+        </div>
+      </div>
+      <div><span class="ml" onclick="location.href='../proses.html'">Proses</span></div>
+      <div><span class="ml" onclick="location.href='../faq.html'">FAQ</span></div>
+    </div>
+    <div class="nav-r">
+      <span class="lang">🌐 ID</span>
+      <a class="btn btn-p" href="../index.html#kontak">Konsultasi Gratis</a>
     </div>
   </div>
-</section>
-
-<section class="cta" aria-label="Ajakan kontak">
-  <h2>Mau Mesin Survei kayak Gini?</h2>
-  <p>Scraping multi-sumber, analisis sentimen dwibahasa, laporan otomatis — dari arsitektur pipeline sampai antarmuka siap pakai. Ceritakan kebutuhan risetmu, kami susun mesinnya.</p>
-  <a class="btn" href="mailto:halo@gatraglobal.id">Gas, Ngobrol Dulu →</a>
-</section>
-
-</main>
-<p class="credit">Halaman studi kasus — bagian dari portofolio <b>GATRA</b> ✦ Gatra Global Technologies. Arsitektur &amp; alur diambil dari repo proyek aslinya.</p>
-</div>
+</nav>
+<header class="hero" style="padding-bottom:30px">
+  <div class="container">
+    <div class="badge">✦ Proyek Asli — Sudah Berdiri Beneran</div>
+    <div class="eyebrow2" style="margin-top:8px">Studi Kasus — Machine Learning & NLP</div>
+    <h1 style="max-width:840px;margin:10px auto 0;font-size:clamp(30px,4.6vw,46px)">ScrapPulse — Mesin Big Data Survei</h1>
+    <p class="sub">Cukup ketik satu kata — brand, produk, kandidat, atau isu — sistem otomatis mengumpulkan berita &amp; data dari <b>Google News, Bing News, Hacker News, Wikipedia Pageviews, dan Google Trends</b>, mengekstrak teks lengkap artikel teratas, lalu menganalisis: <span class="hl">volume &amp; momentum, sentimen dwibahasa, topik dominan, bias media</span> — dan menyerahkan laporan siap pakai: dashboard HTML interaktif, Excel multi-sheet, dan JSON. Mode websitenya pakai <b>Flask</b>: search bar → progres live → dashboard terbuka sendiri.</p>
+    <div class="cta" style="justify-content:center;margin-top:26px">
+      <a class="btn btn-p" href="../index.html#kontak">💬 Konsultasi via WhatsApp</a>
+      <a class="btn btn-o" href="#galeri">Lihat tangkapan layar ↓</a>
+    </div>
+    <div class="rating"><span class="star">★ Proyek production</span> · berjalan beneran, bukan mockup</div>
+    <div class="shields"><div class="shield">5<small>sumber data publik aktif</small></div><div class="shield">2<small>bahasa sentimen: ID + EN</small></div><div class="shield">3<small>output: dashboard, XLSX, JSON</small></div><div class="shield">8<small>negara di Top Search harian</small></div></div>
+  </div>
+</header>
+<section><div class="container"><div class="eyebrow2">Alur sistem</div><h2>Dari Kata Kunci ke Laporan.</h2><p class="sec-sub" style="margin:0 0 18px">Satu pipeline paralel dengan cache hormat 6 jam — cepat, hemat, dan sopan ke sumber.</p><div class="flow"><span class="node">Kata kunci<small>brand · kandidat · tren</small></span><span class="arrow" aria-hidden="true">→</span><span class="node">Kumpulkan paralel<small>5 sumber publik + cache</small></span><span class="arrow" aria-hidden="true">→</span><span class="node">newspaper4k<small>teks lengkap 12 artikel</small></span><span class="arrow" aria-hidden="true">→</span><span class="node">Analisis NLP<small>sentimen · topik · bias</small></span><span class="arrow" aria-hidden="true">→</span><span class="node">Laporan<small>dashboard + XLSX + JSON</small></span></div></div></section>
+<section id="galeri" class="tinted"><div class="container"><div class="center" style="margin-bottom:36px"><div class="eyebrow2">Tangkapan layar</div><h2>Ini Wujud Aslinya.</h2><p class="sec-sub">Screenshot langsung dari aplikasi yang berjalan — bukan mockup.</p></div><div class="grid2"><figure class="card" style="grid-column:1/-1" style="overflow:hidden;margin:0"><img src="../assets/scrap/scrap-landing.jpg" alt="Landing page mode web. Satu search bar, pilih periode &amp; bahasa, kl" loading="lazy" style="width:100%;display:block"><div class="figtion"><b>Landing page mode web.</b> Satu search bar, pilih periode &amp; bahasa, klik Analisis, pantau progres live.</div></figure><figure class="card" style="grid-column:1/-1" style="overflow:hidden;margin:0"><img src="../assets/scrap/scrap-charts.jpg" alt="Dashboard analisis. Volume harian + momentum, donut sentimen, topik do" loading="lazy" style="width:100%;display:block"><div class="figtion"><b>Dashboard analisis.</b> Volume harian + momentum, donut sentimen, topik dominan, perbandingan pageviews Wikipedia, dan kontribusi media per sumber (deteksi bias).</div></figure><figure class="card" style="overflow:hidden;margin:0"><img src="../assets/scrap/scrap-sentimen.jpg" alt="Pembahasan terpilih. Tiap berita diberi tag NETRAL / POSITIF / NEGATIF" loading="lazy" style="width:100%;display:block"><div class="figtion"><b>Pembahasan terpilih.</b> Tiap berita diberi tag NETRAL / POSITIF / NEGATIF lengkap dengan skor oleh mesin sentimen.</div></figure><figure class="card" style="overflow:hidden;margin:0"><img src="../assets/scrap/scrap-insight.jpg" alt="Laporan versi terang. Insight kunci, kutipan paling positif/negatif, d" loading="lazy" style="width:100%;display:block"><div class="figtion"><b>Laporan versi terang.</b> Insight kunci, kutipan paling positif/negatif, dan rekomendasi desain survei otomatis.</div></figure></div></div></section>
+<section class="tinted"><div class="container"><div class="center" style="margin-bottom:36px"><div class="eyebrow2">Analisis NLP</div><h2>Analisis yang Dikerjakan Mesin.</h2><p class="sec-sub">Empat lapis analisis yang biasanya dikerjakan tim riset — di sini otomatis dalam hitungan menit.</p></div><div class="grid2"><div class="stepcard"><div class="num">01</div><div><div class="b">Volume & Momentum</div><p>Volume pembahasan harian, momentum 7 hari terakhir vs periode sebelumnya, dan hari puncak.</p></div></div><div class="stepcard"><div class="num">02</div><div><div class="b">Sentimen Dwibahasa</div><p>Bahasa Indonesia pakai leksikon + aturan negasi & intensifier; Inggris pakai VADER.</p></div></div><div class="stepcard"><div class="num">03</div><div><div class="b">Topik & Bias Media</div><p>Topik dominan (unigram + bigram) dan media teratas per sentimen — kelihatan outlet mana condong ke arah mana.</p></div></div><div class="stepcard"><div class="num">04</div><div><div class="b">Kutipan & Rekomendasi Survei</div><p>Kutipan paling positif & negatif untuk hipotesis kuesioner, plus rekomendasi desain survei otomatis.</p></div></div></div></div></section>
+<section><div class="container"><div class="bandnote"><h3>Dibangun Hormat pada Sumber.</h3><p>Semua data diambil dari endpoint publik resmi dengan rate-limit yang sopan: cache 6 jam untuk pipeline analisis, 30 menit untuk Top Search. Tiap sumber punya status sendiri di laporan — kalau satu gagal, analisis tetap jalan. Hasil sentimen diposisikan jujur: indikasi arah opini, bukan pengganti survei lapangan.</p></div></div></section>
+<section class="tinted"><div class="container"><h2>Semua yang Ada di Dalamnya.</h2><p class="sec-sub" style="margin:0 0 22px">Dari pengambilan data sampai file Excel siap SPSS.</p><div class="chipsflex"><span class="chipsoft">5 sumber publik paralel</span><span class="chipsoft">Google News RSS (ID + EN)</span><span class="chipsoft">Bing News RSS — link penerbit</span><span class="chipsoft">Hacker News API</span><span class="chipsoft">Wikipedia Pageviews</span><span class="chipsoft">Google Trends 0–100</span><span class="chipsoft">newspaper4k teks lengkap</span><span class="chipsoft">Sentimen ID: negasi + intensifier</span><span class="chipsoft">VADER untuk Inggris</span><span class="chipsoft">Topik unigram + bigram</span><span class="chipsoft">Deteksi bias media</span><span class="chipsoft">Kutipan positif & negatif</span><span class="chipsoft">Rekomendasi survei otomatis</span><span class="chipsoft">Momentum 7 hari + hari puncak</span><span class="chipsoft">Perbandingan multi-kata kunci</span><span class="chipsoft">Excel multi-sheet SPSS-ready</span><span class="chipsoft">JSON untuk pipeline lanjutan</span><span class="chipsoft">Cache 6 jam hemat kuota</span><span class="chipsoft">Status sumber realtime</span><span class="chipsoft">Top Search 8 negara ⚡</span></div></div></section>
+<section><div class="container"><div class="eyebrow2">Video cara kerja</div><h2>Lihat Langsung Dia Jalan.</h2><p class="sec-sub" style="margin:0 0 22px">Rekam layar: ketik kata kunci → progres live → dashboard terbuka.</p><div class="vidbox"><video controls preload="metadata" data-src="../assets/videos/scrap.mp4"></video><div class="nofilm"><b>Slot video otomatis terisi.</b>Punya rekaman versimu sendiri? Simpan sebagai <code>assets/videos/scrap.mp4</code>, refresh halaman ini — langsung muncul di sini.</div></div></div></section>
+<section><div class="container"><div class="ctaband"><h2>Mau Mesin Survei kayak Gini?</h2><p>Scraping multi-sumber, analisis sentimen dwibahasa, laporan otomatis — dari arsitektur pipeline sampai antarmuka siap pakai. Ceritakan kebutuhan risetmu, kami susun mesinnya.</p><div class="cta" style="justify-content:center"><a class="btn btn-w" href="mailto:halo@gatraglobal.id">halo@gatraglobal.id ✉️</a><a class="btn btn-w" href="https://wa.me/6281234567890" style="background:var(--green);color:#fff">💬 WhatsApp kami</a></div><small>Balasan manusia, bukan bot — serius.</small></div></div></section>
+<footer>
+  <div class="container">
+    <div class="fgrid">
+      <div class="fcol">
+        <a class="logo" href="../index.html" style="font-size:19px"><img src="../assets/logo.jpg" alt="GATRA Global"></a>
+        <span style="margin-top:10px">Studio IT muda yang bikin ide jadi produk digital nyata — website, apps, AI &amp; POS.</span>
+      </div>
+      <div class="fcol">
+        <h4>Layanan</h4>
+        <a href="../index.html#layanan">Website &amp; Web App</a>
+        <a href="../index.html#layanan">Aplikasi Mobile</a>
+        <a href="../index.html#layanan">Machine Learning &amp; AI</a>
+        <a href="../index.html#layanan">POS &amp; Sistem Bisnis</a>
+      </div>
+      <div class="fcol">
+        <h4>Portofolio</h4>
+        <a href="../karya.html">Semua Karya &amp; Demo</a>
+        <a href="phonefarm.html">PhoneFarm (Studi Kasus)</a>
+        <a href="godam.html">Godam (Studi Kasus)</a>
+        <a href="scrap.html">ScrapPulse (Studi Kasus)</a>
+        <a href="https://github.com/uppvision-lgtm/website-porto">GitHub</a>
+      </div>
+      <div class="fcol">
+        <h4>Kontak</h4>
+        <a href="mailto:halo@gatraglobal.id">halo@gatraglobal.id</a>
+        <a href="https://wa.me/6281234567890">WhatsApp</a>
+        <span>Indonesia — remote friendly 🌏</span>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 2026 GATRA — Gatra Global Technologies. Dibuat dengan ☕ dan semangat muda.</span>
+    </div>
+  </div>
+</footer>
+<a class="wa" href="https://wa.me/6281234567890" aria-label="Chat WhatsApp">💬</a>
 <script>
 (function(){
 "use strict";
