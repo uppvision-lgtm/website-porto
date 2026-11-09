@@ -82,11 +82,13 @@ tr:last-child td{border-bottom:none}
 :where(a,button,input):focus-visible{outline:3px solid #818cf8;outline-offset:3px}
 @media(max-width:480px){.stats{grid-template-columns:1fr}.bars{gap:7px}.top-item b{width:120px}.datechip{font-size:.72rem}.grid>.panel{padding:16px}}
 </style>
+<link rel="stylesheet" href="../css/icons.css?v=1">
+<script src="../js/icons.js?v=1" defer></script>
 </head>
 <body>
 <div class="shell">
   <aside class="sidebar">
-    <div class="brand">🧾 Kasir<span>Ku</span></div>
+    <div class="brand"><span class="ui-icon" data-icon="receipt-text" style="--icon-url:url(/assets/icons/receipt-text.svg)" aria-hidden="true"></span> Kasir<span>Ku</span></div>
     <nav class="menu" aria-label="Menu utama KasirKu">
       <a class="on" href="#dashboard" data-view="dashboard" aria-current="page">Dashboard</a>
       <a href="#transaksi" data-view="transaksi">Transaksi</a>
@@ -157,10 +159,10 @@ tr:last-child td{border-bottom:none}
     <div id="view-laporan" class="demo-view" hidden></div>
     <div id="view-pengaturan" class="demo-view" hidden></div>
     <p id="search-status" role="status" hidden></p>
-    <div class="foot">© 2026 KasirKu — demo dibuat oleh <b>GATRA</b> ✦ <a href="../index.html" style="color:inherit">kembali ke portfolio</a></div>
+    <div class="foot">© 2026 KasirKu — demo dibuat oleh <b>GATRA</b> <span class="ui-icon" data-icon="sparkles" style="--icon-url:url(/assets/icons/sparkles.svg)" aria-hidden="true"></span> <a href="../index.html" style="color:inherit">kembali ke portfolio</a></div>
   </main>
 </div>
-<a class="backpill" href="../karya.html">◀ GATRA / portfolio</a>
+<a class="backpill" href="../karya.html"><span class="ui-icon" data-icon="chevron-left" style="--icon-url:url(/assets/icons/chevron-left.svg)" aria-hidden="true"></span> GATRA / portfolio</a>
 <script src="../js/kasirku-demo.js?v=1"></script>
 </body>
 </html>

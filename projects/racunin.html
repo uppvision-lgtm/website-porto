@@ -77,19 +77,21 @@ body{font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction
 .kosong{text-align:center;color:var(--mut);font-size:.82rem;font-weight:600;padding:20px 0}
 
 </style>
+<link rel="stylesheet" href="../css/icons.css?v=1">
+<script src="../js/icons.js?v=1" defer></script>
 </head>
 <body>
 <div class="phone"><div class="screen">
 <span class="punch" aria-hidden="true"></span>
-<div class="statusbar" aria-hidden="true"><span>12.45</span><span>📶 5G 🔋</span></div>
+<div class="statusbar" aria-hidden="true"><span>12.45</span><span><span class="ui-icon" data-icon="signal" style="--icon-url:url(/assets/icons/signal.svg)" aria-hidden="true"></span> 5G <span class="ui-icon" data-icon="battery-full" style="--icon-url:url(/assets/icons/battery-full.svg)" aria-hidden="true"></span></span></div>
 <div class="app-body">
   <div class="view on" id="v-beranda">
   <div class="app-head">
-    <span class="avatar" aria-hidden="true">🍜</span>
-    <div class="hello"><b>Racunin</b><small>racun terbaru buat kamu hari ini 🔥</small></div>
-    <span class="favchip" id="favchip">🤍 0</span>
+    <span class="avatar" aria-hidden="true"><span class="ui-icon" data-icon="soup" style="--icon-url:url(/assets/icons/soup.svg)" aria-hidden="true"></span></span>
+    <div class="hello"><b>Racunin</b><small>racun terbaru buat kamu hari ini <span class="ui-icon" data-icon="flame" style="--icon-url:url(/assets/icons/flame.svg)" aria-hidden="true"></span></small></div>
+    <span class="favchip" id="favchip"><span class="ui-icon" data-icon="heart" style="--icon-url:url(/assets/icons/heart.svg)" aria-hidden="true"></span> 0</span>
   </div>
-  <div class="search" aria-hidden="true">🔎 racun apa hari ini?</div>
+  <div class="search" aria-hidden="true"><span class="ui-icon" data-icon="search" style="--icon-url:url(/assets/icons/search.svg)" aria-hidden="true"></span> racun apa hari ini?</div>
   <div class="chips" id="chips" role="group" aria-label="Filter kategori">
     <button class="chip on" type="button" data-f="semua">Semua</button>
     <button class="chip" type="button" data-f="pedes">Pedes</button>
@@ -101,94 +103,94 @@ body{font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction
     <article class="food" data-kat="pedes">
       <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=70" alt="Mangkuk mie pedas" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=70'">
       <div class="f-body">
-        <div class="f-top"><b>Seblak Rasa Bahaya</b><em>4.8★</em></div>
+        <div class="f-top"><b>Seblak Rasa Bahaya</b><em>4.8<span class="ui-icon" data-icon="star" style="--icon-url:url(/assets/icons/star.svg)" aria-hidden="true"></span></em></div>
         <small>Bandung · mulai Rp12rb · buka 09.00–22.00</small>
-        <div class="f-bot"><span class="badge">RACUN 🔥</span><button class="like" type="button" aria-pressed="false" aria-label="Suka Seblak Rasa Bahaya">🤍</button></div>
+        <div class="f-bot"><span class="badge">RACUN <span class="ui-icon" data-icon="flame" style="--icon-url:url(/assets/icons/flame.svg)" aria-hidden="true"></span></span><button class="like" type="button" aria-pressed="false" aria-label="Suka Seblak Rasa Bahaya"><span class="ui-icon" data-icon="heart" style="--icon-url:url(/assets/icons/heart.svg)" aria-hidden="true"></span></button></div>
       </div>
     </article>
     <article class="food" data-kat="manis">
       <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=600&q=70" alt="Es krim dan dessert manis" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=70'">
       <div class="f-body">
-        <div class="f-top"><b>Matcha Bingsoo</b><em>4.9★</em></div>
+        <div class="f-top"><b>Matcha Bingsoo</b><em>4.9<span class="ui-icon" data-icon="star" style="--icon-url:url(/assets/icons/star.svg)" aria-hidden="true"></span></em></div>
         <small>Jaksel · mulai Rp38rb · antre ya namanya</small>
-        <div class="f-bot"><span class="badge">RACUN 🔥</span><button class="like" type="button" aria-pressed="false" aria-label="Suka Matcha Bingsoo">🤍</button></div>
+        <div class="f-bot"><span class="badge">RACUN <span class="ui-icon" data-icon="flame" style="--icon-url:url(/assets/icons/flame.svg)" aria-hidden="true"></span></span><button class="like" type="button" aria-pressed="false" aria-label="Suka Matcha Bingsoo"><span class="ui-icon" data-icon="heart" style="--icon-url:url(/assets/icons/heart.svg)" aria-hidden="true"></span></button></div>
       </div>
     </article>
     <article class="food" data-kat="gurih">
       <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=70" alt="Nasi dengan lauk pauk" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=70'">
       <div class="f-body">
-        <div class="f-top"><b>Nasi Gulai Kawah</b><em>4.7★</em></div>
+        <div class="f-top"><b>Nasi Gulai Kawah</b><em>4.7<span class="ui-icon" data-icon="star" style="--icon-url:url(/assets/icons/star.svg)" aria-hidden="true"></span></em></div>
         <small>Bogor · mulai Rp25rb · abis jam 2 siang</small>
-        <div class="f-bot"><span class="badge">RACUN 🔥</span><button class="like" type="button" aria-pressed="false" aria-label="Suka Nasi Gulai Kawah">🤍</button></div>
+        <div class="f-bot"><span class="badge">RACUN <span class="ui-icon" data-icon="flame" style="--icon-url:url(/assets/icons/flame.svg)" aria-hidden="true"></span></span><button class="like" type="button" aria-pressed="false" aria-label="Suka Nasi Gulai Kawah"><span class="ui-icon" data-icon="heart" style="--icon-url:url(/assets/icons/heart.svg)" aria-hidden="true"></span></button></div>
       </div>
     </article>
     <article class="food" data-kat="minum">
       <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=600&q=70" alt="Segelas kopi susu" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=70'">
       <div class="f-body">
-        <div class="f-top"><b>Es Kopi Kenyang</b><em>4.6★</em></div>
+        <div class="f-top"><b>Es Kopi Kenyang</b><em>4.6<span class="ui-icon" data-icon="star" style="--icon-url:url(/assets/icons/star.svg)" aria-hidden="true"></span></em></div>
         <small>Setiabudi · mulai Rp18rb · gula dicoret pls</small>
-        <div class="f-bot"><span class="badge">RACUN 🔥</span><button class="like" type="button" aria-pressed="false" aria-label="Suka Es Kopi Kenyang">🤍</button></div>
+        <div class="f-bot"><span class="badge">RACUN <span class="ui-icon" data-icon="flame" style="--icon-url:url(/assets/icons/flame.svg)" aria-hidden="true"></span></span><button class="like" type="button" aria-pressed="false" aria-label="Suka Es Kopi Kenyang"><span class="ui-icon" data-icon="heart" style="--icon-url:url(/assets/icons/heart.svg)" aria-hidden="true"></span></button></div>
       </div>
     </article>
     <article class="food" data-kat="pedes">
       <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=70" alt="Ayam goreng crispy" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=70'">
       <div class="f-body">
-        <div class="f-top"><b>Ayam Geprek Mercon</b><em>4.8★</em></div>
+        <div class="f-top"><b>Ayam Geprek Mercon</b><em>4.8<span class="ui-icon" data-icon="star" style="--icon-url:url(/assets/icons/star.svg)" aria-hidden="true"></span></em></div>
         <small>Yogyakarta · mulai Rp20rb · level 5 = ampun</small>
-        <div class="f-bot"><span class="badge">RACUN 🔥</span><button class="like" type="button" aria-pressed="false" aria-label="Suka Ayam Geprek Mercon">🤍</button></div>
+        <div class="f-bot"><span class="badge">RACUN <span class="ui-icon" data-icon="flame" style="--icon-url:url(/assets/icons/flame.svg)" aria-hidden="true"></span></span><button class="like" type="button" aria-pressed="false" aria-label="Suka Ayam Geprek Mercon"><span class="ui-icon" data-icon="heart" style="--icon-url:url(/assets/icons/heart.svg)" aria-hidden="true"></span></button></div>
       </div>
     </article>
     <article class="food" data-kat="manis">
       <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=70" alt="Croissant butter" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=70'">
       <div class="f-body">
-        <div class="f-top"><b>Croissant Butter</b><em>4.9★</em></div>
+        <div class="f-top"><b>Croissant Butter</b><em>4.9<span class="ui-icon" data-icon="star" style="--icon-url:url(/assets/icons/star.svg)" aria-hidden="true"></span></em></div>
         <small>Bandung · mulai Rp28rb · abis sebelum siang</small>
-        <div class="f-bot"><span class="badge">RACUN 🔥</span><button class="like" type="button" aria-pressed="false" aria-label="Suka Croissant Butter">🤍</button></div>
+        <div class="f-bot"><span class="badge">RACUN <span class="ui-icon" data-icon="flame" style="--icon-url:url(/assets/icons/flame.svg)" aria-hidden="true"></span></span><button class="like" type="button" aria-pressed="false" aria-label="Suka Croissant Butter"><span class="ui-icon" data-icon="heart" style="--icon-url:url(/assets/icons/heart.svg)" aria-hidden="true"></span></button></div>
       </div>
     </article>
   </div>
-  <p class="kosong" id="kosong" hidden>belom ada racun di kategori ini 🤔 coba kategori lain.</p>
+  <p class="kosong" id="kosong" hidden>belom ada racun di kategori ini <span class="ui-icon" data-icon="circle-question-mark" style="--icon-url:url(/assets/icons/circle-question-mark.svg)" aria-hidden="true"></span> coba kategori lain.</p>
   </div>
 
   <div class="view" id="v-peta" hidden>
     <div class="app-head">
-      <span class="avatar" aria-hidden="true">🗺</span>
+      <span class="avatar" aria-hidden="true"><span class="ui-icon" data-icon="map" style="--icon-url:url(/assets/icons/map.svg)" aria-hidden="true"></span></span>
       <div class="hello"><b>Peta Racun</b><small>sebaran racun di sekitar kamu</small></div>
     </div>
     <div class="map" aria-hidden="true">
-      <span class="pin" style="left:16%;top:20%" data-info="Seblak Rasa Bahaya · 4.8★ · mulai Rp12rb">📍<small>Seblak</small></span>
-      <span class="pin" style="left:64%;top:16%" data-info="Matcha Bingsoo · 4.9★ · mulai Rp38rb">📍<small>Matcha</small></span>
-      <span class="pin" style="left:36%;top:46%" data-info="Nasi Gulai Kawah · 4.7★ · mulai Rp25rb">📍<small>Gulai</small></span>
-      <span class="pin" style="left:72%;top:56%" data-info="Es Kopi Kenyang · 4.6★ · mulai Rp18rb">📍<small>Kopi</small></span>
-      <span class="pin" style="left:24%;top:72%" data-info="Ayam Geprek Mercon · 4.8★ · mulai Rp20rb">📍<small>Geprek</small></span>
-      <span class="pin" style="left:60%;top:82%" data-info="Croissant Butter · 4.9★ · mulai Rp28rb">📍<small>Croissant</small></span>
+      <span class="pin" style="left:16%;top:20%" data-info="Seblak Rasa Bahaya · 4.8★ · mulai Rp12rb"><span class="ui-icon" data-icon="map-pin" style="--icon-url:url(/assets/icons/map-pin.svg)" aria-hidden="true"></span><small>Seblak</small></span>
+      <span class="pin" style="left:64%;top:16%" data-info="Matcha Bingsoo · 4.9★ · mulai Rp38rb"><span class="ui-icon" data-icon="map-pin" style="--icon-url:url(/assets/icons/map-pin.svg)" aria-hidden="true"></span><small>Matcha</small></span>
+      <span class="pin" style="left:36%;top:46%" data-info="Nasi Gulai Kawah · 4.7★ · mulai Rp25rb"><span class="ui-icon" data-icon="map-pin" style="--icon-url:url(/assets/icons/map-pin.svg)" aria-hidden="true"></span><small>Gulai</small></span>
+      <span class="pin" style="left:72%;top:56%" data-info="Es Kopi Kenyang · 4.6★ · mulai Rp18rb"><span class="ui-icon" data-icon="map-pin" style="--icon-url:url(/assets/icons/map-pin.svg)" aria-hidden="true"></span><small>Kopi</small></span>
+      <span class="pin" style="left:24%;top:72%" data-info="Ayam Geprek Mercon · 4.8★ · mulai Rp20rb"><span class="ui-icon" data-icon="map-pin" style="--icon-url:url(/assets/icons/map-pin.svg)" aria-hidden="true"></span><small>Geprek</small></span>
+      <span class="pin" style="left:60%;top:82%" data-info="Croissant Butter · 4.9★ · mulai Rp28rb"><span class="ui-icon" data-icon="map-pin" style="--icon-url:url(/assets/icons/map-pin.svg)" aria-hidden="true"></span><small>Croissant</small></span>
     </div>
-    <p class="petanote">📍 Tap pin buat lihat info singkat. Peta ini versi gaya-gayaan — nanti nyambung ke maps beneran.</p>
+    <p class="petanote"><span class="ui-icon" data-icon="map-pin" style="--icon-url:url(/assets/icons/map-pin.svg)" aria-hidden="true"></span> Tap pin buat lihat info singkat. Peta ini versi gaya-gayaan — nanti nyambung ke maps beneran.</p>
   </div>
 
   <div class="view" id="v-favorit" hidden>
     <div class="app-head">
-      <span class="avatar" aria-hidden="true">🤍</span>
+      <span class="avatar" aria-hidden="true"><span class="ui-icon" data-icon="heart" style="--icon-url:url(/assets/icons/heart.svg)" aria-hidden="true"></span></span>
       <div class="hello"><b>Favorit</b><small>racun yang kamu suka</small></div>
-      <span class="favchip" id="favchip2">🤍 0</span>
+      <span class="favchip" id="favchip2"><span class="ui-icon" data-icon="heart" style="--icon-url:url(/assets/icons/heart.svg)" aria-hidden="true"></span> 0</span>
     </div>
     <div class="feeds" id="favlist"></div>
-    <div class="kosong" id="fav-empty" hidden>Belum ada favorit — tap 🤍 di kartu racun di Beranda, nanti muncul di sini.</div>
+    <div class="kosong" id="fav-empty" hidden>Belum ada favorit — tap <span class="ui-icon" data-icon="heart" style="--icon-url:url(/assets/icons/heart.svg)" aria-hidden="true"></span> di kartu racun di Beranda, nanti muncul di sini.</div>
   </div>
 
   <div class="view" id="v-profil" hidden>
     <div class="app-head">
-      <span class="avatar" aria-hidden="true">👤</span>
+      <span class="avatar" aria-hidden="true"><span class="ui-icon" data-icon="user-round" style="--icon-url:url(/assets/icons/user-round.svg)" aria-hidden="true"></span></span>
       <div class="hello"><b>Profil</b><small>akun demo — tanpa login beneran</small></div>
     </div>
     <div class="kartu-profil">
-      <span class="avatar" aria-hidden="true">🍜</span>
-      <div class="hello"><b>Pecinta Racun</b><small>level: pedes mania 🌶</small></div>
+      <span class="avatar" aria-hidden="true"><span class="ui-icon" data-icon="soup" style="--icon-url:url(/assets/icons/soup.svg)" aria-hidden="true"></span></span>
+      <div class="hello"><b>Pecinta Racun</b><small>level: pedes mania <span class="ui-icon" data-icon="flame" style="--icon-url:url(/assets/icons/flame.svg)" aria-hidden="true"></span></small></div>
     </div>
     <h2>Pengaturan</h2>
     <div class="set">
-      <div class="set-row"><span>🔔 Notifikasi racun baru</span><button class="sw on" type="button" aria-pressed="true" aria-label="Notifikasi racun baru"></button></div>
-      <div class="set-row"><span>🌶 Mode pedas ekstra</span><button class="sw" type="button" aria-pressed="false" aria-label="Mode pedas ekstra"></button></div>
+      <div class="set-row"><span><span class="ui-icon" data-icon="bell" style="--icon-url:url(/assets/icons/bell.svg)" aria-hidden="true"></span> Notifikasi racun baru</span><button class="sw on" type="button" aria-pressed="true" aria-label="Notifikasi racun baru"></button></div>
+      <div class="set-row"><span><span class="ui-icon" data-icon="flame" style="--icon-url:url(/assets/icons/flame.svg)" aria-hidden="true"></span> Mode pedas ekstra</span><button class="sw" type="button" aria-pressed="false" aria-label="Mode pedas ekstra"></button></div>
     </div>
     <button class="resetbtn" type="button" id="reset-demo">↺ Reset favorit</button>
   </div>
@@ -196,11 +198,11 @@ body{font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <nav class="tabbar" aria-label="Menu demo">
-  <button class="tab on" type="button" data-v="beranda"><i>🏠</i>Beranda</button><button class="tab" type="button" data-v="peta"><i>🗺</i>Peta</button><button class="tab" type="button" data-v="favorit"><i>🤍</i>Favorit</button><button class="tab" type="button" data-v="profil"><i>👤</i>Profil</button>
+  <button class="tab on" type="button" data-v="beranda"><i><span class="ui-icon" data-icon="house" style="--icon-url:url(/assets/icons/house.svg)" aria-hidden="true"></span></i>Beranda</button><button class="tab" type="button" data-v="peta"><i><span class="ui-icon" data-icon="map" style="--icon-url:url(/assets/icons/map.svg)" aria-hidden="true"></span></i>Peta</button><button class="tab" type="button" data-v="favorit"><i><span class="ui-icon" data-icon="heart" style="--icon-url:url(/assets/icons/heart.svg)" aria-hidden="true"></span></i>Favorit</button><button class="tab" type="button" data-v="profil"><i><span class="ui-icon" data-icon="user-round" style="--icon-url:url(/assets/icons/user-round.svg)" aria-hidden="true"></span></i>Profil</button>
 </nav>
 </div></div>
-<a class="backpill" href="../karya.html#apk">◀ GATRA / karya</a>
-<p class="credit">Demo aplikasi mobile <b>Racunin</b> — dibuat oleh <b>GATRA</b> ✦ nama resto &amp; angka cuma contoh.</p>
+<a class="backpill" href="../karya.html#apk"><span class="ui-icon" data-icon="chevron-left" style="--icon-url:url(/assets/icons/chevron-left.svg)" aria-hidden="true"></span> GATRA / karya</a>
+<p class="credit">Demo aplikasi mobile <b>Racunin</b> — dibuat oleh <b>GATRA</b> <span class="ui-icon" data-icon="sparkles" style="--icon-url:url(/assets/icons/sparkles.svg)" aria-hidden="true"></span> nama resto &amp; angka cuma contoh.</p>
 <script>
 (function(){
 "use strict";

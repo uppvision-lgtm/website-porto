@@ -35,6 +35,8 @@
 .bandnote p{color:var(--muted);font-size:14.5px;line-height:1.65;margin:0}
 </style>
 <script src="../js/site.js?v=1" defer></script>
+<link rel="stylesheet" href="../css/icons.css?v=1">
+<script src="../js/icons.js?v=1" defer></script>
 </head>
 <body>
 <nav class="nav" id="nav">
@@ -45,31 +47,31 @@
       <div>
         <button class="ml work-toggle" type="button" aria-expanded="false" aria-controls="nav-work-links">Karya <span class="car" aria-hidden="true">▾</span></button>
         <div class="drop" id="nav-work-links">
-          <a href="../karya.html#apk"><span class="ic">📱</span><span><b>4 Demo Aplikasi Mobile</b><small>Jajan.in, GymKuy, Fokusin, Racunin</small></span></a>
-          <a href="../karya.html#web"><span class="ic">🌐</span><span><b>6 Demo Web Live</b><small>POS, podcast, kantin, kopi, festival, kamera</small></span></a>
-          <a href="../karya.html#proyek"><span class="ic">🧠</span><span><b>Proyek Asli ML &amp; Otomasi</b><small>PhoneFarm, Sistem Automasi &amp; ScrapPulse</small></span></a>
+          <a href="../karya.html#apk"><span class="ic"><span class="ui-icon" data-icon="smartphone" style="--icon-url:url(/assets/icons/smartphone.svg)" aria-hidden="true"></span></span><span><b>4 Demo Aplikasi Mobile</b><small>Jajan.in, GymKuy, Fokusin, Racunin</small></span></a>
+          <a href="../karya.html#web"><span class="ic"><span class="ui-icon" data-icon="globe" style="--icon-url:url(/assets/icons/globe.svg)" aria-hidden="true"></span></span><span><b>6 Demo Web Live</b><small>POS, podcast, kantin, kopi, festival, kamera</small></span></a>
+          <a href="../karya.html#proyek"><span class="ic"><span class="ui-icon" data-icon="brain-circuit" style="--icon-url:url(/assets/icons/brain-circuit.svg)" aria-hidden="true"></span></span><span><b>Proyek Asli ML &amp; Otomasi</b><small>PhoneFarm, Sistem Automasi &amp; ScrapPulse</small></span></a>
         </div>
       </div>
       <div><a class="ml" href="../proses.html">Proses</a></div>
       <div><a class="ml" href="../faq.html">FAQ</a></div>
     </div>
-    <div class="nav-r"><button class="nav-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true">☰</span></button>
-      <span class="lang" title="Bahasa Indonesia">🌐 ID</span>
+    <div class="nav-r"><button class="nav-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true"><span class="ui-icon" data-icon="menu" style="--icon-url:url(/assets/icons/menu.svg)" aria-hidden="true"></span></span></button>
+      <span class="lang" title="Bahasa Indonesia"><span class="ui-icon" data-icon="globe" style="--icon-url:url(/assets/icons/globe.svg)" aria-hidden="true"></span> ID</span>
       <a class="btn btn-p" href="../index.html#kontak">Konsultasi Gratis</a>
     </div>
   </div>
 </nav>
 <header class="hero" style="padding-bottom:30px">
   <div class="container">
-    <div class="badge">✦ Proyek Asli — Sudah Berdiri Beneran</div>
+    <div class="badge"><span class="ui-icon" data-icon="sparkles" style="--icon-url:url(/assets/icons/sparkles.svg)" aria-hidden="true"></span> Proyek Asli — Sudah Berdiri Beneran</div>
     <div class="eyebrow2" style="margin-top:8px">Studi Kasus — Machine Learning & NLP</div>
     <h1 style="max-width:840px;margin:10px auto 0;font-size:clamp(30px,4.6vw,46px)">ScrapPulse — Mesin Big Data Survei</h1>
     <p class="sub">Cukup ketik satu kata — brand, produk, kandidat, atau isu — sistem otomatis mengumpulkan berita &amp; data dari <b>Google News, Bing News, Hacker News, Wikipedia Pageviews, dan Google Trends</b>, mengekstrak teks lengkap artikel teratas, lalu menganalisis: <span class="hl">volume &amp; momentum, sentimen dwibahasa, topik dominan, bias media</span> — dan menyerahkan laporan siap pakai: dashboard HTML interaktif, Excel multi-sheet, dan JSON. Mode websitenya pakai <b>Flask</b>: search bar → progres live → dashboard terbuka sendiri.</p>
     <div class="cta" style="justify-content:center;margin-top:26px">
-      <a class="btn btn-p" href="https://wa.me/6281234567890">💬 Konsultasi via WhatsApp</a>
+      <a class="btn btn-p" href="https://wa.me/6281234567890"><span class="ui-icon" data-icon="message-circle" style="--icon-url:url(/assets/icons/message-circle.svg)" aria-hidden="true"></span> Konsultasi via WhatsApp</a>
       <a class="btn btn-o" href="#galeri">Lihat tangkapan layar ↓</a>
     </div>
-    <div class="rating"><span class="star">★ Proyek production</span> · berjalan beneran, bukan mockup</div>
+    <div class="rating"><span class="star"><span class="ui-icon" data-icon="star" style="--icon-url:url(/assets/icons/star.svg)" aria-hidden="true"></span> Proyek production</span> · berjalan beneran, bukan mockup</div>
     <div class="shields"><div class="shield">5<small>sumber data publik aktif</small></div><div class="shield">2<small>bahasa sentimen: ID + EN</small></div><div class="shield">3<small>output: dashboard, XLSX, JSON</small></div><div class="shield">8<small>negara di Top Search harian</small></div></div>
   </div>
 </header>
@@ -77,7 +79,7 @@
 <section id="galeri" class="tinted"><div class="container"><div class="center" style="margin-bottom:36px"><div class="eyebrow2">Tangkapan layar</div><h2>Ini Wujud Aslinya.</h2><p class="sec-sub">Screenshot langsung dari aplikasi yang berjalan — bukan mockup.</p></div><div class="grid2"><figure class="card" style="grid-column:1/-1" style="overflow:hidden;margin:0"><img src="../assets/scrap/scrap-landing.jpg" alt="Landing page mode web. Satu search bar, pilih periode &amp; bahasa, kl" loading="lazy" style="width:100%;display:block"><div class="figtion"><b>Landing page mode web.</b> Satu search bar, pilih periode &amp; bahasa, klik Analisis, pantau progres live.</div></figure><figure class="card" style="grid-column:1/-1" style="overflow:hidden;margin:0"><img src="../assets/scrap/scrap-charts.jpg" alt="Dashboard analisis. Volume harian + momentum, donut sentimen, topik do" loading="lazy" style="width:100%;display:block"><div class="figtion"><b>Dashboard analisis.</b> Volume harian + momentum, donut sentimen, topik dominan, perbandingan pageviews Wikipedia, dan kontribusi media per sumber (deteksi bias).</div></figure><figure class="card" style="overflow:hidden;margin:0"><img src="../assets/scrap/scrap-sentimen.jpg" alt="Pembahasan terpilih. Tiap berita diberi tag NETRAL / POSITIF / NEGATIF" loading="lazy" style="width:100%;display:block"><div class="figtion"><b>Pembahasan terpilih.</b> Tiap berita diberi tag NETRAL / POSITIF / NEGATIF lengkap dengan skor oleh mesin sentimen.</div></figure><figure class="card" style="overflow:hidden;margin:0"><img src="../assets/scrap/scrap-insight.jpg" alt="Laporan versi terang. Insight kunci, kutipan paling positif/negatif, d" loading="lazy" style="width:100%;display:block"><div class="figtion"><b>Laporan versi terang.</b> Insight kunci, kutipan paling positif/negatif, dan rekomendasi desain survei otomatis.</div></figure></div></div></section>
 <section class="tinted"><div class="container"><div class="center" style="margin-bottom:36px"><div class="eyebrow2">Analisis NLP</div><h2>Analisis yang Dikerjakan Mesin.</h2><p class="sec-sub">Empat lapis analisis yang biasanya dikerjakan tim riset — di sini otomatis dalam hitungan menit.</p></div><div class="grid2"><div class="stepcard"><div class="num">01</div><div><div class="b">Volume & Momentum</div><p>Volume pembahasan harian, momentum 7 hari terakhir vs periode sebelumnya, dan hari puncak.</p></div></div><div class="stepcard"><div class="num">02</div><div><div class="b">Sentimen Dwibahasa</div><p>Bahasa Indonesia pakai leksikon + aturan negasi & intensifier; Inggris pakai VADER.</p></div></div><div class="stepcard"><div class="num">03</div><div><div class="b">Topik & Bias Media</div><p>Topik dominan (unigram + bigram) dan media teratas per sentimen — kelihatan outlet mana condong ke arah mana.</p></div></div><div class="stepcard"><div class="num">04</div><div><div class="b">Kutipan & Rekomendasi Survei</div><p>Kutipan paling positif & negatif untuk hipotesis kuesioner, plus rekomendasi desain survei otomatis.</p></div></div></div></div></section>
 <section><div class="container"><div class="bandnote"><h3>Dibangun Hormat pada Sumber.</h3><p>Semua data diambil dari endpoint publik resmi dengan rate-limit yang sopan: cache 6 jam untuk pipeline analisis, 30 menit untuk Top Search. Tiap sumber punya status sendiri di laporan — kalau satu gagal, analisis tetap jalan. Hasil sentimen diposisikan jujur: indikasi arah opini, bukan pengganti survei lapangan.</p></div></div></section>
-<section class="tinted"><div class="container"><h2>Semua yang Ada di Dalamnya.</h2><p class="sec-sub" style="margin:0 0 22px">Dari pengambilan data sampai file Excel siap SPSS.</p><div class="chipsflex"><span class="chipsoft">5 sumber publik paralel</span><span class="chipsoft">Google News RSS (ID + EN)</span><span class="chipsoft">Bing News RSS — link penerbit</span><span class="chipsoft">Hacker News API</span><span class="chipsoft">Wikipedia Pageviews</span><span class="chipsoft">Google Trends 0–100</span><span class="chipsoft">newspaper4k teks lengkap</span><span class="chipsoft">Sentimen ID: negasi + intensifier</span><span class="chipsoft">VADER untuk Inggris</span><span class="chipsoft">Topik unigram + bigram</span><span class="chipsoft">Deteksi bias media</span><span class="chipsoft">Kutipan positif & negatif</span><span class="chipsoft">Rekomendasi survei otomatis</span><span class="chipsoft">Momentum 7 hari + hari puncak</span><span class="chipsoft">Perbandingan multi-kata kunci</span><span class="chipsoft">Excel multi-sheet SPSS-ready</span><span class="chipsoft">JSON untuk pipeline lanjutan</span><span class="chipsoft">Cache 6 jam hemat kuota</span><span class="chipsoft">Status sumber realtime</span><span class="chipsoft">Top Search 8 negara ⚡</span></div></div></section>
+<section class="tinted"><div class="container"><h2>Semua yang Ada di Dalamnya.</h2><p class="sec-sub" style="margin:0 0 22px">Dari pengambilan data sampai file Excel siap SPSS.</p><div class="chipsflex"><span class="chipsoft">5 sumber publik paralel</span><span class="chipsoft">Google News RSS (ID + EN)</span><span class="chipsoft">Bing News RSS — link penerbit</span><span class="chipsoft">Hacker News API</span><span class="chipsoft">Wikipedia Pageviews</span><span class="chipsoft">Google Trends 0–100</span><span class="chipsoft">newspaper4k teks lengkap</span><span class="chipsoft">Sentimen ID: negasi + intensifier</span><span class="chipsoft">VADER untuk Inggris</span><span class="chipsoft">Topik unigram + bigram</span><span class="chipsoft">Deteksi bias media</span><span class="chipsoft">Kutipan positif & negatif</span><span class="chipsoft">Rekomendasi survei otomatis</span><span class="chipsoft">Momentum 7 hari + hari puncak</span><span class="chipsoft">Perbandingan multi-kata kunci</span><span class="chipsoft">Excel multi-sheet SPSS-ready</span><span class="chipsoft">JSON untuk pipeline lanjutan</span><span class="chipsoft">Cache 6 jam hemat kuota</span><span class="chipsoft">Status sumber realtime</span><span class="chipsoft">Top Search 8 negara <span class="ui-icon" data-icon="zap" style="--icon-url:url(/assets/icons/zap.svg)" aria-hidden="true"></span></span></div></div></section>
 <section><div class="container"><div class="eyebrow2">Video cara kerja</div><h2>Lihat Langsung Dia Jalan.</h2><p class="sec-sub" style="margin:0 0 22px">Rekaman demo interaktif: ketik kata kunci → progres → dashboard. Data yang tampil adalah simulasi.</p><div class="vidbox"><video controls preload="metadata" poster="../assets/scrap/scrap-landing.jpg" src="../assets/videos/scrap.mp4">Browser kamu belum mendukung video. <a href="scrap-demo.html">Coba demo interaktif ScrapPulse</a>.</video></div></div></section>
 <footer>
   <div class="container">
@@ -105,15 +107,15 @@
         <h4>Kontak</h4>
         <a href="mailto:halo@gatraglobal.id">halo@gatraglobal.id</a>
         <a href="https://wa.me/6281234567890">WhatsApp</a>
-        <span>Indonesia — remote friendly 🌏</span>
+        <span>Indonesia — remote friendly <span class="ui-icon" data-icon="earth" style="--icon-url:url(/assets/icons/earth.svg)" aria-hidden="true"></span></span>
       </div>
     </div>
     <div class="copy">
-      <span>© 2026 GATRA — Gatra Global Technologies. Dibuat dengan ☕ dan semangat muda.</span>
+      <span>© 2026 GATRA — Gatra Global Technologies. Dibuat dengan <span class="ui-icon" data-icon="coffee" style="--icon-url:url(/assets/icons/coffee.svg)" aria-hidden="true"></span> dan semangat muda.</span>
     </div>
   </div>
 </footer>
-<a class="wa" href="https://wa.me/6281234567890" aria-label="Chat WhatsApp">💬</a>
+<a class="wa" href="https://wa.me/6281234567890" aria-label="Chat WhatsApp"><span class="ui-icon" data-icon="message-circle" style="--icon-url:url(/assets/icons/message-circle.svg)" aria-hidden="true"></span></a>
 
 </body>
 </html>

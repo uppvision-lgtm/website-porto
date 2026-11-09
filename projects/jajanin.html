@@ -87,30 +87,32 @@ body{font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction
 .riwayat li em{margin-left:auto;font-style:normal;font-weight:800;font-size:.84rem;color:var(--brand);flex-shrink:0}
 
 </style>
+<link rel="stylesheet" href="../css/icons.css?v=1">
+<script src="../js/icons.js?v=1" defer></script>
 </head>
 <body>
 <div class="phone"><div class="screen">
 <span class="punch" aria-hidden="true"></span>
-<div class="statusbar" aria-hidden="true"><span>12.45</span><span>📶 5G 🔋</span></div>
+<div class="statusbar" aria-hidden="true"><span>12.45</span><span><span class="ui-icon" data-icon="signal" style="--icon-url:url(/assets/icons/signal.svg)" aria-hidden="true"></span> 5G <span class="ui-icon" data-icon="battery-full" style="--icon-url:url(/assets/icons/battery-full.svg)" aria-hidden="true"></span></span></div>
 <div class="app-body">
   <div class="view on" id="v-beranda">
   <div class="app-head">
     <span class="avatar" aria-hidden="true">R</span>
-    <div class="hello"><b>Halo, Raka 👋</b><small>Kamis, 14 Agu · jajan aman hari ini</small></div>
-    <span class="bell" style="margin-left:auto;width:40px;height:40px;border-radius:13px;background:var(--card);border:1px solid var(--line);display:grid;place-items:center;font-size:1.05rem;flex-shrink:0" aria-hidden="true">🔔</span>
+    <div class="hello"><b>Halo, Raka <span class="ui-icon" data-icon="hand" style="--icon-url:url(/assets/icons/hand.svg)" aria-hidden="true"></span></b><small>Kamis, 14 Agu · jajan aman hari ini</small></div>
+    <span class="bell" style="margin-left:auto;width:40px;height:40px;border-radius:13px;background:var(--card);border:1px solid var(--line);display:grid;place-items:center;font-size:1.05rem;flex-shrink:0" aria-hidden="true"><span class="ui-icon" data-icon="bell" style="--icon-url:url(/assets/icons/bell.svg)" aria-hidden="true"></span></span>
   </div>
   <div class="saldo">
     <small>Sisa jajan bulan ini</small>
     <b id="saldo">Rp 842.000</b>
     <div class="bar"><i id="bar" style="width:58%"></i></div>
-    <div class="saldo-foot"><span id="terpakai">terpakai Rp 1.158.000</span><span class="pill">hemat 🔥</span></div>
+    <div class="saldo-foot"><span id="terpakai">terpakai Rp 1.158.000</span><span class="pill">hemat <span class="ui-icon" data-icon="flame" style="--icon-url:url(/assets/icons/flame.svg)" aria-hidden="true"></span></span></div>
   </div>
   <h2 class="lbl">Jajan cepat <small>— tap buat catat</small></h2>
   <div class="quick">
-    <button class="qbtn" type="button" data-nama="Kopi Susu" data-jml="18000"><i aria-hidden="true">☕</i><b>Kopi</b><span>18rb</span></button>
-    <button class="qbtn" type="button" data-nama="Ayam Geprek" data-jml="25000"><i aria-hidden="true">🍗</i><b>Makan</b><span>25rb</span></button>
-    <button class="qbtn" type="button" data-nama="Ojol" data-jml="22000"><i aria-hidden="true">🛵</i><b>Ojol</b><span>22rb</span></button>
-    <button class="qbtn" type="button" data-nama="Cilok" data-jml="10000"><i aria-hidden="true">🍡</i><b>Snack</b><span>10rb</span></button>
+    <button class="qbtn" type="button" data-nama="Kopi Susu" data-jml="18000"><i aria-hidden="true"><span class="ui-icon" data-icon="coffee" style="--icon-url:url(/assets/icons/coffee.svg)" aria-hidden="true"></span></i><b>Kopi</b><span>18rb</span></button>
+    <button class="qbtn" type="button" data-nama="Ayam Geprek" data-jml="25000"><i aria-hidden="true"><span class="ui-icon" data-icon="drumstick" style="--icon-url:url(/assets/icons/drumstick.svg)" aria-hidden="true"></span></i><b>Makan</b><span>25rb</span></button>
+    <button class="qbtn" type="button" data-nama="Ojol" data-jml="22000"><i aria-hidden="true"><span class="ui-icon" data-icon="bike" style="--icon-url:url(/assets/icons/bike.svg)" aria-hidden="true"></span></i><b>Ojol</b><span>22rb</span></button>
+    <button class="qbtn" type="button" data-nama="Cilok" data-jml="10000"><i aria-hidden="true"><span class="ui-icon" data-icon="cookie" style="--icon-url:url(/assets/icons/cookie.svg)" aria-hidden="true"></span></i><b>Snack</b><span>10rb</span></button>
   </div>
   <h2 class="lbl">Grafik 7 hari</h2>
   <div class="bars" aria-hidden="true">
@@ -118,37 +120,37 @@ body{font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction
   </div>
   <h2 class="lbl">Hari ini <small id="total-hari">— Rp 73.000</small></h2>
   <ul class="riwayat" id="riwayat">
-    <li><i>☕</i><div><b>Kopi Susu</b><small>13.42</small></div><em>-Rp18.000</em></li>
-    <li><i>🍗</i><div><b>Ayam Geprek</b><small>12.10</small></div><em>-Rp25.000</em></li>
-    <li><i>🍡</i><div><b>Cilok Bumbu Kacang</b><small>10.05</small></div><em>-Rp10.000</em></li>
-    <li><i>🛵</i><div><b>Ojol ke kampus</b><small>07.31</small></div><em>-Rp20.000</em></li>
+    <li><i><span class="ui-icon" data-icon="coffee" style="--icon-url:url(/assets/icons/coffee.svg)" aria-hidden="true"></span></i><div><b>Kopi Susu</b><small>13.42</small></div><em>-Rp18.000</em></li>
+    <li><i><span class="ui-icon" data-icon="drumstick" style="--icon-url:url(/assets/icons/drumstick.svg)" aria-hidden="true"></span></i><div><b>Ayam Geprek</b><small>12.10</small></div><em>-Rp25.000</em></li>
+    <li><i><span class="ui-icon" data-icon="cookie" style="--icon-url:url(/assets/icons/cookie.svg)" aria-hidden="true"></span></i><div><b>Cilok Bumbu Kacang</b><small>10.05</small></div><em>-Rp10.000</em></li>
+    <li><i><span class="ui-icon" data-icon="bike" style="--icon-url:url(/assets/icons/bike.svg)" aria-hidden="true"></span></i><div><b>Ojol ke kampus</b><small>07.31</small></div><em>-Rp20.000</em></li>
   </ul>
   </div>
 
   <div class="view" id="v-stat" hidden>
     <div class="app-head">
-      <span class="avatar" aria-hidden="true">📊</span>
+      <span class="avatar" aria-hidden="true"><span class="ui-icon" data-icon="chart-column" style="--icon-url:url(/assets/icons/chart-column.svg)" aria-hidden="true"></span></span>
       <div class="hello"><b>Statistik</b><small>rekap jajan kamu bulan ini</small></div>
     </div>
     <h2 class="lbl">Pengeluaran per kategori</h2>
     <div class="kat">
-      <div class="kat-row"><span>☕ Kopi</span><div class="kbar"><i style="width:64%"></i></div><b>Rp 418rb</b></div>
-      <div class="kat-row"><span>🍗 Makan</span><div class="kbar"><i style="width:58%"></i></div><b>Rp 394rb</b></div>
-      <div class="kat-row"><span>🛵 Ojol</span><div class="kbar"><i style="width:30%"></i></div><b>Rp 205rb</b></div>
-      <div class="kat-row"><span>🍡 Snack</span><div class="kbar"><i style="width:24%"></i></div><b>Rp 141rb</b></div>
+      <div class="kat-row"><span><span class="ui-icon" data-icon="coffee" style="--icon-url:url(/assets/icons/coffee.svg)" aria-hidden="true"></span> Kopi</span><div class="kbar"><i style="width:64%"></i></div><b>Rp 418rb</b></div>
+      <div class="kat-row"><span><span class="ui-icon" data-icon="drumstick" style="--icon-url:url(/assets/icons/drumstick.svg)" aria-hidden="true"></span> Makan</span><div class="kbar"><i style="width:58%"></i></div><b>Rp 394rb</b></div>
+      <div class="kat-row"><span><span class="ui-icon" data-icon="bike" style="--icon-url:url(/assets/icons/bike.svg)" aria-hidden="true"></span> Ojol</span><div class="kbar"><i style="width:30%"></i></div><b>Rp 205rb</b></div>
+      <div class="kat-row"><span><span class="ui-icon" data-icon="cookie" style="--icon-url:url(/assets/icons/cookie.svg)" aria-hidden="true"></span> Snack</span><div class="kbar"><i style="width:24%"></i></div><b>Rp 141rb</b></div>
     </div>
     <h2 class="lbl">Ringkasan bulan ini</h2>
     <div class="ringkas">
       <div><b>Rp 1.158.000</b><small>total terpakai</small></div>
       <div><b>Rp 38.600</b><small>rata-rata / hari</small></div>
-      <div><b>4 hari</b><small>tanpa jajan 🎉</small></div>
+      <div><b>4 hari</b><small>tanpa jajan <span class="ui-icon" data-icon="party-popper" style="--icon-url:url(/assets/icons/party-popper.svg)" aria-hidden="true"></span></small></div>
     </div>
-    <div class="insight">💡 <b>Insight:</b> Kopi jadi jajan favoritmu bulan ini — coba ganti 2 hari seminggu sama teh, dompetmu ngucapkan terima kasih.</div>
+    <div class="insight"><span class="ui-icon" data-icon="lightbulb" style="--icon-url:url(/assets/icons/lightbulb.svg)" aria-hidden="true"></span> <b>Insight:</b> Kopi jadi jajan favoritmu bulan ini — coba ganti 2 hari seminggu sama teh, dompetmu ngucapkan terima kasih.</div>
   </div>
 
   <div class="view" id="v-target" hidden>
     <div class="app-head">
-      <span class="avatar" aria-hidden="true">🎯</span>
+      <span class="avatar" aria-hidden="true"><span class="ui-icon" data-icon="target" style="--icon-url:url(/assets/icons/target.svg)" aria-hidden="true"></span></span>
       <div class="hello"><b>Target</b><small>pantau biar dompet aman</small></div>
     </div>
     <div class="saldo">
@@ -163,12 +165,12 @@ body{font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction
       <button class="qbtn tgt" type="button" data-t="2500000"><b>2,5 jt</b></button>
       <button class="qbtn tgt" type="button" data-t="3000000"><b>3 jt</b></button>
     </div>
-    <div class="insight">🎯 <b>Cara pakai:</b> pilih target — bar di Beranda dan di sini otomatis menyesuaikan. Quick-add di Beranda tetap jalan kayak biasa.</div>
+    <div class="insight"><span class="ui-icon" data-icon="target" style="--icon-url:url(/assets/icons/target.svg)" aria-hidden="true"></span> <b>Cara pakai:</b> pilih target — bar di Beranda dan di sini otomatis menyesuaikan. Quick-add di Beranda tetap jalan kayak biasa.</div>
   </div>
 
   <div class="view" id="v-profil" hidden>
     <div class="app-head">
-      <span class="avatar" aria-hidden="true">👤</span>
+      <span class="avatar" aria-hidden="true"><span class="ui-icon" data-icon="user-round" style="--icon-url:url(/assets/icons/user-round.svg)" aria-hidden="true"></span></span>
       <div class="hello"><b>Profil</b><small>akun demo — nggak nyambung ke mana-mana</small></div>
     </div>
     <div class="kartu-profil">
@@ -177,21 +179,21 @@ body{font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction
     </div>
     <h2 class="lbl">Pengaturan</h2>
     <div class="set">
-      <div class="set-row"><span>🔔 Notifikasi harian</span><button class="sw on" type="button" aria-pressed="true" aria-label="Notifikasi harian"></button></div>
-      <div class="set-row"><span>📧 Laporan mingguan</span><button class="sw" type="button" aria-pressed="false" aria-label="Laporan mingguan"></button></div>
-      <div class="set-row"><span>🌙 Mode hemat malam</span><button class="sw" type="button" aria-pressed="false" aria-label="Mode hemat malam"></button></div>
+      <div class="set-row"><span><span class="ui-icon" data-icon="bell" style="--icon-url:url(/assets/icons/bell.svg)" aria-hidden="true"></span> Notifikasi harian</span><button class="sw on" type="button" aria-pressed="true" aria-label="Notifikasi harian"></button></div>
+      <div class="set-row"><span><span class="ui-icon" data-icon="mail" style="--icon-url:url(/assets/icons/mail.svg)" aria-hidden="true"></span> Laporan mingguan</span><button class="sw" type="button" aria-pressed="false" aria-label="Laporan mingguan"></button></div>
+      <div class="set-row"><span><span class="ui-icon" data-icon="moon" style="--icon-url:url(/assets/icons/moon.svg)" aria-hidden="true"></span> Mode hemat malam</span><button class="sw" type="button" aria-pressed="false" aria-label="Mode hemat malam"></button></div>
     </div>
     <button class="resetbtn" type="button" id="reset-demo">↺ Reset demo</button>
     <p class="insight">Data demo nggak disimpan ke mana pun — segar lagi tiap kali halaman dibuka.</p>
   </div>
 </div>
 <nav class="tabbar" aria-label="Menu demo">
-  <button class="tab on" type="button" data-v="beranda"><i>🏠</i>Beranda</button><button class="tab" type="button" data-v="stat"><i>📊</i>Statistik</button><button class="tab" type="button" data-v="target"><i>🎯</i>Target</button><button class="tab" type="button" data-v="profil"><i>👤</i>Profil</button>
+  <button class="tab on" type="button" data-v="beranda"><i><span class="ui-icon" data-icon="house" style="--icon-url:url(/assets/icons/house.svg)" aria-hidden="true"></span></i>Beranda</button><button class="tab" type="button" data-v="stat"><i><span class="ui-icon" data-icon="chart-column" style="--icon-url:url(/assets/icons/chart-column.svg)" aria-hidden="true"></span></i>Statistik</button><button class="tab" type="button" data-v="target"><i><span class="ui-icon" data-icon="target" style="--icon-url:url(/assets/icons/target.svg)" aria-hidden="true"></span></i>Target</button><button class="tab" type="button" data-v="profil"><i><span class="ui-icon" data-icon="user-round" style="--icon-url:url(/assets/icons/user-round.svg)" aria-hidden="true"></span></i>Profil</button>
 </nav>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </div></div>
-<a class="backpill" href="../karya.html#apk">◀ GATRA / karya</a>
-<p class="credit">Demo aplikasi mobile <b>Jajan.in</b> — dibuat oleh <b>GATRA</b> ✦ semua angka di atas cuma contoh.</p>
+<a class="backpill" href="../karya.html#apk"><span class="ui-icon" data-icon="chevron-left" style="--icon-url:url(/assets/icons/chevron-left.svg)" aria-hidden="true"></span> GATRA / karya</a>
+<p class="credit">Demo aplikasi mobile <b>Jajan.in</b> — dibuat oleh <b>GATRA</b> <span class="ui-icon" data-icon="sparkles" style="--icon-url:url(/assets/icons/sparkles.svg)" aria-hidden="true"></span> semua angka di atas cuma contoh.</p>
 <script>
 (function(){
 "use strict";
@@ -241,7 +243,7 @@ d.querySelectorAll(".qbtn:not(.tgt)").forEach(function(b){
     saldo-=jml;terpakai+=jml;totalHari+=jml;
     var t=new Date(),jam=t.getHours()+"."+String(t.getMinutes()).padStart(2,"0");
     var li=d.createElement("li");
-    li.innerHTML='<i>'+b.querySelector("i").textContent+'</i><div><b>'+nama+'</b><small>baru saja · '+jam+'</small></div><em>-'+rp(jml)+'</em>';
+    li.innerHTML='<i>'+b.querySelector("i").innerHTML+'</i><div><b>'+nama+'</b><small>baru saja · '+jam+'</small></div><em>-'+rp(jml)+'</em>';
     list.prepend(li);
     if(li.animate){li.animate([{transform:"translateY(-10px)",opacity:0},{transform:"translateY(0)",opacity:1}],{duration:260,easing:"ease-out"});}
     upd();

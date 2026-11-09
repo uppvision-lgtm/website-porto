@@ -66,32 +66,34 @@ footer a{color:var(--or)}
 @media(max-width:880px){.hero{grid-template-columns:1fr;padding-top:44px;gap:34px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
+<link rel="stylesheet" href="../css/icons.css?v=1">
+<script src="../js/icons.js?v=1" defer></script>
 </head>
 <body>
 <nav>
-  <a class="logo" href="#">🍱 GoKantin</a>
+  <a class="logo" href="#"><span class="ui-icon" data-icon="utensils" style="--icon-url:url(/assets/icons/utensils.svg)" aria-hidden="true"></span> GoKantin</a>
   <a class="l" href="#menu">Menu Hari Ini</a>
   <a class="l" href="#cara">Cara Order</a>
   <a class="l" href="#">Mitra Kantin</a>
-  <button class="cart" id="cart" type="button">🛒 Keranjang (<span id="cartN">0</span>)</button><span id="cart-status" role="status" aria-live="polite" style="font-size:.85rem"></span>
+  <button class="cart" id="cart" type="button"><span class="ui-icon" data-icon="shopping-cart" style="--icon-url:url(/assets/icons/shopping-cart.svg)" aria-hidden="true"></span> Keranjang (<span id="cartN">0</span>)</button><span id="cart-status" role="status" aria-live="polite" style="font-size:.85rem"></span>
 </nav>
 <header class="hero">
   <div>
     <h1>Laper di kampus? <mark>Order dulu</mark>, lolos antrean.</h1>
     <p>Pesan dari kantin favorit pas masih di kelas — pas bel pulang, pesananmu udah nunggu di rak ambil. Bayar QRIS, nggak perlu drama uang receh.</p>
-    <div class="chips"><span>✓ Tanpa ngantri</span><span>✓ Bayar QRIS</span><span>✓ Siap 10 menit</span></div>
+    <div class="chips"><span><span class="ui-icon" data-icon="check" style="--icon-url:url(/assets/icons/check.svg)" aria-hidden="true"></span> Tanpa ngantri</span><span><span class="ui-icon" data-icon="check" style="--icon-url:url(/assets/icons/check.svg)" aria-hidden="true"></span> Bayar QRIS</span><span><span class="ui-icon" data-icon="check" style="--icon-url:url(/assets/icons/check.svg)" aria-hidden="true"></span> Siap 10 menit</span></div>
     <div style="display:flex;gap:14px;margin-top:28px;flex-wrap:wrap">
-      <a class="add" style="text-decoration:none;font-size:1.05rem;padding:12px 24px" href="#menu">Lihat Menu 🍜</a>
+      <a class="add" style="text-decoration:none;font-size:1.05rem;padding:12px 24px" href="#menu">Lihat Menu <span class="ui-icon" data-icon="soup" style="--icon-url:url(/assets/icons/soup.svg)" aria-hidden="true"></span></a>
     </div>
   </div>
   <div class="pic">
     <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80" alt="Aneka menu makanan kantin di atas meja" fetchpriority="high" decoding="async">
-    <span class="float f1">⏱️ Siap 10 menit</span>
-    <span class="float f2">🔥 4.9 · 2rb+ review</span>
+    <span class="float f1"><span class="ui-icon" data-icon="timer" style="--icon-url:url(/assets/icons/timer.svg)" aria-hidden="true"></span> Siap 10 menit</span>
+    <span class="float f2"><span class="ui-icon" data-icon="flame" style="--icon-url:url(/assets/icons/flame.svg)" aria-hidden="true"></span> 4.9 · 2rb+ review</span>
   </div>
 </header>
 <section class="msec" id="menu">
-  <h2 class="big center">Menu Hari Ini 🍴</h2>
+  <h2 class="big center">Menu Hari Ini <span class="ui-icon" data-icon="utensils" style="--icon-url:url(/assets/icons/utensils.svg)" aria-hidden="true"></span></h2>
   <p class="subc">Update tiap pagi langsung dari kantin — habis ya habis.</p>
   <div class="grid6">
     <article class="dish">
@@ -121,7 +123,7 @@ footer a{color:var(--or)}
   </div>
 </section>
 <section class="msec" id="cara" style="padding-top:0">
-  <h2 class="big center">Cara Order ⚡</h2>
+  <h2 class="big center">Cara Order <span class="ui-icon" data-icon="zap" style="--icon-url:url(/assets/icons/zap.svg)" aria-hidden="true"></span></h2>
   <p class="subc">Tiga langkah, dua menit, zero antrean.</p>
   <div class="steps">
     <div class="st"><span class="n">1</span><h3>Pilih Menu</h3><p>Scroll menu, tekan + Keranjang. Bisa checkout bareng teman sekelas biar hemat ongkir.</p></div>
@@ -131,13 +133,13 @@ footer a{color:var(--or)}
 </section>
 <section class="quote-strip">
   <p>"Dulu istirahat 15 menit habis buat ngantri. Sekarang 15 menit buat makan. Life changing fr."</p>
-  <span>— Rafi, Teknik '24 · ★★★★★</span>
+  <span>— Rafi, Teknik '24 · <span class="ui-icon" data-icon="star" style="--icon-url:url(/assets/icons/star.svg)" aria-hidden="true"></span><span class="ui-icon" data-icon="star" style="--icon-url:url(/assets/icons/star.svg)" aria-hidden="true"></span><span class="ui-icon" data-icon="star" style="--icon-url:url(/assets/icons/star.svg)" aria-hidden="true"></span><span class="ui-icon" data-icon="star" style="--icon-url:url(/assets/icons/star.svg)" aria-hidden="true"></span><span class="ui-icon" data-icon="star" style="--icon-url:url(/assets/icons/star.svg)" aria-hidden="true"></span></span>
 </section>
 <footer>
   <span>© 2026 GoKantin — demo dibuat oleh <a href="../index.html">GATRA</a></span>
   <span>Mitra: 12 kantin kampus &amp; 40+ tenan</span>
 </footer>
-<a class="backpill" href="../karya.html">◀ GATRA / portfolio</a>
+<a class="backpill" href="../karya.html"><span class="ui-icon" data-icon="chevron-left" style="--icon-url:url(/assets/icons/chevron-left.svg)" aria-hidden="true"></span> GATRA / portfolio</a>
 <script>
 (function(){
   "use strict";

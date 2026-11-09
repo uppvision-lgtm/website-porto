@@ -80,6 +80,8 @@ footer a{color:var(--vio);font-weight:700;text-decoration:none}
 @media(max-width:600px){nav{gap:12px}nav .logo{flex:1 1 50%}nav .cta{margin-left:0;order:0}nav a.l{order:1;font-size:.85rem}.sec>.sub{margin-top:0}.eps,.feat{grid-template-columns:minmax(0,1fr)}}
 :where(a,button):focus-visible{outline:3px solid var(--lime);outline-offset:4px}
 </style>
+<link rel="stylesheet" href="../css/icons.css?v=1">
+<script src="../js/icons.js?v=1" defer></script>
 </head>
 <body>
 <nav>
@@ -91,24 +93,24 @@ footer a{color:var(--vio);font-weight:700;text-decoration:none}
 </nav>
 <header class="hero">
   <div>
-    <span class="badge">🎧 PLATFORM PODCAST</span>
+    <span class="badge"><span class="ui-icon" data-icon="headphones" style="--icon-url:url(/assets/icons/headphones.svg)" aria-hidden="true"></span> PLATFORM PODCAST</span>
     <h1>Dengerin suara-oranye favorit, <em>tanpa gangguan.</em></h1>
     <p>Stream ribuan episode dari kreator lokal, download buat dijalan, dan dukung kreator favoritmu langsung dari app.</p>
     <div class="btns">
-      <button class="btn-p" id="playHero" type="button">▶ Mulai Dengerin</button>
+      <button class="btn-p" id="playHero" type="button"><span class="ui-icon" data-icon="play" style="--icon-url:url(/assets/icons/play.svg)" aria-hidden="true"></span> Mulai Dengerin</button>
       <a class="btn-g" href="#trending">Jelajah Episode</a>
     </div>
     <div class="hstats">
       <div><b>128rb</b><span>pendengar aktif</span></div>
       <div><b>4.500+</b><span>episode tayang</span></div>
-      <div><b>4.9★</b><span>rating aplikasi</span></div>
+      <div><b>4.9<span class="ui-icon" data-icon="star" style="--icon-url:url(/assets/icons/star.svg)" aria-hidden="true"></span></b><span>rating aplikasi</span></div>
     </div>
   </div>
   <div class="player" id="player">
     <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&w=900&q=80" alt="Mikrofon podcast di studio" fetchpriority="high" decoding="async">
     <div class="now">
       <div class="t"><b>Cuplikan demo SmartCast</b><span id="play-status" role="status">Siap diputar</span></div>
-      <button class="play" id="playBtn" type="button" aria-label="Putar atau jeda episode">▶</button>
+      <button class="play" id="playBtn" type="button" aria-label="Putar atau jeda episode"><span class="ui-icon" data-icon="play" style="--icon-url:url(/assets/icons/play.svg)" aria-hidden="true"></span></button>
     </div>
     <div class="wave" aria-hidden="true"><i style="--h:35%;height:35%"></i><i style="--h:60%;height:60%"></i><i style="--h:80%;height:80%"></i><i style="--h:45%;height:45%"></i><i style="--h:70%;height:70%"></i><i style="--h:30%;height:30%"></i><i style="--h:90%;height:90%"></i><i style="--h:55%;height:55%"></i><i style="--h:65%;height:65%"></i><i style="--h:40%;height:40%"></i><i style="--h:85%;height:85%"></i><i style="--h:50%;height:50%"></i><i style="--h:75%;height:75%"></i><i style="--h:32%;height:32%"></i><i style="--h:95%;height:95%"></i><i style="--h:60%;height:60%"></i><i style="--h:42%;height:42%"></i><i style="--h:78%;height:78%"></i><i style="--h:52%;height:52%"></i><i style="--h:88%;height:88%"></i><i style="--h:38%;height:38%"></i><i style="--h:66%;height:66%"></i></div>
     <div class="prog"><i style="width:0%"></i></div>
@@ -122,24 +124,24 @@ footer a{color:var(--vio);font-weight:700;text-decoration:none}
   <div class="eps">
     <article class="ep">
       <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=900&q=80" alt="Cover episode: mikrofon di studio malam" loading="lazy" decoding="async">
-      <div class="c"><span class="cat">CERITA · MISTERI</span><h3>Malam-Malam Sunyi: Kisah Penjaga Stasiun</h3><p>Sinyal Malam · Ep. 44</p><div class="row"><span>42 min</span><b>▶ 24,1rb putar</b></div></div>
+      <div class="c"><span class="cat">CERITA · MISTERI</span><h3>Malam-Malam Sunyi: Kisah Penjaga Stasiun</h3><p>Sinyal Malam · Ep. 44</p><div class="row"><span>42 min</span><b><span class="ui-icon" data-icon="play" style="--icon-url:url(/assets/icons/play.svg)" aria-hidden="true"></span> 24,1rb putar</b></div></div>
     </article>
     <article class="ep">
       <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=900&q=80" alt="Cover episode: mic dan headphone" loading="lazy" decoding="async">
-      <div class="c"><span class="cat">FINANSIAL · NGOBROL</span><h3>Uang Kecil Tapi Mau Nabung, Gak Sih?</h3><p>Ruang Rapat Ransum · Ep. 87</p><div class="row"><span>36 min</span><b>▶ 19,8rb putar</b></div></div>
+      <div class="c"><span class="cat">FINANSIAL · NGOBROL</span><h3>Uang Kecil Tapi Mau Nabung, Gak Sih?</h3><p>Ruang Rapat Ransum · Ep. 87</p><div class="row"><span>36 min</span><b><span class="ui-icon" data-icon="play" style="--icon-url:url(/assets/icons/play.svg)" aria-hidden="true"></span> 19,8rb putar</b></div></div>
     </article>
     <article class="ep">
       <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=900&q=80" alt="Cover episode: headphone di tempat gelap" loading="lazy" decoding="async">
-      <div class="c"><span class="cat">LATE NIGHT · CHILL</span><h3>LO-FI &amp; Obrolan Lama Jam 2 Pagi</h3><p>Headphone Club · Ep. 120</p><div class="row"><span>58 min</span><b>▶ 17,2rb putar</b></div></div>
+      <div class="c"><span class="cat">LATE NIGHT · CHILL</span><h3>LO-FI &amp; Obrolan Lama Jam 2 Pagi</h3><p>Headphone Club · Ep. 120</p><div class="row"><span>58 min</span><b><span class="ui-icon" data-icon="play" style="--icon-url:url(/assets/icons/play.svg)" aria-hidden="true"></span> 17,2rb putar</b></div></div>
     </article>
   </div>
 </section>
 <section class="sec" id="fitur" style="padding-top:0">
   <h2>Kenapa SmartCast?</h2>
   <div class="feat">
-    <div class="f"><span class="ic">🔇</span><h3>Nol Iklan Nyeleneh</h3><p>Iklan cuma di awal, pendek, dan relevan — biasanya malah dari kreatornya sendiri.</p></div>
-    <div class="f"><span class="ic">⬇️</span><h3>Download Offline</h3><p>Simpan episode buat dijalan — hemat kuota, tetap jalan tanpa sinyal.</p></div>
-    <div class="f"><span class="ic">💜</span><h3>Dukung Kreator</h3><p>Tip kreator favorit langsung dari app. 90% masuk ke dompet kreator, kami cuma 10%.</p></div>
+    <div class="f"><span class="ic"><span class="ui-icon" data-icon="volume-x" style="--icon-url:url(/assets/icons/volume-x.svg)" aria-hidden="true"></span></span><h3>Nol Iklan Nyeleneh</h3><p>Iklan cuma di awal, pendek, dan relevan — biasanya malah dari kreatornya sendiri.</p></div>
+    <div class="f"><span class="ic"><span class="ui-icon" data-icon="download" style="--icon-url:url(/assets/icons/download.svg)" aria-hidden="true"></span></span><h3>Download Offline</h3><p>Simpan episode buat dijalan — hemat kuota, tetap jalan tanpa sinyal.</p></div>
+    <div class="f"><span class="ic"><span class="ui-icon" data-icon="heart" style="--icon-url:url(/assets/icons/heart.svg)" aria-hidden="true"></span></span><h3>Dukung Kreator</h3><p>Tip kreator favorit langsung dari app. 90% masuk ke dompet kreator, kami cuma 10%.</p></div>
   </div>
 </section>
 <section class="cta-band" id="kreator">
@@ -151,7 +153,7 @@ footer a{color:var(--vio);font-weight:700;text-decoration:none}
   <span>© 2026 SmartCast — demo dibuat oleh <a href="../index.html">GATRA</a></span>
   <span>iOS · Android · Web</span>
 </footer>
-<a class="backpill" href="../karya.html">◀ GATRA / portfolio</a>
+<a class="backpill" href="../karya.html"><span class="ui-icon" data-icon="chevron-left" style="--icon-url:url(/assets/icons/chevron-left.svg)" aria-hidden="true"></span> GATRA / portfolio</a>
 <script>
 (function(){
   "use strict";

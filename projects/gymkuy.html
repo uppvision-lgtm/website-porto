@@ -90,17 +90,19 @@ body{font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction
 .day.on{background:var(--brand-soft);border-color:var(--brand)}
 
 </style>
+<link rel="stylesheet" href="../css/icons.css?v=1">
+<script src="../js/icons.js?v=1" defer></script>
 </head>
 <body>
 <div class="phone"><div class="screen">
 <span class="punch" aria-hidden="true"></span>
-<div class="statusbar" aria-hidden="true"><span>12.45</span><span>📶 5G 🔋</span></div>
+<div class="statusbar" aria-hidden="true"><span>12.45</span><span><span class="ui-icon" data-icon="signal" style="--icon-url:url(/assets/icons/signal.svg)" aria-hidden="true"></span> 5G <span class="ui-icon" data-icon="battery-full" style="--icon-url:url(/assets/icons/battery-full.svg)" aria-hidden="true"></span></span></div>
 <div class="app-body">
   <div class="view on" id="v-mulai">
   <div class="app-head">
-    <span class="avatar" aria-hidden="true">💪</span>
+    <span class="avatar" aria-hidden="true"><span class="ui-icon" data-icon="biceps-flexed" style="--icon-url:url(/assets/icons/biceps-flexed.svg)" aria-hidden="true"></span></span>
     <div class="hello"><b>Push Day</b><small>Kamis, 14 Agu · sesi sore</small></div>
-    <span class="streak">🔥 12 hari</span>
+    <span class="streak"><span class="ui-icon" data-icon="flame" style="--icon-url:url(/assets/icons/flame.svg)" aria-hidden="true"></span> 12 hari</span>
   </div>
   <div class="ring-card">
     <div class="ring-wrap">
@@ -109,23 +111,23 @@ body{font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction
     </div>
     <div class="ring-side">
       <b id="kalori">0 kkal</b><small>terbakar est.</small>
-      <span class="msg" id="msg">gas mulai! 💪</span>
+      <span class="msg" id="msg">gas mulai! <span class="ui-icon" data-icon="biceps-flexed" style="--icon-url:url(/assets/icons/biceps-flexed.svg)" aria-hidden="true"></span></span>
     </div>
   </div>
   <h2 class="lbl">Latihan hari ini <small>— tap buat ceklis</small></h2>
   <ul class="moves" id="moves">
-    <li class="move"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai Bench Press selesai">✓</button><div><b>Bench Press</b><small>4 × 8 · 60 kg</small></div><em>🔥64</em></li>
-    <li class="move"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai Squat selesai">✓</button><div><b>Squat</b><small>4 × 8 · 80 kg</small></div><em>🔥96</em></li>
-    <li class="move"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai Pull Up selesai">✓</button><div><b>Pull Up</b><small>3 × 8 · beban badan</small></div><em>🔥58</em></li>
-    <li class="move"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai Plank selesai">✓</button><div><b>Plank</b><small>3 × 60 detik</small></div><em>🔥24</em></li>
-    <li class="move"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai Deadlift selesai">✓</button><div><b>Deadlift</b><small>5 × 5 · 70 kg</small></div><em>🔥88</em></li>
+    <li class="move"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai Bench Press selesai"><span class="ui-icon" data-icon="check" style="--icon-url:url(/assets/icons/check.svg)" aria-hidden="true"></span></button><div><b>Bench Press</b><small>4 × 8 · 60 kg</small></div><em><span class="ui-icon" data-icon="flame" style="--icon-url:url(/assets/icons/flame.svg)" aria-hidden="true"></span>64</em></li>
+    <li class="move"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai Squat selesai"><span class="ui-icon" data-icon="check" style="--icon-url:url(/assets/icons/check.svg)" aria-hidden="true"></span></button><div><b>Squat</b><small>4 × 8 · 80 kg</small></div><em><span class="ui-icon" data-icon="flame" style="--icon-url:url(/assets/icons/flame.svg)" aria-hidden="true"></span>96</em></li>
+    <li class="move"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai Pull Up selesai"><span class="ui-icon" data-icon="check" style="--icon-url:url(/assets/icons/check.svg)" aria-hidden="true"></span></button><div><b>Pull Up</b><small>3 × 8 · beban badan</small></div><em><span class="ui-icon" data-icon="flame" style="--icon-url:url(/assets/icons/flame.svg)" aria-hidden="true"></span>58</em></li>
+    <li class="move"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai Plank selesai"><span class="ui-icon" data-icon="check" style="--icon-url:url(/assets/icons/check.svg)" aria-hidden="true"></span></button><div><b>Plank</b><small>3 × 60 detik</small></div><em><span class="ui-icon" data-icon="flame" style="--icon-url:url(/assets/icons/flame.svg)" aria-hidden="true"></span>24</em></li>
+    <li class="move"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai Deadlift selesai"><span class="ui-icon" data-icon="check" style="--icon-url:url(/assets/icons/check.svg)" aria-hidden="true"></span></button><div><b>Deadlift</b><small>5 × 5 · 70 kg</small></div><em><span class="ui-icon" data-icon="flame" style="--icon-url:url(/assets/icons/flame.svg)" aria-hidden="true"></span>88</em></li>
   </ul>
-  <div class="banner" id="banner" hidden>🎉 Push Day selesai! Streak 12 → 13 hari. Jangan lupa stretching &amp; minum. 🧊</div>
+  <div class="banner" id="banner" hidden><span class="ui-icon" data-icon="party-popper" style="--icon-url:url(/assets/icons/party-popper.svg)" aria-hidden="true"></span> Push Day selesai! Streak 12 → 13 hari. Jangan lupa stretching &amp; minum. <span class="ui-icon" data-icon="snowflake" style="--icon-url:url(/assets/icons/snowflake.svg)" aria-hidden="true"></span></div>
   <h2 class="lbl">Minggu ini</h2>
   <div class="days" aria-hidden="true">
-    <div class="day on"><small>sen</small><b>✓</b></div>
-    <div class="day on"><small>sel</small><b>✓</b></div>
-    <div class="day"><small>rab</small><b>😴</b></div>
+    <div class="day on"><small>sen</small><b><span class="ui-icon" data-icon="check" style="--icon-url:url(/assets/icons/check.svg)" aria-hidden="true"></span></b></div>
+    <div class="day on"><small>sel</small><b><span class="ui-icon" data-icon="check" style="--icon-url:url(/assets/icons/check.svg)" aria-hidden="true"></span></b></div>
+    <div class="day"><small>rab</small><b><span class="ui-icon" data-icon="moon" style="--icon-url:url(/assets/icons/moon.svg)" aria-hidden="true"></span></b></div>
     <div class="day on"><small>kam</small><b>•</b></div>
     <div class="day"><small>jum</small><b>–</b></div>
     <div class="day"><small>sab</small><b>–</b></div>
@@ -135,24 +137,24 @@ body{font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction
 
   <div class="view" id="v-jadwal" hidden>
     <div class="app-head">
-      <span class="avatar" aria-hidden="true">📅</span>
+      <span class="avatar" aria-hidden="true"><span class="ui-icon" data-icon="calendar-days" style="--icon-url:url(/assets/icons/calendar-days.svg)" aria-hidden="true"></span></span>
       <div class="hello"><b>Jadwal Mingguan</b><small>tap baris buat tandai selesai</small></div>
       <span class="streak">3/6</span>
     </div>
     <div class="set">
-      <div class="set-row jdone"><span><b>Sen</b> · Push Day</span><em>✓ selesai</em></div>
-      <div class="set-row"><span><b>Sel</b> · Pull Day</span><em>tap ✓</em></div>
-      <div class="set-row" data-rest="1"><span><b>Rab</b> · Rest 😴</span><em>recovery</em></div>
-      <div class="set-row"><span><b>Kam</b> · Leg Day</span><em>tap ✓</em></div>
-      <div class="set-row"><span><b>Jum</b> · Cardio 20 Menit</span><em>tap ✓</em></div>
+      <div class="set-row jdone"><span><b>Sen</b> · Push Day</span><em><span class="ui-icon" data-icon="check" style="--icon-url:url(/assets/icons/check.svg)" aria-hidden="true"></span> selesai</em></div>
+      <div class="set-row"><span><b>Sel</b> · Pull Day</span><em>tap <span class="ui-icon" data-icon="check" style="--icon-url:url(/assets/icons/check.svg)" aria-hidden="true"></span></em></div>
+      <div class="set-row" data-rest="1"><span><b>Rab</b> · Rest <span class="ui-icon" data-icon="moon" style="--icon-url:url(/assets/icons/moon.svg)" aria-hidden="true"></span></span><em>recovery</em></div>
+      <div class="set-row"><span><b>Kam</b> · Leg Day</span><em>tap <span class="ui-icon" data-icon="check" style="--icon-url:url(/assets/icons/check.svg)" aria-hidden="true"></span></em></div>
+      <div class="set-row"><span><b>Jum</b> · Cardio 20 Menit</span><em>tap <span class="ui-icon" data-icon="check" style="--icon-url:url(/assets/icons/check.svg)" aria-hidden="true"></span></em></div>
       <div class="set-row" data-rest="1"><span><b>Sab</b> · Bebas</span><em>recovery</em></div>
     </div>
-    <div class="banner" id="jd-banner" hidden>🏆 Semua hari latihan selesai minggu ini — konsisten banget!</div>
+    <div class="banner" id="jd-banner" hidden><span class="ui-icon" data-icon="trophy" style="--icon-url:url(/assets/icons/trophy.svg)" aria-hidden="true"></span> Semua hari latihan selesai minggu ini — konsisten banget!</div>
   </div>
 
   <div class="view" id="v-progres" hidden>
     <div class="app-head">
-      <span class="avatar" aria-hidden="true">📈</span>
+      <span class="avatar" aria-hidden="true"><span class="ui-icon" data-icon="chart-no-axes-combined" style="--icon-url:url(/assets/icons/chart-no-axes-combined.svg)" aria-hidden="true"></span></span>
       <div class="hello"><b>Progres</b><small>minggu ini vs minggu lalu</small></div>
     </div>
     <div class="stats3">
@@ -174,27 +176,27 @@ body{font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction
 
   <div class="view" id="v-badge" hidden>
     <div class="app-head">
-      <span class="avatar" aria-hidden="true">🏆</span>
+      <span class="avatar" aria-hidden="true"><span class="ui-icon" data-icon="trophy" style="--icon-url:url(/assets/icons/trophy.svg)" aria-hidden="true"></span></span>
       <div class="hello"><b>Badge</b><small>2 dari 6 terbuka</small></div>
     </div>
     <div class="bgrid">
-      <div class="badge-b open"><i>🔥</i><b>Streak 12 Hari</b><small>latihan tanpa putus</small></div>
-      <div class="badge-b open"><i>💪</i><b>Push Master</b><small>10 push day selesai</small></div>
-      <div class="badge-b"><i>🏋️</i><b>100 Ton Club</b><small>total angkatan seumur hidup</small></div>
-      <div class="badge-b"><i>🌅</i><b>Morning Warrior</b><small>5 sesi pagi buta</small></div>
-      <div class="badge-b"><i>🥗</i><b>Meal Plan 7 Hari</b><small>diet konsisten seminggu</small></div>
-      <div class="badge-b"><i>👑</i><b>Consistency King</b><small>30 sesi total</small></div>
+      <div class="badge-b open"><i><span class="ui-icon" data-icon="flame" style="--icon-url:url(/assets/icons/flame.svg)" aria-hidden="true"></span></i><b>Streak 12 Hari</b><small>latihan tanpa putus</small></div>
+      <div class="badge-b open"><i><span class="ui-icon" data-icon="biceps-flexed" style="--icon-url:url(/assets/icons/biceps-flexed.svg)" aria-hidden="true"></span></i><b>Push Master</b><small>10 push day selesai</small></div>
+      <div class="badge-b"><i><span class="ui-icon" data-icon="dumbbell" style="--icon-url:url(/assets/icons/dumbbell.svg)" aria-hidden="true"></span></i><b>100 Ton Club</b><small>total angkatan seumur hidup</small></div>
+      <div class="badge-b"><i><span class="ui-icon" data-icon="sunrise" style="--icon-url:url(/assets/icons/sunrise.svg)" aria-hidden="true"></span></i><b>Morning Warrior</b><small>5 sesi pagi buta</small></div>
+      <div class="badge-b"><i><span class="ui-icon" data-icon="salad" style="--icon-url:url(/assets/icons/salad.svg)" aria-hidden="true"></span></i><b>Meal Plan 7 Hari</b><small>diet konsisten seminggu</small></div>
+      <div class="badge-b"><i><span class="ui-icon" data-icon="crown" style="--icon-url:url(/assets/icons/crown.svg)" aria-hidden="true"></span></i><b>Consistency King</b><small>30 sesi total</small></div>
     </div>
   </div>
 </div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <nav class="tabbar" aria-label="Menu demo">
-  <button class="tab on" type="button" data-v="mulai"><i>🏃</i>Mulai</button><button class="tab" type="button" data-v="jadwal"><i>📅</i>Jadwal</button><button class="tab" type="button" data-v="progres"><i>📈</i>Progres</button><button class="tab" type="button" data-v="badge"><i>🏆</i>Badge</button>
+  <button class="tab on" type="button" data-v="mulai"><i><span class="ui-icon" data-icon="activity" style="--icon-url:url(/assets/icons/activity.svg)" aria-hidden="true"></span></i>Mulai</button><button class="tab" type="button" data-v="jadwal"><i><span class="ui-icon" data-icon="calendar-days" style="--icon-url:url(/assets/icons/calendar-days.svg)" aria-hidden="true"></span></i>Jadwal</button><button class="tab" type="button" data-v="progres"><i><span class="ui-icon" data-icon="chart-no-axes-combined" style="--icon-url:url(/assets/icons/chart-no-axes-combined.svg)" aria-hidden="true"></span></i>Progres</button><button class="tab" type="button" data-v="badge"><i><span class="ui-icon" data-icon="trophy" style="--icon-url:url(/assets/icons/trophy.svg)" aria-hidden="true"></span></i>Badge</button>
 </nav>
 </div></div>
-<a class="backpill" href="../karya.html#apk">◀ GATRA / karya</a>
-<p class="credit">Demo aplikasi mobile <b>GymKuy</b> — dibuat oleh <b>GATRA</b> ✦ semua data di atas cuma contoh.</p>
+<a class="backpill" href="../karya.html#apk"><span class="ui-icon" data-icon="chevron-left" style="--icon-url:url(/assets/icons/chevron-left.svg)" aria-hidden="true"></span> GATRA / karya</a>
+<p class="credit">Demo aplikasi mobile <b>GymKuy</b> — dibuat oleh <b>GATRA</b> <span class="ui-icon" data-icon="sparkles" style="--icon-url:url(/assets/icons/sparkles.svg)" aria-hidden="true"></span> semua data di atas cuma contoh.</p>
 <script>
 (function(){
 "use strict";

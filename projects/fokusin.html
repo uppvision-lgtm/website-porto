@@ -88,16 +88,18 @@ body{font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction
 .quote{background:var(--brand-soft);border-radius:16px;padding:14px 16px;font-size:.8rem;font-weight:600;color:#8A4B12;line-height:1.55;text-align:center}
 
 </style>
+<link rel="stylesheet" href="../css/icons.css?v=1">
+<script src="../js/icons.js?v=1" defer></script>
 </head>
 <body>
 <div class="phone"><div class="screen">
 <span class="punch" aria-hidden="true"></span>
-<div class="statusbar" aria-hidden="true"><span>12.45</span><span>📶 5G 🔋</span></div>
+<div class="statusbar" aria-hidden="true"><span>12.45</span><span><span class="ui-icon" data-icon="signal" style="--icon-url:url(/assets/icons/signal.svg)" aria-hidden="true"></span> 5G <span class="ui-icon" data-icon="battery-full" style="--icon-url:url(/assets/icons/battery-full.svg)" aria-hidden="true"></span></span></div>
 <div class="app-body">
   <div class="view on" id="v-fokus">
   <div class="app-head">
-    <span class="avatar" aria-hidden="true">🍅</span>
-    <div class="hello"><b>Sesi Fokus</b><small>2 sesi lagi, beres semua ✨</small></div>
+    <span class="avatar" aria-hidden="true"><span class="ui-icon" data-icon="timer" style="--icon-url:url(/assets/icons/timer.svg)" aria-hidden="true"></span></span>
+    <div class="hello"><b>Sesi Fokus</b><small>2 sesi lagi, beres semua <span class="ui-icon" data-icon="sparkles" style="--icon-url:url(/assets/icons/sparkles.svg)" aria-hidden="true"></span></small></div>
     <span class="dots" id="dots" aria-label="2 dari 4 sesi selesai"><i class="fill"></i><i class="fill"></i><i></i><i></i></span>
   </div>
   <div class="timer-card">
@@ -111,30 +113,30 @@ body{font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction
       <button class="preset" type="button" data-mnt="15">15 mnt</button>
     </div>
     <div class="ctrls">
-      <button class="ctrl main" id="btn-go" type="button">▶ Mulai</button>
+      <button class="ctrl main" id="btn-go" type="button"><span class="ui-icon" data-icon="play" style="--icon-url:url(/assets/icons/play.svg)" aria-hidden="true"></span> Mulai</button>
       <button class="ctrl" id="btn-reset" type="button">↺ Reset</button>
     </div>
   </div>
-  <p class="quote">“Scroll abis fokus, bukan pas fokus.” — GATRA, mungkin 🍵</p>
+  <p class="quote">“Scroll abis fokus, bukan pas fokus.” — GATRA, mungkin <span class="ui-icon" data-icon="coffee" style="--icon-url:url(/assets/icons/coffee.svg)" aria-hidden="true"></span></p>
   </div>
 
   <div class="view" id="v-tugas" hidden>
     <div class="app-head">
-      <span class="avatar" aria-hidden="true">✅</span>
+      <span class="avatar" aria-hidden="true"><span class="ui-icon" data-icon="circle-check" style="--icon-url:url(/assets/icons/circle-check.svg)" aria-hidden="true"></span></span>
       <div class="hello"><b>Tugas</b><small>fokus biar tugasnya beres</small></div>
       <span class="dots" aria-hidden="true"><i class="fill"></i><i class="fill"></i><i></i><i></i></span>
     </div>
     <form class="add" id="f-add"><input id="in-task" type="text" placeholder="mau fokus ngapain?" maxlength="60" aria-label="Tugas baru"><button type="submit" aria-label="Tambah tugas">＋</button></form>
     <ul class="tasks" id="tasks">
-      <li class="task"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai selesai">✓</button><b>Rangkum modul 3</b><button class="del" type="button" aria-label="Hapus tugas">🗑</button></li>
-      <li class="task"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai selesai">✓</button><b>Bikin outline presentasi</b><button class="del" type="button" aria-label="Hapus tugas">🗑</button></li>
+      <li class="task"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai selesai"><span class="ui-icon" data-icon="check" style="--icon-url:url(/assets/icons/check.svg)" aria-hidden="true"></span></button><b>Rangkum modul 3</b><button class="del" type="button" aria-label="Hapus tugas"><span class="ui-icon" data-icon="trash" style="--icon-url:url(/assets/icons/trash.svg)" aria-hidden="true"></span></button></li>
+      <li class="task"><button class="chk" type="button" aria-pressed="false" aria-label="Tandai selesai"><span class="ui-icon" data-icon="check" style="--icon-url:url(/assets/icons/check.svg)" aria-hidden="true"></span></button><b>Bikin outline presentasi</b><button class="del" type="button" aria-label="Hapus tugas"><span class="ui-icon" data-icon="trash" style="--icon-url:url(/assets/icons/trash.svg)" aria-hidden="true"></span></button></li>
     </ul>
-    <div class="insight">✅ Tugas yang selesai dicoret — biar progresnya kebayang saat timer jalan.</div>
+    <div class="insight"><span class="ui-icon" data-icon="circle-check" style="--icon-url:url(/assets/icons/circle-check.svg)" aria-hidden="true"></span> Tugas yang selesai dicoret — biar progresnya kebayang saat timer jalan.</div>
   </div>
 
   <div class="view" id="v-stat" hidden>
     <div class="app-head">
-      <span class="avatar" aria-hidden="true">📊</span>
+      <span class="avatar" aria-hidden="true"><span class="ui-icon" data-icon="chart-column" style="--icon-url:url(/assets/icons/chart-column.svg)" aria-hidden="true"></span></span>
       <div class="hello"><b>Statistik</b><small>seberapa fokus kamu pekan ini</small></div>
     </div>
     <div class="stats3">
@@ -146,28 +148,28 @@ body{font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction
     <div class="bars" aria-hidden="true">
       <i style="height:30px"></i><i style="height:52px"></i><i class="hot" style="height:76px"></i><i style="height:44px"></i><i style="height:26px"></i><i style="height:60px"></i><i style="height:18px"></i>
     </div>
-    <div class="insight">🔥 Rekor terbaikmu: 4 sesi dalam sehari — pekan lalu, hari Rabu.</div>
+    <div class="insight"><span class="ui-icon" data-icon="flame" style="--icon-url:url(/assets/icons/flame.svg)" aria-hidden="true"></span> Rekor terbaikmu: 4 sesi dalam sehari — pekan lalu, hari Rabu.</div>
   </div>
 
   <div class="view" id="v-setelan" hidden>
     <div class="app-head">
-      <span class="avatar" aria-hidden="true">⚙️</span>
+      <span class="avatar" aria-hidden="true"><span class="ui-icon" data-icon="settings" style="--icon-url:url(/assets/icons/settings.svg)" aria-hidden="true"></span></span>
       <div class="hello"><b>Setelan</b><small>suka-suka kamu, atur aja</small></div>
     </div>
     <div class="set">
-      <div class="set-row"><span>🔔 Suara sesi selesai</span><button class="sw on" type="button" aria-pressed="true" aria-label="Suara sesi selesai"></button></div>
-      <div class="set-row"><span>⚡ Mulai otomatis sesi berikutnya</span><button class="sw" type="button" aria-pressed="false" aria-label="Mulai otomatis"></button></div>
-      <div class="set-row"><span>📳 Getar saat 5 menit terakhir</span><button class="sw on" type="button" aria-pressed="true" aria-label="Getar"></button></div>
+      <div class="set-row"><span><span class="ui-icon" data-icon="bell" style="--icon-url:url(/assets/icons/bell.svg)" aria-hidden="true"></span> Suara sesi selesai</span><button class="sw on" type="button" aria-pressed="true" aria-label="Suara sesi selesai"></button></div>
+      <div class="set-row"><span><span class="ui-icon" data-icon="zap" style="--icon-url:url(/assets/icons/zap.svg)" aria-hidden="true"></span> Mulai otomatis sesi berikutnya</span><button class="sw" type="button" aria-pressed="false" aria-label="Mulai otomatis"></button></div>
+      <div class="set-row"><span><span class="ui-icon" data-icon="vibrate" style="--icon-url:url(/assets/icons/vibrate.svg)" aria-hidden="true"></span> Getar saat 5 menit terakhir</span><button class="sw on" type="button" aria-pressed="true" aria-label="Getar"></button></div>
     </div>
     <button class="resetbtn" type="button" id="reset-demo">↺ Reset demo</button>
   </div>
 </div>
 <nav class="tabbar" aria-label="Menu demo">
-  <button class="tab on" type="button" data-v="fokus"><i>⏱</i>Fokus</button><button class="tab" type="button" data-v="tugas"><i>✅</i>Tugas</button><button class="tab" type="button" data-v="stat"><i>📊</i>Statistik</button><button class="tab" type="button" data-v="setelan"><i>⚙️</i>Setelan</button>
+  <button class="tab on" type="button" data-v="fokus"><i><span class="ui-icon" data-icon="timer" style="--icon-url:url(/assets/icons/timer.svg)" aria-hidden="true"></span></i>Fokus</button><button class="tab" type="button" data-v="tugas"><i><span class="ui-icon" data-icon="circle-check" style="--icon-url:url(/assets/icons/circle-check.svg)" aria-hidden="true"></span></i>Tugas</button><button class="tab" type="button" data-v="stat"><i><span class="ui-icon" data-icon="chart-column" style="--icon-url:url(/assets/icons/chart-column.svg)" aria-hidden="true"></span></i>Statistik</button><button class="tab" type="button" data-v="setelan"><i><span class="ui-icon" data-icon="settings" style="--icon-url:url(/assets/icons/settings.svg)" aria-hidden="true"></span></i>Setelan</button>
 </nav>
 </div></div>
-<a class="backpill" href="../karya.html#apk">◀ GATRA / karya</a>
-<p class="credit">Demo aplikasi mobile <b>Fokusin</b> — dibuat oleh <b>GATRA</b> ✦ timernya beneran jalan, coba aja.</p>
+<a class="backpill" href="../karya.html#apk"><span class="ui-icon" data-icon="chevron-left" style="--icon-url:url(/assets/icons/chevron-left.svg)" aria-hidden="true"></span> GATRA / karya</a>
+<p class="credit">Demo aplikasi mobile <b>Fokusin</b> — dibuat oleh <b>GATRA</b> <span class="ui-icon" data-icon="sparkles" style="--icon-url:url(/assets/icons/sparkles.svg)" aria-hidden="true"></span> timernya beneran jalan, coba aja.</p>
 <script>
 (function(){
 "use strict";

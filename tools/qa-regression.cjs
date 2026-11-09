@@ -29,7 +29,7 @@ fs.mkdirSync(out, { recursive: true });
   await test('Homepage FAQ and WhatsApp URL', async () => {
     await go('index.html'); await page.locator('.faq-toggle').nth(1).click();
     assert.equal(await page.locator('#faq-answer-2').isVisible(), true);
-    assert.match(await page.getByRole('link', { name: '💬 Konsultasi via WhatsApp', exact: true }).getAttribute('href'), /^https:\/\/wa.me\/\d+$/);
+    assert.match(await page.getByRole('link', { name: 'Konsultasi via WhatsApp', exact: true }).getAttribute('href'), /^https:\/\/wa.me\/\d+$/);
     await page.locator('.menu a').filter({ hasText: /^Proses$/ }).click();
     assert.match(page.url(), /proses.html$/);
     await screenshot('proses-desktop');

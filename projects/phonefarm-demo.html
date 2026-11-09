@@ -41,29 +41,31 @@
 @media(max-width:860px){.wrap2{grid-template-columns:1fr}}
 </style>
 <script src="../js/site.js?v=1" defer></script>
+<link rel="stylesheet" href="../css/icons.css?v=1">
+<script src="../js/icons.js?v=1" defer></script>
 </head>
 <body>
 <nav class="nav" id="nav"><div class="nav-in">
   <a class="logo" href="../index.html"><img src="../assets/logo.jpg" alt="GATRA Global"></a>
   <div class="menu" id="site-menu"><a class="ml" href="../index.html#layanan">Layanan &amp; Produk</a>
   <div><button class="ml work-toggle" type="button" aria-expanded="false" aria-controls="nav-work-links">Karya <span class="car" aria-hidden="true">▾</span></button><div class="drop" id="nav-work-links">
-    <a href="../karya.html#apk"><span class="ic">📱</span><span><b>4 Demo Aplikasi Mobile</b><small>Jajan.in, GymKuy, Fokusin, Racunin</small></span></a>
-    <a href="../karya.html#web"><span class="ic">🌐</span><span><b>Demo Web &amp; Web App</b><small>KasirKu, ScrapPulse, dan lainnya</small></span></a>
-    <a href="../karya.html#proyek"><span class="ic">🧠</span><span><b>Studi Kasus ML &amp; Otomasi</b><small>Penjelasan &amp; tangkapan layar</small></span></a>
+    <a href="../karya.html#apk"><span class="ic"><span class="ui-icon" data-icon="smartphone" style="--icon-url:url(/assets/icons/smartphone.svg)" aria-hidden="true"></span></span><span><b>4 Demo Aplikasi Mobile</b><small>Jajan.in, GymKuy, Fokusin, Racunin</small></span></a>
+    <a href="../karya.html#web"><span class="ic"><span class="ui-icon" data-icon="globe" style="--icon-url:url(/assets/icons/globe.svg)" aria-hidden="true"></span></span><span><b>Demo Web &amp; Web App</b><small>KasirKu, ScrapPulse, dan lainnya</small></span></a>
+    <a href="../karya.html#proyek"><span class="ic"><span class="ui-icon" data-icon="brain-circuit" style="--icon-url:url(/assets/icons/brain-circuit.svg)" aria-hidden="true"></span></span><span><b>Studi Kasus ML &amp; Otomasi</b><small>Penjelasan &amp; tangkapan layar</small></span></a>
   </div></div>
   <div><a class="ml" href="../proses.html">Proses</a></div>
   <div><a class="ml" href="../faq.html">FAQ</a></div></div>
-  <div class="nav-r"><button class="nav-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true">☰</span></button><span class="lang" title="Bahasa Indonesia">🌐 ID</span><a class="btn btn-p" href="../index.html#kontak">Konsultasi Gratis</a></div>
+  <div class="nav-r"><button class="nav-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true"><span class="ui-icon" data-icon="menu" style="--icon-url:url(/assets/icons/menu.svg)" aria-hidden="true"></span></span></button><span class="lang" title="Bahasa Indonesia"><span class="ui-icon" data-icon="globe" style="--icon-url:url(/assets/icons/globe.svg)" aria-hidden="true"></span> ID</span><a class="btn btn-p" href="../index.html#kontak">Konsultasi Gratis</a></div>
 </div></nav>
 <div class="stage">
-  <div class="badge badge-am">⚡ Simulasi Interaktif — alur sama dengan panel aslinya</div>
+  <div class="badge badge-am"><span class="ui-icon" data-icon="zap" style="--icon-url:url(/assets/icons/zap.svg)" aria-hidden="true"></span> Simulasi Interaktif — alur sama dengan panel aslinya</div>
   <div class="eyebrow2" style="margin-top:14px">Demo Web Panel — Machine Learning &amp; Otomasi</div>
   <h1 style="font-size:clamp(28px,4vw,42px);margin:10px 0 0">Coba Panel PhoneFarm</h1>
   <p class="sub" style="max-width:680px">Pilih perangkat dari farm, <span class="hl">mulai streaming</span>, lalu jalankan kontrol ADB — tap, swipe, ketik — dan pantau semuanya lewat log realtime.</p>
 
   <div class="statusbar">
     <div><b id="oncount">18/20</b> <span style="color:var(--muted);font-size:14px">perangkat online · hub serial aktif</span></div>
-    <button class="btn btn-o" style="padding:9px 18px;font-size:13.5px" id="scanbtn" onclick="scan()">🔄 Auto-scan ulang</button>
+    <button class="btn btn-o" style="padding:9px 18px;font-size:13.5px" id="scanbtn" onclick="scan()"><span class="ui-icon" data-icon="refresh-cw" style="--icon-url:url(/assets/icons/refresh-cw.svg)" aria-hidden="true"></span> Auto-scan ulang</button>
   </div>
   <div class="farm" id="farm"></div>
 
@@ -75,16 +77,16 @@
       </div>
       <div class="fps" style="margin-top:12px">FPS stream:
         <select id="fps" style="border:1.5px solid var(--line);border-radius:8px;padding:6px 10px;font:inherit;font-size:12.5px"><option>15</option><option selected>30</option><option>60</option></select>
-        <button class="btn btn-p" style="padding:8px 14px;font-size:12.5px;margin-left:auto" id="streambtn" onclick="stream()">▶ Mulai Streaming</button>
+        <button class="btn btn-p" style="padding:8px 14px;font-size:12.5px;margin-left:auto" id="streambtn" onclick="stream()"><span class="ui-icon" data-icon="play" style="--icon-url:url(/assets/icons/play.svg)" aria-hidden="true"></span> Mulai Streaming</button>
       </div>
     </div>
     <div class="dcard">
       <b style="font-size:15px">Kontrol ADB — <span id="selname">Samsung 01</span></b>
       <div class="ctrls">
-        <div class="row"><button onclick="adb('input tap 540 1200')">👆 Tap tengah</button><button onclick="adb('input swipe 540 1400 540 400 300')">👆 Swipe atas</button></div>
-        <div class="row"><button onclick="adb('input keyevent KEYCODE_HOME')">🏠 Home</button><button onclick="adb('input keyevent KEYCODE_BACK')">↩ Back</button></div>
-        <div class="row"><input type="text" id="typetxt" placeholder="Teks untuk dikirim ke HP…" value="Halo dari PhoneFarm!"><button style="flex:1" onclick="adb('input text &quot;'+document.getElementById('typetxt').value+'&quot;')">⌨ Kirim</button></div>
-        <div class="row"><button onclick="adb('screencap -p /sdcard/shot.png')">📸 Screenshot</button><button onclick="adb('am start -a android.intent.action.VIEW')">🌐 Buka browser</button></div>
+        <div class="row"><button onclick="adb('input tap 540 1200')"><span class="ui-icon" data-icon="mouse-pointer-2" style="--icon-url:url(/assets/icons/mouse-pointer-2.svg)" aria-hidden="true"></span> Tap tengah</button><button onclick="adb('input swipe 540 1400 540 400 300')"><span class="ui-icon" data-icon="mouse-pointer-2" style="--icon-url:url(/assets/icons/mouse-pointer-2.svg)" aria-hidden="true"></span> Swipe atas</button></div>
+        <div class="row"><button onclick="adb('input keyevent KEYCODE_HOME')"><span class="ui-icon" data-icon="house" style="--icon-url:url(/assets/icons/house.svg)" aria-hidden="true"></span> Home</button><button onclick="adb('input keyevent KEYCODE_BACK')"><span class="ui-icon" data-icon="corner-up-left" style="--icon-url:url(/assets/icons/corner-up-left.svg)" aria-hidden="true"></span> Back</button></div>
+        <div class="row"><input type="text" id="typetxt" placeholder="Teks untuk dikirim ke HP…" value="Halo dari PhoneFarm!"><button style="flex:1" onclick="adb('input text &quot;'+document.getElementById('typetxt').value+'&quot;')"><span class="ui-icon" data-icon="keyboard" style="--icon-url:url(/assets/icons/keyboard.svg)" aria-hidden="true"></span> Kirim</button></div>
+        <div class="row"><button onclick="adb('screencap -p /sdcard/shot.png')"><span class="ui-icon" data-icon="camera" style="--icon-url:url(/assets/icons/camera.svg)" aria-hidden="true"></span> Screenshot</button><button onclick="adb('am start -a android.intent.action.VIEW')"><span class="ui-icon" data-icon="globe" style="--icon-url:url(/assets/icons/globe.svg)" aria-hidden="true"></span> Buka browser</button></div>
       </div>
       <div class="log" id="log">[boot] panel terhubung → 127.0.0.1:8787 (localhost only)
 [scan] auto-scan selesai → 20 perangkat terdeteksi (18 online)
@@ -94,7 +96,7 @@
 
   <p style="margin-top:34px;font-size:13.5px;color:var(--muted)">Ini <b>simulasi alur yang sama</b> dengan panel asli — versi production streaming video H.264 nyata dari HP fisik via scrcpy → FFmpeg → WebSocket, dengan hardware yang terpasang di farm. <a href="../karya.html#proyek" style="color:var(--primary);font-weight:600">Baca studi kasus lengkap →</a></p>
 </div>
-<a class="wa" href="https://wa.me/6281234567890" aria-label="Chat WhatsApp">💬</a>
+<a class="wa" href="https://wa.me/6281234567890" aria-label="Chat WhatsApp"><span class="ui-icon" data-icon="message-circle" style="--icon-url:url(/assets/icons/message-circle.svg)" aria-hidden="true"></span></a>
 <script>
 "use strict";
 var $=function(i){return document.getElementById(i)};

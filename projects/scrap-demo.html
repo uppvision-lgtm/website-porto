@@ -37,23 +37,25 @@
 @media(max-width:760px){.dgrid{grid-template-columns:1fr}}
 </style>
 <script src="../js/site.js?v=1" defer></script>
+<link rel="stylesheet" href="../css/icons.css?v=1">
+<script src="../js/icons.js?v=1" defer></script>
 </head>
 <body>
 <nav class="nav" id="nav"><div class="nav-in">
   <a class="logo" href="../index.html"><img src="../assets/logo.jpg" alt="GATRA Global"></a>
   <div class="menu" id="site-menu"><a class="ml" href="../index.html#layanan">Layanan &amp; Produk</a>
   <div><button class="ml work-toggle" type="button" aria-expanded="false" aria-controls="nav-work-links">Karya <span class="car" aria-hidden="true">▾</span></button><div class="drop" id="nav-work-links">
-    <a href="../karya.html#apk"><span class="ic">📱</span><span><b>4 Demo Aplikasi Mobile</b><small>Jajan.in, GymKuy, Fokusin, Racunin</small></span></a>
-    <a href="../karya.html#web"><span class="ic">🌐</span><span><b>Demo Web &amp; Web App</b><small>KasirKu, ScrapPulse, dan lainnya</small></span></a>
-    <a href="../karya.html#proyek"><span class="ic">🧠</span><span><b>Studi Kasus ML &amp; Otomasi</b><small>Penjelasan &amp; tangkapan layar</small></span></a>
+    <a href="../karya.html#apk"><span class="ic"><span class="ui-icon" data-icon="smartphone" style="--icon-url:url(/assets/icons/smartphone.svg)" aria-hidden="true"></span></span><span><b>4 Demo Aplikasi Mobile</b><small>Jajan.in, GymKuy, Fokusin, Racunin</small></span></a>
+    <a href="../karya.html#web"><span class="ic"><span class="ui-icon" data-icon="globe" style="--icon-url:url(/assets/icons/globe.svg)" aria-hidden="true"></span></span><span><b>Demo Web &amp; Web App</b><small>KasirKu, ScrapPulse, dan lainnya</small></span></a>
+    <a href="../karya.html#proyek"><span class="ic"><span class="ui-icon" data-icon="brain-circuit" style="--icon-url:url(/assets/icons/brain-circuit.svg)" aria-hidden="true"></span></span><span><b>Studi Kasus ML &amp; Otomasi</b><small>Penjelasan &amp; tangkapan layar</small></span></a>
   </div></div>
   <div><a class="ml" href="../proses.html">Proses</a></div>
   <div><a class="ml" href="../faq.html">FAQ</a></div></div>
-  <div class="nav-r"><button class="nav-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true">☰</span></button><span class="lang" title="Bahasa Indonesia">🌐 ID</span><a class="btn btn-p" href="../index.html#kontak">Konsultasi Gratis</a></div>
+  <div class="nav-r"><button class="nav-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true"><span class="ui-icon" data-icon="menu" style="--icon-url:url(/assets/icons/menu.svg)" aria-hidden="true"></span></span></button><span class="lang" title="Bahasa Indonesia"><span class="ui-icon" data-icon="globe" style="--icon-url:url(/assets/icons/globe.svg)" aria-hidden="true"></span> ID</span><a class="btn btn-p" href="../index.html#kontak">Konsultasi Gratis</a></div>
 </div></nav>
 
 <div class="stage">
-  <div class="badge badge-am">⚡ Simulasi Interaktif — data contoh, alur sama dengan aslinya</div>
+  <div class="badge badge-am"><span class="ui-icon" data-icon="zap" style="--icon-url:url(/assets/icons/zap.svg)" aria-hidden="true"></span> Simulasi Interaktif — data contoh, alur sama dengan aslinya</div>
   <div class="eyebrow2" style="margin-top:14px">Demo Web App — Machine Learning &amp; NLP</div>
   <h1 style="font-size:clamp(28px,4vw,42px);margin:10px 0 0">Coba ScrapPulse</h1>
   <p class="sub" style="max-width:680px">Ketik satu kata kunci, klik <b>Analisis</b>, dan lihat mesin bekerja: mengumpulkan 5 sumber, menganalisis sentimen dwibahasa, lalu menyusun dashboard survei — <span class="hl">langsung di browser ini</span>.</p>
@@ -63,7 +65,7 @@
     <datalist id="sugg"><option>indomie</option><option>messi</option><option>prabowo</option><option>ganjar</option><option>tesla</option><option>kopi susu</option></datalist>
     <select id="days"><option value="7">7 hari</option><option value="14">14 hari</option><option value="30" selected>30 hari</option></select>
     <select id="lang"><option value="id">Bahasa Indonesia</option><option value="en">English</option></select>
-    <button class="btn btn-p" id="go" onclick="run()">🔍 Analisis</button>
+    <button class="btn btn-p" id="go" onclick="run()"><span class="ui-icon" data-icon="search" style="--icon-url:url(/assets/icons/search.svg)" aria-hidden="true"></span> Analisis</button>
   </div>
 
   <div class="dcard" id="prog" style="display:none;margin-top:18px">
@@ -74,7 +76,7 @@
     <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;align-items:center">
       <div><div class="eyebrow2" style="margin:0">Laporan survei — kata: <b id="dkw">indomie</b></div>
       <small id="dmeta" style="color:var(--muted);font-size:13px"></small></div>
-      <button class="btn btn-o" style="padding:8px 16px;font-size:13px" onclick="toast('📊 File Excel multi-sheet tersedia di versi production — demo ini menampilkan dashboard saja.')">⬇ Unduh Excel</button>
+      <button class="btn btn-o" style="padding:8px 16px;font-size:13px" onclick="toast('📊 File Excel multi-sheet tersedia di versi production — demo ini menampilkan dashboard saja.')"><span class="ui-icon" data-icon="download" style="--icon-url:url(/assets/icons/download.svg)" aria-hidden="true"></span> Unduh Excel</button>
     </div>
     <div class="shields" style="justify-content:flex-start;margin-top:16px" id="dstats"></div>
     <div class="dgrid">
@@ -88,14 +90,14 @@
       <div class="dcard2" style="grid-column:1/-1"><h4>Kontribusi media</h4><div id="dmedia"></div></div>
     </div>
     <div class="cta" style="justify-content:center;margin-top:22px">
-      <button class="btn btn-p" onclick="reset()">🔍 Analisis Kata Lain</button>
+      <button class="btn btn-p" onclick="reset()"><span class="ui-icon" data-icon="search" style="--icon-url:url(/assets/icons/search.svg)" aria-hidden="true"></span> Analisis Kata Lain</button>
       <a class="btn btn-o" href="../karya.html#proyek">Baca studi kasusnya →</a>
     </div>
   </div>
   <div id="toast" style="position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 20px;border-radius:12px;font-size:14px;display:none;box-shadow:0 12px 30px rgba(0,0,0,.25);max-width:90vw;z-index:99"></div>
   <p style="margin-top:34px;font-size:13.5px;color:var(--muted)">Ini <b>simulasi dengan data contoh</b> — di versi production, data diambil live dari Google News, Bing News, Hacker News, Wikipedia &amp; Google Trends. <a href="../karya.html#proyek" style="color:var(--primary);font-weight:600">Baca studi kasus lengkap →</a></p>
 </div>
-<a class="wa" href="https://wa.me/6281234567890" aria-label="Chat WhatsApp">💬</a>
+<a class="wa" href="https://wa.me/6281234567890" aria-label="Chat WhatsApp"><span class="ui-icon" data-icon="message-circle" style="--icon-url:url(/assets/icons/message-circle.svg)" aria-hidden="true"></span></a>
 <script>
 "use strict";
 var $=function(i){return document.getElementById(i)};

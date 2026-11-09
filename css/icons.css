@@ -1,0 +1,14 @@
+/* Local Lucide SVG artwork. License and source: assets/icons/README.md. */
+.ui-icon{display:inline-block!important;width:1.1em;height:1.1em;flex-shrink:0;vertical-align:-.15em;background-color:currentColor;-webkit-mask:var(--icon-url) center/contain no-repeat;mask:var(--icon-url) center/contain no-repeat;pointer-events:none;font-style:normal}
+.ui-icon::before,.ui-icon::after{content:none!important}
+.pilih .pic{color:#5B4DE0}.pilih .pic .ui-icon{width:28px;height:28px}
+.sec-card .ic{display:inline-flex;justify-content:center;margin-bottom:8px;color:var(--primary,#5B4DE0)}
+.sec-card .ic .ui-icon{width:30px;height:30px}
+.drop .ic{color:var(--primary,#5B4DE0)}
+.tabbar .tab i{display:flex;justify-content:center;align-items:center}
+.like[aria-pressed="true"]{color:#e11d48}
+.wa .ui-icon{width:26px;height:26px}
+.work .thumb.project-preview img{width:100%;height:100%;object-fit:cover;object-position:top}
+.work .thumb.mobile-preview{display:flex;align-items:flex-start;justify-content:center;background:var(--tint,#EEEBFC);padding-top:18px}
+.work .thumb.mobile-preview img{width:138px;height:270px;max-width:80%;object-fit:cover;object-position:top;border-radius:18px 18px 0 0;box-shadow:0 8px 24px #23293324;transform:rotate(-5deg);flex-shrink:0}
+.work .thumb.mobile-preview img+img{margin-left:22px;transform:rotate(6deg)}

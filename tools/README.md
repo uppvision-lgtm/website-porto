@@ -31,3 +31,9 @@ Media demo tambahan:
 - `assets/videos/scrap.mp4`: rekaman halaman ScrapPulse **simulasi**, bukan rekaman pipeline production.
 - `assets/audio/smartcast-demo.mp3`: narasi contoh dengan suara sintetis Damayanti dari macOS, bukan episode podcast asli.
 - Perubahan stok dan pengaturan KasirKu hanya bertahan selama halaman dibuka; semua data transaksi adalah contoh.
+
+## Ikon dan preview portofolio
+
+Semua halaman aktif memakai `css/icons.css` dan `js/icons.js`. Ikon statis memakai SVG lokal Lucide melalui `.ui-icon`; renderer kecil menangani ikon di konten yang dibuat ulang oleh demo (toast, favorit, status, dan log). Sumber, revisi, dan lisensi tersedia di `assets/icons/README.md` dan `assets/icons/LICENSE`.
+
+Gambar pada `assets/previews/` adalah screenshot empat demo aplikasi milik repository ini, bukan foto stok atau logo organisasi lain. Thumbnail Sistem Automasi memakai aset proyek yang sudah tersedia.
