@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KasirKu — Sistem POS Warung &amp; Kafe</title>
-<meta name="description" content="Dashboard POS KasirKu: kasir cepat, stok sync, laporan harian otomatis. Demo web app oleh mood.">
+<meta name="description" content="Dashboard POS KasirKu: kasir cepat, stok sync, laporan harian otomatis. Demo web app oleh GATRA.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,8 +17,8 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
-.shell{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
-.sidebar{background:var(--ink);color:#cbd5e1;padding:26px 18px;display:flex;flex-direction:column;gap:28px;position:sticky;top:0;height:100vh}
+.shell{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100vh}
+.sidebar{min-width:0;background:var(--ink);color:#cbd5e1;padding:26px 18px;display:flex;flex-direction:column;gap:28px;position:sticky;top:0;height:100vh}
 .brand{color:#fff;font-weight:800;font-size:1.3rem;letter-spacing:-.02em;padding-left:8px}
 .brand span{color:#818cf8}
 .menu{display:flex;flex-direction:column;gap:4px;font-size:.92rem;font-weight:600}
@@ -28,7 +28,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-h
 .promo{margin-top:auto;background:#1e293b;border-radius:16px;padding:16px;font-size:.82rem;line-height:1.55}
 .promo b{color:#fff;display:block;margin-bottom:6px}
 .promo a{color:#a5b4fc;font-weight:700}
-.main{padding:28px 32px;display:flex;flex-direction:column;gap:24px}
+.main{min-width:0;padding:28px 32px;display:flex;flex-direction:column;gap:24px}
 .topbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .topbar h1{font-size:1.5rem;font-weight:800;letter-spacing:-.02em}
 .datechip{background:#fff;border:1px solid var(--line);padding:7px 14px;border-radius:999px;font-size:.8rem;font-weight:600;color:var(--mut)}
@@ -41,7 +41,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-h
 .stat .d{font-size:.78rem;font-weight:700;margin-top:4px}
 .up{color:var(--green)}.down{color:var(--red)}
 .grid{display:grid;grid-template-columns:2fr 1fr;gap:16px;align-items:start}
-.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}
+.panel{min-width:0;overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}
 .panel h2{font-size:1rem;font-weight:800;margin-bottom:18px}
 .panel h2 small{color:var(--mut);font-weight:600;font-size:.78rem;margin-left:8px}
 .bars{display:flex;align-items:flex-end;gap:12px;height:190px;padding-top:6px}
@@ -49,6 +49,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-h
 .bar i{display:block;width:100%;max-width:48px;background:#c7d2fe;border-radius:8px 8px 0 0}
 .bar.hot i{background:var(--brand)}
 .bar small{font-size:.72rem;color:var(--mut);font-weight:600}
+#view-dashboard table,#view-transaksi table{min-width:580px}
 table{width:100%;border-collapse:collapse;font-size:.88rem}
 th{text-align:left;color:var(--mut);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;padding:10px 8px;border-bottom:1px solid var(--line)}
 td{padding:13px 8px;border-bottom:1px solid var(--line);font-weight:500}
@@ -65,15 +66,21 @@ tr:last-child td{border-bottom:none}
 .backpill{position:fixed;left:16px;bottom:16px;z-index:999;background:#C8F04B;color:#141414;border:3px solid #141414;border-radius:12px;box-shadow:4px 4px 0 #141414;padding:10px 16px;font-weight:700;font-size:.88rem;text-decoration:none;transform:rotate(-2deg);transition:transform .15s}
 .backpill:hover{transform:rotate(0deg) translate(2px,2px);box-shadow:2px 2px 0 #141414}
 @media(max-width:900px){
-  .shell{grid-template-columns:1fr}
+  .shell{grid-template-columns:minmax(0,1fr)}
   .sidebar{position:static;height:auto;flex-direction:row;align-items:center;gap:16px;padding:14px 18px;flex-wrap:wrap}
-  .menu{flex-direction:row;overflow-x:auto;font-size:.85rem}
+  .menu{flex-direction:row;flex:1 1 100%;min-width:0;max-width:100%;overflow-x:auto;font-size:.85rem}.menu a{flex-shrink:0}
   .promo{display:none}
   .grid{grid-template-columns:1fr}
-  .search{display:none}
-  .main{padding:20px 16px}
+  .search{display:block;min-width:0;width:100%;margin-left:0;order:3}
+  .main{min-width:0;padding:20px 16px}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.demo-view{min-width:0;display:flex;flex-direction:column;gap:24px}.demo-view[hidden]{display:none}
+.demo-notice{color:var(--mut);font-size:.85rem}.setting-label{display:block;margin:14px 0}.setting-label input{display:block;max-width:100%;width:320px;padding:10px;border:1px solid var(--line);border-radius:8px;font:inherit}
+.demo-button{padding:9px 14px;border:0;border-radius:8px;background:var(--brand);color:#fff;font:inherit;cursor:pointer}
+:where(a,button,input):focus-visible{outline:3px solid #818cf8;outline-offset:3px}
+@media(max-width:480px){.stats{grid-template-columns:1fr}.bars{gap:7px}.top-item b{width:120px}.datechip{font-size:.72rem}.grid>.panel{padding:16px}}
 </style>
 </head>
 <body>
@@ -81,25 +88,27 @@ tr:last-child td{border-bottom:none}
   <aside class="sidebar">
     <div class="brand">🧾 Kasir<span>Ku</span></div>
     <nav class="menu" aria-label="Menu utama KasirKu">
-      <a class="on" href="#" aria-current="page">Dashboard</a>
-      <a href="#">Transaksi</a>
-      <a href="#">Produk</a>
-      <a href="#">Stok</a>
-      <a href="#">Laporan</a>
-      <a href="#">Pengaturan</a>
+      <a class="on" href="#dashboard" data-view="dashboard" aria-current="page">Dashboard</a>
+      <a href="#transaksi" data-view="transaksi">Transaksi</a>
+      <a href="#produk" data-view="produk">Produk</a>
+      <a href="#stok" data-view="stok">Stok</a>
+      <a href="#laporan" data-view="laporan">Laporan</a>
+      <a href="#pengaturan" data-view="pengaturan">Pengaturan</a>
     </nav>
     <div class="promo">
       <b>Udah punya warung / kafe?</b>
-      Sistem POS kayak gini bisa jadi milikmu dalam 3 minggu. Dibikin oleh <a href="../index.html">mood</a> — studio IT.
+      Sistem POS kayak gini bisa jadi milikmu dalam 3 minggu. Dibikin oleh <a href="../index.html">GATRA</a> — studio IT.
     </div>
   </aside>
   <main class="main">
     <div class="topbar">
       <h1>Dashboard</h1>
-      <span class="datechip">Hari ini · Jumat, 14 Agustus 2026</span>
-      <div class="search">🔎 Cari produk / transaksi…</div>
+      <span class="datechip">Contoh data · 14 Agustus 2026</span>
+      <input class="search" id="demo-search" type="search" aria-label="Cari produk atau transaksi" placeholder="Cari produk / transaksi…">
       <div class="ava" aria-hidden="true">R</div>
     </div>
+    <p class="demo-notice">Demo interaktif GATRA · semua transaksi dan produk adalah data contoh.</p>
+    <div id="view-dashboard" class="demo-view">
     <div class="stats">
       <div class="stat"><span class="l">Omzet Hari Ini</span><div class="v">Rp 2.480.000</div><div class="d up">▲ 12% vs kemarin</div></div>
       <div class="stat"><span class="l">Transaksi</span><div class="v">128</div><div class="d up">▲ 8% vs kemarin</div></div>
@@ -129,7 +138,7 @@ tr:last-child td{border-bottom:none}
       </div>
     </div>
     <div class="panel">
-      <h2>Transaksi Terakhir <small>realtime</small></h2>
+      <h2>Transaksi Terakhir <small>data contoh</small></h2>
       <table>
         <thead><tr><th>ID</th><th>Waktu</th><th>Item</th><th>Metode</th><th>Total</th><th>Status</th></tr></thead>
         <tbody>
@@ -141,9 +150,17 @@ tr:last-child td{border-bottom:none}
         </tbody>
       </table>
     </div>
-    <div class="foot">© 2026 KasirKu — demo dibuat oleh <b>mood</b> ✦ <a href="../index.html" style="color:inherit">kembali ke portfolio</a></div>
+    </div>
+    <div id="view-transaksi" class="demo-view" hidden></div>
+    <div id="view-produk" class="demo-view" hidden></div>
+    <div id="view-stok" class="demo-view" hidden></div>
+    <div id="view-laporan" class="demo-view" hidden></div>
+    <div id="view-pengaturan" class="demo-view" hidden></div>
+    <p id="search-status" role="status" hidden></p>
+    <div class="foot">© 2026 KasirKu — demo dibuat oleh <b>GATRA</b> ✦ <a href="../index.html" style="color:inherit">kembali ke portfolio</a></div>
   </main>
 </div>
-<a class="backpill" href="../karya.html">◀ mood / portfolio</a>
+<a class="backpill" href="../karya.html">◀ GATRA / portfolio</a>
+<script src="../js/kasirku-demo.js?v=1"></script>
 </body>
 </html>

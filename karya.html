@@ -9,33 +9,34 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 <style>
 .work .thumb .em{width:100%;height:100%;display:grid;place-items:center;font-size:56px}
 .work .thumb.t-blue .em{background:linear-gradient(135deg,#E0F2FE,#fff)}
 .work .thumb.t-green .em{background:linear-gradient(135deg,#DCFCE7,#fff)}
 .work .thumb.t-amber .em{background:linear-gradient(135deg,#FEF3C7,#fff)}
 </style>
+<script src="js/site.js?v=1" defer></script>
 </head>
 <body class="page-karya">
 <nav class="nav" id="nav">
   <div class="nav-in">
     <a class="logo" href="index.html"><img src="assets/logo.jpg" alt="GATRA Global"></a>
-    <div class="menu">
+    <div class="menu" id="site-menu">
       <a class="ml" href="index.html#layanan">Layanan &amp; Produk</a>
       <div>
-        <span class="ml">Karya <span class="car">▾</span></span>
-        <div class="drop">
-          <a href="index.html#karya"><span class="ic">📱</span><span><b>4 Demo Aplikasi Mobile</b><small>Jajan.in, GymKuy, Fokusin, Racunin</small></span></a>
-          <a href="index.html#karya"><span class="ic">🌐</span><span><b>6 Demo Web Live</b><small>POS, podcast, kantin, kopi, festival, kamera</small></span></a>
+        <button class="ml work-toggle" type="button" aria-expanded="false" aria-controls="nav-work-links">Karya <span class="car" aria-hidden="true">▾</span></button>
+        <div class="drop" id="nav-work-links">
+          <a href="karya.html#apk"><span class="ic">📱</span><span><b>4 Demo Aplikasi Mobile</b><small>Jajan.in, GymKuy, Fokusin, Racunin</small></span></a>
+          <a href="karya.html#web"><span class="ic">🌐</span><span><b>6 Demo Web Live</b><small>POS, podcast, kantin, kopi, festival, kamera</small></span></a>
           <a href="#proyek"><span class="ic">🧠</span><span><b>Proyek Asli ML &amp; Otomasi</b><small>PhoneFarm, Sistem Automasi &amp; ScrapPulse</small></span></a>
         </div>
       </div>
-      <div><span class="ml" onclick="location.href='proses.html'">Proses</span></div>
-      <div><span class="ml" onclick="location.href='faq.html'">FAQ</span></div>
+      <div><a class="ml" href="proses.html">Proses</a></div>
+      <div><a class="ml" href="faq.html">FAQ</a></div>
     </div>
-    <div class="nav-r">
-      <span class="lang">🌐 ID</span>
+    <div class="nav-r"><button class="nav-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true">☰</span></button>
+      <span class="lang" title="Bahasa Indonesia">🌐 ID</span>
       <a class="btn btn-p" href="index.html#kontak">Konsultasi Gratis</a>
     </div>
   </div>
@@ -178,7 +179,7 @@
         </div>
       </a>
     </div>
-    <div class="center"><a class="more" href="index.html#aplikasi-mobile">Lihat semua dalam satu HP →</a></div>
+    <div class="center"><a class="more" href="karya.html#apk">Lihat semua dalam satu HP →</a></div>
   </div>
 </section>
 <!--K4-->
@@ -255,9 +256,6 @@
 
 <a class="wa" href="https://wa.me/6281234567890" aria-label="Chat WhatsApp">💬</a>
 
-<script>
-var navEl=document.getElementById("nav");
-addEventListener("scroll",function(){navEl.classList.toggle("scrolled",scrollY>4)},{passive:true});
-</script>
+
 </body>
 </html>

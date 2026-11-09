@@ -2,3 +2,6 @@
 __pycache__/
 
 backup-old-design/
+
+# Local screenshots and QA reports
+artifacts/

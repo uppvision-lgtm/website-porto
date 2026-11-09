@@ -35,27 +35,28 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
+<script src="js/site.js?v=1" defer></script>
 </head>
 <body>
 <nav class="nav" id="nav">
   <div class="nav-in">
     <a class="logo" href="#"><img src="assets/logo.jpg" alt="GATRA Global"></a>
-    <div class="menu">
+    <div class="menu" id="site-menu">
       <a class="ml" href="#layanan">Layanan &amp; Produk</a>
       <div>
-        <span class="ml">Karya <span class="car">▾</span></span>
-        <div class="drop">
-          <a href="#karya"><span class="ic">📱</span><span><b>4 Demo Aplikasi Mobile</b><small>Jajan.in, GymKuy, Fokusin, Racunin</small></span></a>
-          <a href="#karya"><span class="ic">🌐</span><span><b>6 Demo Web Live</b><small>POS, podcast, kantin, kopi, festival, kamera</small></span></a>
+        <button class="ml work-toggle" type="button" aria-expanded="false" aria-controls="nav-work-links">Karya <span class="car" aria-hidden="true">▾</span></button>
+        <div class="drop" id="nav-work-links">
+          <a href="karya.html#apk"><span class="ic">📱</span><span><b>4 Demo Aplikasi Mobile</b><small>Jajan.in, GymKuy, Fokusin, Racunin</small></span></a>
+          <a href="karya.html#web"><span class="ic">🌐</span><span><b>6 Demo Web Live</b><small>POS, podcast, kantin, kopi, festival, kamera</small></span></a>
           <a href="karya.html#proyek"><span class="ic">🧠</span><span><b>Proyek Asli ML &amp; Otomasi</b><small>PhoneFarm, Sistem Automasi &amp; ScrapPulse</small></span></a>
         </div>
       </div>
-      <div><span class="ml" onclick="location.href='#proses'">Proses</span></div>
-      <div><span class="ml" onclick="location.href='#faq'">FAQ</span></div>
+      <div><a class="ml" href="proses.html">Proses</a></div>
+      <div><a class="ml" href="faq.html">FAQ</a></div>
     </div>
-    <div class="nav-r">
-      <span class="lang">🌐 ID</span>
+    <div class="nav-r"><button class="nav-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true">☰</span></button>
+      <span class="lang" title="Bahasa Indonesia">🌐 ID</span>
       <a class="btn btn-p" href="#kontak">Konsultasi Gratis</a>
     </div>
   </div>
@@ -67,10 +68,10 @@
     <h1>Ekosistem digital AI-first untuk mendukung pertumbuhan bisnis dan profesional</h1>
     <p class="sub">Website, aplikasi mobile, machine learning, sampai infrastruktur — dibangun cepat dengan <span class="hl">otomasi, integrasi tanpa hambatan</span>, dan reporting yang langsung kepakai.</p>
     <div class="cta">
-      <a class="btn btn-p" href="#kontak">💬 Konsultasi via WhatsApp</a>
+      <a class="btn btn-p" href="https://wa.me/6281234567890">💬 Konsultasi via WhatsApp</a>
       <a class="btn btn-o" href="#layanan">Pelajari ekosistem GATRA ↓</a>
     </div>
-    <div class="rating"><span class="star">★ 4,9/5</span> · kepuasan klien &amp; pengguna demo GATRA</div>
+    <div class="rating"><span class="star">✦ Demo interaktif</span> · coba langsung di browser</div>
     <div class="shields">
       <div class="shield">17<small>Halaman &amp; Demo</small></div>
       <div class="shield">4<small>Aplikasi Mobile</small></div>
@@ -209,9 +210,9 @@
       <div class="card"><div class="pad"><h3>Sistem berbasis lokal</h3><p style="color:var(--muted);font-size:14px;margin-top:6px">Server &amp; support di Indonesia — latency rendah, komunikasi gampang.</p></div></div>
     </div>
     <div class="stats4" style="margin-top:56px">
-      <div><div class="n">12+</div><small>Proyek Selesai</small></div>
-      <div><div class="n">98%</div><small>Klien Puas</small></div>
-      <div><div class="n">0</div><small>Deadline Telat</small></div>
+      <div><div class="n">6</div><small>Demo Website</small></div>
+      <div><div class="n">4</div><small>Demo Aplikasi Mobile</small></div>
+      <div><div class="n">3</div><small>Studi Kasus</small></div>
       <div><div class="n">24 Jam</div><small>Balas Pesan</small></div>
     </div>
   </div>
@@ -220,9 +221,9 @@
 <section id="testimoni" class="lav">
   <div class="container">
     <div class="center" style="margin-bottom:44px">
-      <div class="eyebrow2">Insight nyata dari klien kami</div>
-      <h2>Lihat bagaimana bisnis dari berbagai industri pakai GATRA</h2>
-      <p class="sec-sub" style="margin:12px auto 0">Testimoni masih contoh — bakal diisi cerita klien asli setelah proyek pertama jalan.</p>
+      <div class="eyebrow2">Ilustrasi penggunaan layanan</div>
+      <h2>Contoh manfaat GATRA untuk berbagai bisnis</h2>
+      <p class="sec-sub" style="margin:12px auto 0">Testimoni berikut adalah ilustrasi, bukan ulasan klien asli.</p>
     </div>
     <div class="grid3">
       <div class="quote">
@@ -247,10 +248,10 @@
       <div class="eyebrow2">FAQ</div>
       <h2>Sering ditanya</h2>
     </div>
-    <div class="faq open"><b>Bedanya GATRA sama agensi lain?</b><span class="car">▾</span><p>Fokus kami bukan sekadar "jadi" — tapi hasil yang langsung kepakai operasional: demo bisa dicoba sejak awal, progres transparan, dan garansi bug fix setelah launch.</p></div>
-    <div class="faq"><b>Berapa biaya &amp; berapa lama?</b><span class="car">▾</span><p>Setelah konsultasi gratis kamu dapat estimasi transparan: apa yang dikerjain, berapa lama, berapa biayanya. Nggak ada biaya siluman.</p></div>
-    <div class="faq"><b>Aku nggak ngerti teknis, gimana?</b><span class="car">▾</span><p>Santai — tugas kamu cuma ceritain masalah &amp; goal. Semua keputusan teknis kami jelasin pakai bahasa manusia.</p></div>
-    <div class="faq"><b>Setelah launching masih dibantuin?</b><span class="car">▾</span><p>Dibantuin: setup hosting/domain, dokumentasi singkat, plus garansi bug fix. Mau dirawat rutin? Ada opsi maintenance bulanan.</p></div>
+    <div class="faq open"><button class="faq-toggle" type="button" aria-expanded="true" aria-controls="faq-answer-1"><span>Bedanya GATRA sama agensi lain?</span><span class="car" aria-hidden="true">▾</span></button><p id="faq-answer-1">Fokus kami bukan sekadar "jadi" — tapi hasil yang langsung kepakai operasional: demo bisa dicoba sejak awal, progres transparan, dan garansi bug fix setelah launch.</p></div>
+    <div class="faq"><button class="faq-toggle" type="button" aria-expanded="false" aria-controls="faq-answer-2"><span>Berapa biaya &amp; berapa lama?</span><span class="car" aria-hidden="true">▾</span></button><p id="faq-answer-2">Setelah konsultasi gratis kamu dapat estimasi transparan: apa yang dikerjain, berapa lama, berapa biayanya. Nggak ada biaya siluman.</p></div>
+    <div class="faq"><button class="faq-toggle" type="button" aria-expanded="false" aria-controls="faq-answer-3"><span>Aku nggak ngerti teknis, gimana?</span><span class="car" aria-hidden="true">▾</span></button><p id="faq-answer-3">Santai — tugas kamu cuma ceritain masalah &amp; goal. Semua keputusan teknis kami jelasin pakai bahasa manusia.</p></div>
+    <div class="faq"><button class="faq-toggle" type="button" aria-expanded="false" aria-controls="faq-answer-4"><span>Setelah launching masih dibantuin?</span><span class="car" aria-hidden="true">▾</span></button><p id="faq-answer-4">Dibantuin: setup hosting/domain, dokumentasi singkat, plus garansi bug fix. Mau dirawat rutin? Ada opsi maintenance bulanan.</p></div>
   </div>
 </section>
 
@@ -291,12 +292,6 @@
 
 <a class="wa" href="https://wa.me/6281234567890" aria-label="Chat WhatsApp">💬</a>
 
-<script>
-var navEl=document.getElementById("nav");
-addEventListener("scroll",function(){navEl.classList.toggle("scrolled",scrollY>4)},{passive:true});
-document.querySelectorAll(".faq").forEach(function(f){
-  f.addEventListener("click",function(){f.classList.toggle("open")});
-});
-</script>
+
 </body>
 </html>

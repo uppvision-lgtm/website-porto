@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GoKantin — Pesan Makanan Kampus Tanpa Antre</title>
-<meta name="description" content="GoKantin: pesan makanan kantin kampus dari HP, bayar QRIS, ambil tanpa ngantri. Demo web app oleh mood.">
+<meta name="description" content="GoKantin: pesan makanan kantin kampus dari HP, bayar QRIS, ambil tanpa ngantri. Demo web app oleh GATRA.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -73,7 +73,7 @@ footer a{color:var(--or)}
   <a class="l" href="#menu">Menu Hari Ini</a>
   <a class="l" href="#cara">Cara Order</a>
   <a class="l" href="#">Mitra Kantin</a>
-  <button class="cart" id="cart" type="button">🛒 Keranjang (<span id="cartN">0</span>)</button>
+  <button class="cart" id="cart" type="button">🛒 Keranjang (<span id="cartN">0</span>)</button><span id="cart-status" role="status" aria-live="polite" style="font-size:.85rem"></span>
 </nav>
 <header class="hero">
   <div>
@@ -134,10 +134,10 @@ footer a{color:var(--or)}
   <span>— Rafi, Teknik '24 · ★★★★★</span>
 </section>
 <footer>
-  <span>© 2026 GoKantin — demo dibuat oleh <a href="../index.html">mood</a></span>
+  <span>© 2026 GoKantin — demo dibuat oleh <a href="../index.html">GATRA</a></span>
   <span>Mitra: 12 kantin kampus &amp; 40+ tenan</span>
 </footer>
-<a class="backpill" href="../karya.html">◀ mood / portfolio</a>
+<a class="backpill" href="../karya.html">◀ GATRA / portfolio</a>
 <script>
 (function(){
   "use strict";
@@ -146,21 +146,17 @@ footer a{color:var(--or)}
   document.querySelectorAll("button.add").forEach(function(b){
     b.addEventListener("click",function(){
       n++;render();
-      var old=b.textContent;
+      var old="+ Keranjang";
       b.textContent="Masuk ✓";
       setTimeout(function(){b.textContent=old;},900);
     });
   });
   var cart=document.getElementById("cart");
-  var busy=false;
+  var status=document.getElementById("cart-status"),feedbackTimer;
   cart.addEventListener("click",function(){
-    if(busy)return;
-    busy=true;
-    cart.textContent=n?("🛒 "+n+" item siap checkout ✅"):"🛒 Kosong nih, pilih menu dulu 😅";
-    setTimeout(function(){
-      cart.innerHTML="🛒 Keranjang (<span id=\"cartN\">"+n+"</span>)";
-      busy=false;
-    },1500);
+    status.textContent=n?(n+" item dipilih · checkout hanya ilustrasi demo."):"Keranjang kosong, pilih menu dulu.";
+    clearTimeout(feedbackTimer);
+    feedbackTimer=setTimeout(function(){status.textContent="";},2500);
   });
 })();
 </script>

@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../style.css?v=4">
+<link rel="stylesheet" href="../style.css?v=5">
 <style>
 .flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:6px 0}
 .node{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-weight:600;font-size:13.5px;box-shadow:0 2px 8px rgba(35,41,51,.05)}
@@ -34,26 +34,27 @@
 .bandnote h3{font-size:17px;margin-bottom:8px}
 .bandnote p{color:var(--muted);font-size:14.5px;line-height:1.65;margin:0}
 </style>
+<script src="../js/site.js?v=1" defer></script>
 </head>
 <body>
 <nav class="nav" id="nav">
   <div class="nav-in">
     <a class="logo" href="../index.html"><img src="../assets/logo.jpg" alt="GATRA Global"></a>
-    <div class="menu">
+    <div class="menu" id="site-menu">
       <a class="ml" href="../index.html#layanan">Layanan &amp; Produk</a>
       <div>
-        <span class="ml">Karya <span class="car">▾</span></span>
-        <div class="drop">
+        <button class="ml work-toggle" type="button" aria-expanded="false" aria-controls="nav-work-links">Karya <span class="car" aria-hidden="true">▾</span></button>
+        <div class="drop" id="nav-work-links">
           <a href="../karya.html#apk"><span class="ic">📱</span><span><b>4 Demo Aplikasi Mobile</b><small>Jajan.in, GymKuy, Fokusin, Racunin</small></span></a>
           <a href="../karya.html#web"><span class="ic">🌐</span><span><b>6 Demo Web Live</b><small>POS, podcast, kantin, kopi, festival, kamera</small></span></a>
           <a href="../karya.html#proyek"><span class="ic">🧠</span><span><b>Proyek Asli ML &amp; Otomasi</b><small>PhoneFarm, Sistem Automasi &amp; ScrapPulse</small></span></a>
         </div>
       </div>
-      <div><span class="ml" onclick="location.href='../proses.html'">Proses</span></div>
-      <div><span class="ml" onclick="location.href='../faq.html'">FAQ</span></div>
+      <div><a class="ml" href="../proses.html">Proses</a></div>
+      <div><a class="ml" href="../faq.html">FAQ</a></div>
     </div>
-    <div class="nav-r">
-      <span class="lang">🌐 ID</span>
+    <div class="nav-r"><button class="nav-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true">☰</span></button>
+      <span class="lang" title="Bahasa Indonesia">🌐 ID</span>
       <a class="btn btn-p" href="../index.html#kontak">Konsultasi Gratis</a>
     </div>
   </div>
@@ -65,7 +66,7 @@
     <h1 style="max-width:840px;margin:10px auto 0;font-size:clamp(30px,4.6vw,46px)">Sistem Automasi — Suite Otomasi Instagram</h1>
     <p class="sub">Tiga mesin dalam satu antrean: <b>auto komen</b> ber-AI dengan tiga pilihan nada, <b>auto edit video</b> — tempel link, jadi Reels 9:16 dengan lower-third ala berita TV — dan <b>auto upload</b> lewat browser yang meniru manusia. Frontend <span class="hl">Next.js</span>, API <b>FastAPI</b>, worker <b>Celery</b> + <b>Redis</b>, browser <b>Playwright</b>, render <b>ffmpeg</b>, otak <b>DeepSeek</b>.</p>
     <div class="cta" style="justify-content:center;margin-top:26px">
-      <a class="btn btn-p" href="../index.html#kontak">💬 Konsultasi via WhatsApp</a>
+      <a class="btn btn-p" href="https://wa.me/6281234567890">💬 Konsultasi via WhatsApp</a>
       <a class="btn btn-o" href="#galeri">Lihat tangkapan layar ↓</a>
     </div>
     <div class="rating"><span class="star">★ Proyek production</span> · berjalan beneran, bukan mockup</div>
